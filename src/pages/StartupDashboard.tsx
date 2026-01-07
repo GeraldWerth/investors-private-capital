@@ -19,14 +19,6 @@ const StartupDashboard = () => {
       link: "/funding-rounds"
     },
     {
-      icon: Users,
-      title: "Pilotprojekte",
-      description: "Nehmen Sie an spannenden Pilotprojekten teil",
-      stats: "1 aktives Projekt",
-      items: ["Smart Grid Integration", "Neue Ausschreibungen", "Projektberichte"],
-      link: "/pilot-projects"
-    },
-    {
       icon: FolderOpen,
       title: "Data Room",
       description: "Dokumente für Funding & Exit hochladen",
@@ -41,6 +33,14 @@ const StartupDashboard = () => {
       stats: "Roadmap erstellt",
       items: ["Exit-Strategie", "Bewertungstools", "M&A Kontakte"],
       link: "/exit-preparation"
+    },
+    {
+      icon: Users,
+      title: "Pilotprojekte",
+      description: "Nehmen Sie an spannenden Pilotprojekten teil",
+      stats: "1 aktives Projekt",
+      items: ["Smart Grid Integration", "Neue Ausschreibungen", "Projektberichte"],
+      link: "/pilot-projects"
     }
   ];
 
