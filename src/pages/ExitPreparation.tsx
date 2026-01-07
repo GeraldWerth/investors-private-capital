@@ -63,36 +63,36 @@ const ExitPreparation = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-orange-100 sticky top-0 z-50">
+      <header className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
               <Link 
                 to="/startup-dashboard" 
-                className="flex items-center gap-2 text-gray-600 hover:text-orange-600 transition-colors"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
                 <span className="hidden sm:inline font-medium">Zurück</span>
               </Link>
-              <div className="h-6 w-px bg-gray-200" />
+              <div className="h-6 w-px bg-border" />
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center shadow-lg">
-                  <LogOut className="w-5 h-5 text-white" />
+                <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center shadow-lg">
+                  <LogOut className="w-5 h-5 text-accent-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-gray-900">Exit & Vorbereitung</h1>
-                  <p className="text-xs text-gray-500">Strategische Planung</p>
+                  <h1 className="text-lg font-bold text-foreground">Exit & Vorbereitung</h1>
+                  <p className="text-xs text-muted-foreground">Strategische Planung</p>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-amber-500 rounded-lg flex items-center justify-center">
-                <Rocket className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                <Rocket className="w-4 h-4 text-accent-foreground" />
               </div>
-              <span className="hidden sm:inline text-sm font-semibold text-gray-900">EIN Energy</span>
+              <span className="hidden sm:inline text-sm font-semibold text-foreground">EIN Energy</span>
             </div>
           </div>
         </div>
@@ -101,34 +101,34 @@ const ExitPreparation = () => {
       {/* Main Content */}
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         {/* Exit Readiness Score */}
-        <Card className="border-0 shadow-xl shadow-orange-100/50 bg-white/80 backdrop-blur-sm overflow-hidden">
-          <CardHeader className="bg-gradient-to-r from-orange-500 to-amber-500 text-white">
+        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm overflow-hidden">
+          <CardHeader className="bg-accent text-accent-foreground">
             <CardTitle className="text-xl font-bold flex items-center gap-2">
               <Target className="w-5 h-5" />
               Exit-Readiness Score
             </CardTitle>
-            <CardDescription className="text-orange-100">Ihre aktuelle Vorbereitung auf einen Exit</CardDescription>
+            <CardDescription className="text-accent-foreground/80">Ihre aktuelle Vorbereitung auf einen Exit</CardDescription>
           </CardHeader>
           <CardContent className="pt-6">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="relative">
-                <div className="w-32 h-32 rounded-full border-8 border-orange-100 flex items-center justify-center">
+                <div className="w-32 h-32 rounded-full border-8 border-secondary flex items-center justify-center">
                   <div className="text-center">
-                    <p className="text-4xl font-bold text-orange-500">{exitReadiness.overall}%</p>
-                    <p className="text-xs text-gray-500">Gesamt</p>
+                    <p className="text-4xl font-bold text-primary">{exitReadiness.overall}%</p>
+                    <p className="text-xs text-muted-foreground">Gesamt</p>
                   </div>
                 </div>
               </div>
               <div className="flex-1 space-y-3">
                 {exitReadiness.categories.map((category, index) => (
                   <div key={index} className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center">
-                      <category.icon className="w-5 h-5 text-orange-500" />
+                    <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
+                      <category.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between text-sm mb-1">
-                        <span className="font-medium text-gray-700">{category.name}</span>
-                        <span className="text-orange-600">{category.score}%</span>
+                        <span className="font-medium text-foreground">{category.name}</span>
+                        <span className="text-primary">{category.score}%</span>
                       </div>
                       <Progress value={category.score} className="h-2" />
                     </div>
@@ -140,10 +140,10 @@ const ExitPreparation = () => {
         </Card>
 
         {/* Exit Strategies */}
-        <Card className="border-0 shadow-xl shadow-orange-100/50 bg-white/80 backdrop-blur-sm">
+        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="text-xl font-bold text-gray-900 flex items-center gap-2">
-              <BarChart3 className="w-5 h-5 text-orange-500" />
+            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+              <BarChart3 className="w-5 h-5 text-primary" />
               Exit-Strategien
             </CardTitle>
             <CardDescription>Analysierte Optionen für Ihren Exit</CardDescription>
@@ -152,18 +152,18 @@ const ExitPreparation = () => {
             {exitStrategies.map((strategy, index) => (
               <div 
                 key={index}
-                className={`p-5 rounded-2xl border ${strategy.recommended ? 'bg-gradient-to-r from-orange-50 to-amber-50 border-orange-200' : 'bg-gray-50 border-gray-100'}`}
+                className={`p-5 rounded-2xl border ${strategy.recommended ? 'bg-primary/5 border-primary/20' : 'bg-secondary border-border'}`}
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="font-semibold text-gray-900 text-lg">{strategy.type}</h3>
+                      <h3 className="font-semibold text-foreground text-lg">{strategy.type}</h3>
                       {strategy.recommended && (
-                        <Badge className="bg-orange-100 text-orange-700">Empfohlen</Badge>
+                        <Badge className="bg-primary/20 text-primary">Empfohlen</Badge>
                       )}
                     </div>
-                    <p className="text-sm text-gray-600 mb-3">{strategy.description}</p>
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground mb-3">{strategy.description}</p>
+                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <TrendingUp className="w-4 h-4" />
                         Wahrscheinlichkeit: {strategy.probability}
@@ -177,8 +177,8 @@ const ExitPreparation = () => {
                   <Button 
                     variant={strategy.recommended ? "default" : "outline"}
                     className={strategy.recommended 
-                      ? "bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white rounded-xl" 
-                      : "border-gray-200 text-gray-600 hover:bg-gray-50 rounded-xl"
+                      ? "bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl" 
+                      : "border-border text-foreground hover:bg-secondary rounded-xl"
                     }
                   >
                     Details ansehen
@@ -192,10 +192,10 @@ const ExitPreparation = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Checklist */}
-          <Card className="border-0 shadow-xl shadow-orange-100/50 bg-white/80 backdrop-blur-sm">
+          <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+              <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-primary" />
                 Exit-Checkliste
               </CardTitle>
               <CardDescription>
@@ -207,12 +207,12 @@ const ExitPreparation = () => {
                 {checklist.map((item, index) => (
                   <div 
                     key={index}
-                    className={`flex items-center gap-3 p-3 rounded-xl ${item.completed ? 'bg-emerald-50 border border-emerald-100' : 'bg-gray-50 border border-gray-100'}`}
+                    className={`flex items-center gap-3 p-3 rounded-xl ${item.completed ? 'bg-primary/10 border border-primary/20' : 'bg-secondary border border-border'}`}
                   >
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center ${item.completed ? 'bg-emerald-500 text-white' : 'bg-gray-200'}`}>
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center ${item.completed ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
                       {item.completed && <CheckCircle2 className="w-4 h-4" />}
                     </div>
-                    <span className={`text-sm ${item.completed ? 'text-emerald-700' : 'text-gray-600'}`}>
+                    <span className={`text-sm ${item.completed ? 'text-primary' : 'text-muted-foreground'}`}>
                       {item.title}
                     </span>
                   </div>
@@ -222,10 +222,10 @@ const ExitPreparation = () => {
           </Card>
 
           {/* Potential Buyers */}
-          <Card className="border-0 shadow-xl shadow-orange-100/50 bg-white/80 backdrop-blur-sm">
+          <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                <Building2 className="w-5 h-5 text-blue-500" />
+              <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                <Building2 className="w-5 h-5 text-accent" />
                 Potenzielle Käufer
               </CardTitle>
               <CardDescription>M&A Kontakte und Interessenten</CardDescription>
@@ -235,28 +235,28 @@ const ExitPreparation = () => {
                 {potentialBuyers.map((buyer, index) => (
                   <div 
                     key={index}
-                    className="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100 hover:bg-blue-50 transition-colors"
+                    className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border hover:bg-primary/5 transition-colors"
                   >
                     <div>
-                      <p className="font-medium text-gray-900">{buyer.name}</p>
-                      <p className="text-xs text-gray-500">{buyer.type} · Kontakt {buyer.lastContact}</p>
+                      <p className="font-medium text-foreground">{buyer.name}</p>
+                      <p className="text-xs text-muted-foreground">{buyer.type} · Kontakt {buyer.lastContact}</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <Badge className={
                         buyer.interest === "Hoch" 
-                          ? "bg-emerald-100 text-emerald-700" 
-                          : "bg-gray-100 text-gray-600"
+                          ? "bg-primary/20 text-primary" 
+                          : "bg-muted text-muted-foreground"
                       }>
                         {buyer.interest}
                       </Badge>
-                      <Button variant="ghost" size="icon" className="text-blue-600 hover:bg-blue-50">
+                      <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/10">
                         <Phone className="w-4 h-4" />
                       </Button>
                     </div>
                   </div>
                 ))}
               </div>
-              <Button variant="outline" className="w-full mt-4 border-blue-200 text-blue-600 hover:bg-blue-50 rounded-xl">
+              <Button variant="outline" className="w-full mt-4 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
                 Alle Kontakte anzeigen
               </Button>
             </CardContent>
@@ -264,30 +264,30 @@ const ExitPreparation = () => {
         </div>
 
         {/* Documents */}
-        <Card className="border-0 shadow-xl shadow-orange-100/50 bg-white/80 backdrop-blur-sm">
+        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="text-xl font-bold text-gray-900 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-violet-500" />
+            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+              <FileText className="w-5 h-5 text-primary" />
               Exit-Dokumente
             </CardTitle>
             <CardDescription>Wichtige Unterlagen für den Exit-Prozess</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-violet-50 to-purple-50 border border-violet-100 hover:shadow-lg transition-all cursor-pointer">
-                <FileText className="w-8 h-8 text-violet-500 mb-3" />
-                <h4 className="font-medium text-gray-900">Information Memorandum</h4>
-                <p className="text-sm text-gray-500 mt-1">Vorlage verfügbar</p>
+              <div className="p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:shadow-lg transition-all cursor-pointer">
+                <FileText className="w-8 h-8 text-primary mb-3" />
+                <h4 className="font-medium text-foreground">Information Memorandum</h4>
+                <p className="text-sm text-muted-foreground mt-1">Vorlage verfügbar</p>
               </div>
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 hover:shadow-lg transition-all cursor-pointer">
-                <FileText className="w-8 h-8 text-blue-500 mb-3" />
-                <h4 className="font-medium text-gray-900">Bewertungstools</h4>
-                <p className="text-sm text-gray-500 mt-1">DCF & Multiples</p>
+              <div className="p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:shadow-lg transition-all cursor-pointer">
+                <FileText className="w-8 h-8 text-primary mb-3" />
+                <h4 className="font-medium text-foreground">Bewertungstools</h4>
+                <p className="text-sm text-muted-foreground mt-1">DCF & Multiples</p>
               </div>
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-100 hover:shadow-lg transition-all cursor-pointer">
-                <FileText className="w-8 h-8 text-emerald-500 mb-3" />
-                <h4 className="font-medium text-gray-900">Due Diligence Checklist</h4>
-                <p className="text-sm text-gray-500 mt-1">Interaktive Liste</p>
+              <div className="p-4 rounded-2xl bg-accent/10 border border-accent/20 hover:shadow-lg transition-all cursor-pointer">
+                <FileText className="w-8 h-8 text-accent mb-3" />
+                <h4 className="font-medium text-foreground">Due Diligence Checklist</h4>
+                <p className="text-sm text-muted-foreground mt-1">Interaktive Liste</p>
               </div>
             </div>
           </CardContent>
