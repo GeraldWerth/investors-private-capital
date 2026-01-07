@@ -177,10 +177,6 @@ const FundingRounds = () => {
                       <Target className="w-4 h-4" />
                       <span>{round.slots} Plätze verfügbar</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4" />
-                      <span>{round.registered} Interessenten</span>
-                    </div>
                   </div>
                   
                   <Button 
