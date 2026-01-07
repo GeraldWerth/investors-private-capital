@@ -139,27 +139,18 @@ const StartupLogin = () => {
               </Link>
             </Button>
 
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-gray-500">Neu bei EIN Energy?</span>
-              </div>
-            </div>
-
-            <Button 
-              variant="outline" 
-              className="w-full h-12 border-2 border-orange-200 text-orange-600 hover:bg-orange-50 hover:border-orange-300 font-semibold rounded-xl transition-all duration-300"
-            >
-              Startup registrieren
-            </Button>
-
             <p className="text-center text-xs text-gray-400 pt-2">
               Mit der Anmeldung akzeptieren Sie unsere{" "}
               <a href="#" className="text-orange-600 hover:underline">Nutzungsbedingungen</a>
               {" "}und{" "}
               <a href="#" className="text-orange-600 hover:underline">Datenschutzrichtlinie</a>
+            </p>
+
+            <p className="text-center text-sm text-gray-500">
+              Noch kein Konto?{" "}
+              <a href="#" className="text-orange-600 hover:text-orange-700 font-medium hover:underline transition-colors">
+                Kontaktieren Sie uns
+              </a>
             </p>
           </CardContent>
         </Card>
