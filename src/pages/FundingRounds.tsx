@@ -34,18 +34,6 @@ const FundingRounds = () => {
     }
   ];
 
-  const upcomingRounds = [
-    {
-      name: "Impact Investment Runde",
-      startDate: "April 2026",
-      volume: "1.000.000 - 5.000.000 €"
-    },
-    {
-      name: "Corporate Venture Fund",
-      startDate: "Q2 2026",
-      volume: "bis 3.000.000 €"
-    }
-  ];
 
   const applicationSteps = [
     { step: 1, title: "Persönliche Daten", description: "Gründerprofil, Kontaktdaten, Erfahrung", completed: true },
@@ -248,41 +236,6 @@ const FundingRounds = () => {
           </CardContent>
         </Card>
 
-        {/* Upcoming Rounds */}
-        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <Clock className="w-5 h-5 text-accent" />
-              Kommende Runden
-            </CardTitle>
-            <CardDescription>Bereiten Sie sich auf zukünftige Möglichkeiten vor</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {upcomingRounds.map((round, index) => (
-                <div 
-                  key={index}
-                  className="p-4 rounded-2xl bg-accent/10 border border-accent/20"
-                >
-                  <h3 className="font-semibold text-foreground mb-2">{round.name}</h3>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      Start: {round.startDate}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Euro className="w-4 h-4" />
-                      {round.volume}
-                    </span>
-                  </div>
-                  <Button variant="outline" size="sm" className="mt-3 border-accent/30 text-accent hover:bg-accent/10 rounded-xl">
-                    Interesse bekunden
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
       </main>
     </div>
   );
