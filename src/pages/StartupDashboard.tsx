@@ -17,7 +17,8 @@ const StartupDashboard = () => {
       stats: "Profil zu 85% vollständig",
       color: "from-blue-500 to-cyan-500",
       bgLight: "from-blue-50 to-cyan-50",
-      items: ["Unternehmensdetails", "Teamübersicht", "Dokumente"]
+      items: ["Unternehmensdetails", "Teamübersicht", "Dokumente"],
+      link: "/personal-data"
     },
     {
       icon: TrendingUp,
@@ -158,10 +159,20 @@ const StartupDashboard = () => {
                   ))}
                 </div>
                 <Button 
+                  asChild={!!tile.link}
                   className={`w-full bg-gradient-to-r ${tile.color} hover:opacity-90 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 group/btn`}
                 >
-                  Bereich öffnen
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                  {tile.link ? (
+                    <Link to={tile.link}>
+                      Bereich öffnen
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  ) : (
+                    <>
+                      Bereich öffnen
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                    </>
+                  )}
                 </Button>
               </CardContent>
             </Card>
