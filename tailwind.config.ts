@@ -57,6 +57,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // EIN Energy brand colors
+        ein: {
+          dark: "hsl(var(--ein-dark))",
+          light: "hsl(var(--ein-light))",
+          turquoise: "hsl(var(--ein-turquoise))",
+          green: "hsl(var(--ein-green))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
