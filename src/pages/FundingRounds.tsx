@@ -168,7 +168,7 @@ const FundingRounds = () => {
                     {round.status}
                   </Badge>
                   
-                  <p className="text-sm font-medium text-primary mb-3">Seed - Growth Stages</p>
+                  <p className="text-sm font-medium text-primary mb-3">From Seed to all Growth Stages</p>
                   
                   <div className="space-y-2 text-sm text-muted-foreground mb-4">
                     <div className="flex items-center gap-2">
