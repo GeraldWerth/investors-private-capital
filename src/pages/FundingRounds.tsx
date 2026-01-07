@@ -164,9 +164,11 @@ const FundingRounds = () => {
                     )}
                   </div>
                   
-                  <Badge className={round.status === "Bewerbung offen" ? 'bg-green-500/20 text-green-600 mb-3' : 'bg-muted text-muted-foreground mb-3'}>
+                  <Badge className={round.status === "Bewerbung offen" ? 'bg-green-500/20 text-green-600 mb-2' : 'bg-muted text-muted-foreground mb-2'}>
                     {round.status}
                   </Badge>
+                  
+                  <p className="text-sm font-medium text-primary mb-3">Seed bis Series D+</p>
                   
                   <div className="space-y-2 text-sm text-muted-foreground mb-4">
                     <div className="flex items-center gap-2">
