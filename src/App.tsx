@@ -9,6 +9,7 @@ import StartupDashboard from "./pages/StartupDashboard";
 import PersonalData from "./pages/PersonalData";
 import FundingRounds from "./pages/FundingRounds";
 import PilotProjects from "./pages/PilotProjects";
+import DataRoom from "./pages/DataRoom";
 import ExitPreparation from "./pages/ExitPreparation";
 import NotFound from "./pages/NotFound";
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/personal-data" element={<PersonalData />} />
           <Route path="/funding-rounds" element={<FundingRounds />} />
           <Route path="/pilot-projects" element={<PilotProjects />} />
+          <Route path="/data-room" element={<DataRoom />} />
           <Route path="/exit-preparation" element={<ExitPreparation />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

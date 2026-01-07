@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { 
   Rocket, TrendingUp, Users, LogOut, 
   ArrowRight, Bell, Settings, ChevronRight,
-  Building2, Calendar, Target, FileText, User
+  Building2, Calendar, Target, FileText, User, FolderOpen
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -25,6 +25,14 @@ const StartupDashboard = () => {
       stats: "1 aktives Projekt",
       items: ["Smart Grid Integration", "Neue Ausschreibungen", "Projektberichte"],
       link: "/pilot-projects"
+    },
+    {
+      icon: FolderOpen,
+      title: "Data Room",
+      description: "Dokumente für Funding & Exit hochladen",
+      stats: "2 Dateien",
+      items: ["Legal & Verträge", "Financials", "Due Diligence"],
+      link: "/data-room"
     },
     {
       icon: LogOut,
