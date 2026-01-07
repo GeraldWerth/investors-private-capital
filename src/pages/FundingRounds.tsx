@@ -48,12 +48,14 @@ const FundingRounds = () => {
   ];
 
   const applicationSteps = [
-    { step: 1, title: "Company & Legal", description: "Gesellschaftsverträge, Satzung, Patente", completed: true },
-    { step: 2, title: "Financials & Funding", description: "Jahresabschlüsse, Cap Table, Forecasts", completed: true },
-    { step: 3, title: "Product & Technology", description: "Produktdokumentation, Tech Stack, IP", completed: false },
-    { step: 4, title: "Market & Business Model", description: "Marktanalysen, Geschäftsmodell, Pricing", completed: false },
-    { step: 5, title: "Team & Organization", description: "Lebensläufe, Organigramme, Vesting", completed: false },
-    { step: 6, title: "Traction & Partnerships", description: "KPIs, Kundenverträge, Partnerschaften", completed: false }
+    { step: 1, title: "Persönliche Daten", description: "Gründerprofil, Kontaktdaten, Erfahrung", completed: true },
+    { step: 2, title: "Pitchdeck hochladen", description: "Präsentation Ihres Startups", completed: true },
+    { step: 3, title: "Company & Legal", description: "Gesellschaftsverträge, Satzung, Patente", completed: true },
+    { step: 4, title: "Financials & Funding", description: "Jahresabschlüsse, Cap Table, Forecasts", completed: false },
+    { step: 5, title: "Product & Technology", description: "Produktdokumentation, Tech Stack, IP", completed: false },
+    { step: 6, title: "Market & Business Model", description: "Marktanalysen, Geschäftsmodell, Pricing", completed: false },
+    { step: 7, title: "Team & Organization", description: "Lebensläufe, Organigramme, Vesting", completed: false },
+    { step: 8, title: "Traction & Partnerships", description: "KPIs, Kundenverträge, Partnerschaften", completed: false }
   ];
 
   return (
