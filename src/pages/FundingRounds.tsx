@@ -48,11 +48,12 @@ const FundingRounds = () => {
   ];
 
   const applicationSteps = [
-    { step: 1, title: "Profil vervollständigen", completed: true },
-    { step: 2, title: "Pitch Deck hochladen", completed: true },
-    { step: 3, title: "Finanzdaten einreichen", completed: false },
-    { step: 4, title: "Team vorstellen", completed: false },
-    { step: 5, title: "Due Diligence", completed: false }
+    { step: 1, title: "Company & Legal", description: "Gesellschaftsverträge, Satzung, Patente", completed: true },
+    { step: 2, title: "Financials & Funding", description: "Jahresabschlüsse, Cap Table, Forecasts", completed: true },
+    { step: 3, title: "Product & Technology", description: "Produktdokumentation, Tech Stack, IP", completed: false },
+    { step: 4, title: "Market & Business Model", description: "Marktanalysen, Geschäftsmodell, Pricing", completed: false },
+    { step: 5, title: "Team & Organization", description: "Lebensläufe, Organigramme, Vesting", completed: false },
+    { step: 6, title: "Traction & Partnerships", description: "KPIs, Kundenverträge, Partnerschaften", completed: false }
   ];
 
   return (
@@ -222,16 +223,19 @@ const FundingRounds = () => {
               {applicationSteps.map((step) => (
                 <div 
                   key={step.step}
-                  className={`flex items-center gap-4 p-3 rounded-xl ${step.completed ? 'bg-primary/10 border border-primary/20' : 'bg-secondary border border-border'}`}
+                  className={`flex items-center gap-4 p-4 rounded-xl ${step.completed ? 'bg-primary/10 border border-primary/20' : 'bg-secondary border border-border'}`}
                 >
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step.completed ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${step.completed ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
                     {step.completed ? <CheckCircle2 className="w-5 h-5" /> : step.step}
                   </div>
-                  <span className={`font-medium ${step.completed ? 'text-primary' : 'text-muted-foreground'}`}>
-                    {step.title}
-                  </span>
-                  {!step.completed && step.step === 3 && (
-                    <Badge variant="outline" className="ml-auto border-accent/30 text-accent">
+                  <div className="flex-1 min-w-0">
+                    <span className={`font-medium block ${step.completed ? 'text-primary' : 'text-foreground'}`}>
+                      {step.title}
+                    </span>
+                    <span className="text-sm text-muted-foreground">{step.description}</span>
+                  </div>
+                  {!step.completed && (
+                    <Badge variant="outline" className="shrink-0 border-accent/30 text-accent">
                       <AlertCircle className="w-3 h-3 mr-1" />
                       Ausstehend
                     </Badge>
