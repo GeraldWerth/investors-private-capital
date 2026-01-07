@@ -137,9 +137,9 @@ const FundingRounds = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-primary" />
-              Aktuelle Fundingrunden
+              Kommende Fundingrunden
             </CardTitle>
-            <CardDescription>Bewerben Sie sich für passende Finanzierungsrunden</CardDescription>
+            <CardDescription>Wir führen monatliche Fundingrunden durch. Bewerben Sie sich für die passende Finanzierungsrunde.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {openRounds.map((round) => (
