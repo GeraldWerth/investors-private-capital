@@ -18,11 +18,12 @@ const DataRoom = () => {
   ]);
 
   const categories = [
-    { name: "Legal", description: "Gesellschaftsverträge, Patente, Lizenzen" },
-    { name: "Financials", description: "Jahresabschlüsse, BWA, Forecasts" },
-    { name: "Team", description: "Lebensläufe, Organigramme" },
-    { name: "Product", description: "Produktdokumentation, Roadmaps" },
-    { name: "Customers", description: "Kundenverträge, LOIs, Referenzen" },
+    { name: "Company & Legal", description: "Gesellschaftsverträge, Satzung, Patente, Lizenzen, Handelsregister" },
+    { name: "Financials & Funding", description: "Jahresabschlüsse, BWA, Forecasts, Cap Table, Funding History" },
+    { name: "Product & Technology", description: "Produktdokumentation, Roadmaps, Tech Stack, IP-Portfolio" },
+    { name: "Market & Business Model", description: "Marktanalysen, Wettbewerb, Geschäftsmodell, Pricing" },
+    { name: "Team & Organization", description: "Lebensläufe, Organigramme, Vesting, Berater" },
+    { name: "Traction & Partnerships", description: "KPIs, Kundenverträge, LOIs, Partnerschaften, Referenzen" },
   ];
 
   const handleFileUpload = (category: string) => {
