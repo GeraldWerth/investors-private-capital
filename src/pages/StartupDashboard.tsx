@@ -2,24 +2,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { 
-  Rocket, User, TrendingUp, Users, LogOut, 
+  Rocket, TrendingUp, Users, LogOut, 
   ArrowRight, Bell, Settings, ChevronRight,
-  Building2, Calendar, Target, FileText
+  Building2, Calendar, Target, FileText, User
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const StartupDashboard = () => {
   const dashboardTiles = [
-    {
-      icon: User,
-      title: "Persönliche Daten",
-      description: "Verwalten Sie Ihr Profil und Unternehmensdaten",
-      stats: "Profil zu 85% vollständig",
-      color: "from-blue-500 to-cyan-500",
-      bgLight: "from-blue-50 to-cyan-50",
-      items: ["Unternehmensdetails", "Teamübersicht", "Dokumente"],
-      link: "/personal-data"
-    },
     {
       icon: TrendingUp,
       title: "Fundingrunden",
@@ -82,7 +72,7 @@ const StartupDashboard = () => {
               <Button variant="ghost" size="icon" className="text-gray-500 hover:text-orange-600 hover:bg-orange-50">
                 <Settings className="w-5 h-5" />
               </Button>
-              <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
+              <Link to="/personal-data" className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:bg-orange-50 rounded-lg p-2 -m-2 transition-colors">
                 <Avatar className="w-9 h-9 border-2 border-orange-200">
                   <AvatarFallback className="bg-gradient-to-br from-orange-400 to-amber-500 text-white text-sm font-semibold">
                     TS
@@ -92,7 +82,8 @@ const StartupDashboard = () => {
                   <p className="text-sm font-medium text-gray-900">TechStartup GmbH</p>
                   <p className="text-xs text-gray-500">Max Mustermann</p>
                 </div>
-              </div>
+                <User className="w-4 h-4 text-gray-400 hidden sm:block" />
+              </Link>
             </div>
           </div>
         </div>
@@ -127,7 +118,7 @@ const StartupDashboard = () => {
         </div>
 
         {/* Dashboard Tiles */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {dashboardTiles.map((tile, index) => (
             <Card 
               key={index}
