@@ -10,27 +10,33 @@ import {
 import { Link } from "react-router-dom";
 
 const FundingRounds = () => {
-  const openRounds = [
+  const monthlyRounds = [
     {
       id: 1,
-      name: "Seed-Runde Q1 2026",
+      month: "Februar 2026",
       status: "Bewerbung offen",
-      deadline: "31. März 2026",
-      volume: "500.000 - 2.000.000 €",
-      investors: 12,
-      applied: false,
-      description: "Frühphasenfinanzierung für innovative Energie-Startups mit Proof of Concept."
+      deadline: "31. Januar 2026",
+      slots: 5,
+      registered: 12,
+      isNext: true
     },
     {
       id: 2,
-      name: "Series A - CleanTech",
-      status: "Vorauswahl läuft",
-      deadline: "15. Februar 2026",
-      volume: "2.000.000 - 10.000.000 €",
-      investors: 8,
-      applied: true,
-      progress: 65,
-      description: "Wachstumsfinanzierung für skalierbare CleanTech-Lösungen."
+      month: "März 2026",
+      status: "Demnächst",
+      deadline: "28. Februar 2026",
+      slots: 5,
+      registered: 3,
+      isNext: false
+    },
+    {
+      id: 3,
+      month: "April 2026",
+      status: "Demnächst",
+      deadline: "31. März 2026",
+      slots: 5,
+      registered: 0,
+      isNext: false
     }
   ];
 
@@ -141,61 +147,51 @@ const FundingRounds = () => {
             </CardTitle>
             <CardDescription>Wir führen monatliche Fundingrunden durch. Bewerben Sie sich für die passende Finanzierungsrunde.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            {openRounds.map((round) => (
-              <div 
-                key={round.id}
-                className={`p-5 rounded-2xl border ${round.applied ? 'bg-primary/5 border-primary/20' : 'bg-secondary border-border'} transition-all hover:shadow-lg`}
-              >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="font-semibold text-foreground text-lg">{round.name}</h3>
-                      <Badge className={round.applied ? 'bg-primary/20 text-primary' : 'bg-accent/20 text-accent'}>
-                        {round.status}
-                      </Badge>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {monthlyRounds.map((round) => (
+                <div 
+                  key={round.id}
+                  className={`p-5 rounded-2xl border transition-all hover:shadow-lg ${round.isNext ? 'bg-primary/5 border-primary/30 ring-2 ring-primary/20' : 'bg-secondary border-border'}`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-5 h-5 text-primary" />
+                      <h3 className="font-semibold text-foreground text-lg">{round.month}</h3>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-3">{round.description}</p>
-                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        Deadline: {round.deadline}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Euro className="w-4 h-4" />
-                        {round.volume}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Building2 className="w-4 h-4" />
-                        {round.investors} Investoren
-                      </span>
-                    </div>
-                    {round.applied && round.progress && (
-                      <div className="mt-4">
-                        <div className="flex items-center justify-between text-sm mb-2">
-                          <span className="text-muted-foreground">Bewerbungsfortschritt</span>
-                          <span className="font-medium text-primary">{round.progress}%</span>
-                        </div>
-                        <Progress value={round.progress} className="h-2" />
-                      </div>
+                    {round.isNext && (
+                      <Badge className="bg-primary/20 text-primary">Aktuell</Badge>
                     )}
                   </div>
-                  <div className="flex md:flex-col gap-2">
-                    {round.applied ? (
-                      <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
-                        Bewerbung fortsetzen
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    ) : (
-                      <Button className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl">
-                        Jetzt bewerben
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    )}
+                  
+                  <Badge className={round.status === "Bewerbung offen" ? 'bg-green-500/20 text-green-600 mb-3' : 'bg-muted text-muted-foreground mb-3'}>
+                    {round.status}
+                  </Badge>
+                  
+                  <div className="space-y-2 text-sm text-muted-foreground mb-4">
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      <span>Bewerbungsfrist: {round.deadline}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Target className="w-4 h-4" />
+                      <span>{round.slots} Plätze verfügbar</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Users className="w-4 h-4" />
+                      <span>{round.registered} Interessenten</span>
+                    </div>
                   </div>
+                  
+                  <Button 
+                    className={`w-full rounded-xl ${round.isNext ? 'bg-primary hover:bg-primary/90 text-primary-foreground' : 'bg-accent/20 hover:bg-accent/30 text-accent-foreground'}`}
+                    variant={round.isNext ? "default" : "outline"}
+                  >
+                    {round.isNext ? "Jetzt bewerben" : "Interesse bekunden"}
+                  </Button>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </CardContent>
         </Card>
 
