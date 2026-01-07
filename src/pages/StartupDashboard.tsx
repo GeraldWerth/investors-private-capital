@@ -27,7 +27,8 @@ const StartupDashboard = () => {
       stats: "2 offene Runden",
       color: "from-emerald-500 to-teal-500",
       bgLight: "from-emerald-50 to-teal-50",
-      items: ["Seed-Runde Q1", "Series A Vorbereitung", "Investor Matching"]
+      items: ["Seed-Runde Q1", "Series A Vorbereitung", "Investor Matching"],
+      link: "/funding-rounds"
     },
     {
       icon: Users,
@@ -36,7 +37,8 @@ const StartupDashboard = () => {
       stats: "1 aktives Projekt",
       color: "from-violet-500 to-purple-500",
       bgLight: "from-violet-50 to-purple-50",
-      items: ["Smart Grid Integration", "Neue Ausschreibungen", "Projektberichte"]
+      items: ["Smart Grid Integration", "Neue Ausschreibungen", "Projektberichte"],
+      link: "/pilot-projects"
     },
     {
       icon: LogOut,
@@ -45,7 +47,8 @@ const StartupDashboard = () => {
       stats: "Roadmap erstellt",
       color: "from-orange-500 to-amber-500",
       bgLight: "from-orange-50 to-amber-50",
-      items: ["Exit-Strategie", "Bewertungstools", "M&A Kontakte"]
+      items: ["Exit-Strategie", "Bewertungstools", "M&A Kontakte"],
+      link: "/exit-preparation"
     }
   ];
 
