@@ -68,6 +68,56 @@ const DataRoom = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
+        {/* All-in-One Upload Section */}
+        <Card className="bg-card border-border mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-foreground">
+              <Upload className="h-5 w-5 text-primary" />
+              Alle Dokumente hochladen
+            </CardTitle>
+            <CardDescription className="text-muted-foreground">
+              Laden Sie alle Dokumente in einer einzigen Datei hoch (z.B. ZIP-Archiv mit allen Unterlagen)
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {files
+                .filter((f) => f.category === "All-in-One")
+                .map((file) => (
+                  <div
+                    key={file.id}
+                    className="flex items-center justify-between p-3 bg-muted/50 rounded-lg"
+                  >
+                    <div className="flex items-center gap-2">
+                      <FileText className="h-5 w-5 text-primary" />
+                      <div>
+                        <span className="text-sm font-medium text-foreground">{file.name}</span>
+                        <p className="text-xs text-muted-foreground">Hochgeladen am {file.uploadedAt}</p>
+                      </div>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                      onClick={() => handleDelete(file.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                ))}
+              <Button
+                variant="default"
+                className="w-full"
+                onClick={() => handleFileUpload("All-in-One")}
+              >
+                <Upload className="h-4 w-4 mr-2" />
+                Gesamtes Dokumentenpaket hochladen
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Category Cards */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
             <Card key={category.name} className="bg-card border-border">
