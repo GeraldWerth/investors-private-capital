@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Rocket, User, TrendingUp, Users, LogOut, Eye, EyeOff, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const StartupLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -131,9 +132,11 @@ const StartupLogin = () => {
               </div>
             </div>
 
-            <Button className="w-full h-12 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl shadow-lg shadow-orange-200 transition-all duration-300 hover:shadow-xl hover:shadow-orange-300 group">
-              Anmelden
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            <Button asChild className="w-full h-12 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl shadow-lg shadow-orange-200 transition-all duration-300 hover:shadow-xl hover:shadow-orange-300 group">
+              <Link to="/startup-dashboard">
+                Anmelden
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </Button>
 
             <div className="relative">
