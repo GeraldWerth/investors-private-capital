@@ -28,30 +28,30 @@ const PilotProjects = () => {
   const existingServices = [
     {
       id: 1,
-      title: "Smart Grid Optimierung",
+      title: "Smart Grid Optimization",
       category: "Software",
-      status: "Aktiv",
+      status: "Active",
       views: 124,
       inquiries: 5,
-      createdAt: "15. Nov 2025"
+      createdAt: "Nov 15, 2025"
     },
     {
       id: 2,
-      title: "Energiespeicher-Lösung",
+      title: "Energy Storage Solution",
       category: "Hardware",
-      status: "Aktiv",
+      status: "Active",
       views: 89,
       inquiries: 3,
-      createdAt: "20. Dez 2025"
+      createdAt: "Dec 20, 2025"
     },
     {
       id: 3,
-      title: "KI-Lastprognose",
-      category: "KI/ML",
-      status: "In Prüfung",
+      title: "AI Load Forecasting",
+      category: "AI/ML",
+      status: "Under Review",
       views: 12,
       inquiries: 0,
-      createdAt: "05. Jan 2026"
+      createdAt: "Jan 5, 2026"
     }
   ];
 
@@ -59,23 +59,23 @@ const PilotProjects = () => {
     {
       id: 1,
       company: "EnergieCorp AG",
-      project: "Netzintegration 2026",
-      status: "Angenommen",
-      date: "10. Jan 2026"
+      project: "Grid Integration 2026",
+      status: "Accepted",
+      date: "Jan 10, 2026"
     },
     {
       id: 2,
-      company: "GreenPower GmbH",
-      project: "Speicheroptimierung",
-      status: "In Prüfung",
-      date: "03. Jan 2026"
+      company: "GreenPower Inc.",
+      project: "Storage Optimization",
+      status: "Under Review",
+      date: "Jan 3, 2026"
     },
     {
       id: 3,
       company: "TechGrid Solutions",
-      project: "KI-Pilotprojekt",
-      status: "Abgelehnt",
-      date: "20. Dez 2025"
+      project: "AI Pilot Project",
+      status: "Rejected",
+      date: "Dec 20, 2025"
     }
   ];
 
@@ -100,12 +100,12 @@ const PilotProjects = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "Aktiv":
-      case "Angenommen":
+      case "Active":
+      case "Accepted":
         return "bg-primary/20 text-primary";
-      case "In Prüfung":
+      case "Under Review":
         return "bg-accent/20 text-accent";
-      case "Abgelehnt":
+      case "Rejected":
         return "bg-destructive/20 text-destructive";
       default:
         return "bg-muted text-muted-foreground";
@@ -124,7 +124,7 @@ const PilotProjects = () => {
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
-                <span className="hidden sm:inline font-medium">Zurück</span>
+                <span className="hidden sm:inline font-medium">Back</span>
               </Link>
               <div className="h-6 w-px bg-border" />
               <div className="flex items-center gap-3">
@@ -132,8 +132,8 @@ const PilotProjects = () => {
                   <Briefcase className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-foreground">Pilotprojekte</h1>
-                  <p className="text-xs text-muted-foreground">Ihre Lösungen für Partner</p>
+                  <h1 className="text-lg font-bold text-foreground">Pilot Projects</h1>
+                  <p className="text-xs text-muted-foreground">Your solutions for partners</p>
                 </div>
               </div>
             </div>
@@ -159,7 +159,7 @@ const PilotProjects = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">3</p>
-                <p className="text-xs text-muted-foreground">Aktive Angebote</p>
+                <p className="text-xs text-muted-foreground">Active Offers</p>
               </div>
             </div>
           </div>
@@ -170,7 +170,7 @@ const PilotProjects = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">225</p>
-                <p className="text-xs text-muted-foreground">Aufrufe gesamt</p>
+                <p className="text-xs text-muted-foreground">Total Views</p>
               </div>
             </div>
           </div>
@@ -181,7 +181,7 @@ const PilotProjects = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">8</p>
-                <p className="text-xs text-muted-foreground">Anfragen</p>
+                <p className="text-xs text-muted-foreground">Inquiries</p>
               </div>
             </div>
           </div>
@@ -192,7 +192,7 @@ const PilotProjects = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">1</p>
-                <p className="text-xs text-muted-foreground">Angenommen</p>
+                <p className="text-xs text-muted-foreground">Accepted</p>
               </div>
             </div>
           </div>
@@ -204,19 +204,19 @@ const PilotProjects = () => {
             <CardHeader>
               <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
                 <Plus className="w-5 h-5 text-primary" />
-                Pilotprojekt starten
+                Start Pilot Project
               </CardTitle>
-              <CardDescription>Erstellen Sie eine detaillierte Bewerbung für Ihre Lösung</CardDescription>
+              <CardDescription>Create a detailed application for your solution</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="title">Titel der Leistung *</Label>
+                    <Label htmlFor="title">Service Title *</Label>
                     <Input 
                       id="title" 
                       name="title" 
-                      placeholder="z.B. Smart Grid Optimierung"
+                      placeholder="e.g. Smart Grid Optimization"
                       value={formData.title}
                       onChange={handleInputChange}
                       className="rounded-xl"
@@ -224,11 +224,11 @@ const PilotProjects = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="category">Kategorie *</Label>
+                    <Label htmlFor="category">Category *</Label>
                     <Input 
                       id="category" 
                       name="category" 
-                      placeholder="z.B. Software, Hardware, Beratung"
+                      placeholder="e.g. Software, Hardware, Consulting"
                       value={formData.category}
                       onChange={handleInputChange}
                       className="rounded-xl"
@@ -238,11 +238,11 @@ const PilotProjects = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="description">Detaillierte Beschreibung *</Label>
+                  <Label htmlFor="description">Detailed Description *</Label>
                   <Textarea 
                     id="description" 
                     name="description" 
-                    placeholder="Beschreiben Sie Ihre Lösung ausführlich: Was bieten Sie an? Welche Vorteile hat Ihre Lösung? Welche Technologien nutzen Sie?"
+                    placeholder="Describe your solution in detail: What do you offer? What are the benefits? Which technologies do you use?"
                     value={formData.description}
                     onChange={handleInputChange}
                     className="rounded-xl min-h-32"
@@ -252,22 +252,22 @@ const PilotProjects = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="targetGroup">Zielgruppe</Label>
+                    <Label htmlFor="targetGroup">Target Group</Label>
                     <Input 
                       id="targetGroup" 
                       name="targetGroup" 
-                      placeholder="z.B. Energieversorger, Netzbetreiber"
+                      placeholder="e.g. Energy suppliers, Grid operators"
                       value={formData.targetGroup}
                       onChange={handleInputChange}
                       className="rounded-xl"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="pricing">Preismodell</Label>
+                    <Label htmlFor="pricing">Pricing Model</Label>
                     <Input 
                       id="pricing" 
                       name="pricing" 
-                      placeholder="z.B. Lizenz, SaaS, Projektbasiert"
+                      placeholder="e.g. License, SaaS, Project-based"
                       value={formData.pricing}
                       onChange={handleInputChange}
                       className="rounded-xl"
@@ -277,22 +277,22 @@ const PilotProjects = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="availability">Verfügbarkeit</Label>
+                    <Label htmlFor="availability">Availability</Label>
                     <Input 
                       id="availability" 
                       name="availability" 
-                      placeholder="z.B. Sofort, Q2 2026"
+                      placeholder="e.g. Immediately, Q2 2026"
                       value={formData.availability}
                       onChange={handleInputChange}
                       className="rounded-xl"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="references">Referenzen</Label>
+                    <Label htmlFor="references">References</Label>
                     <Input 
                       id="references" 
                       name="references" 
-                      placeholder="z.B. Bestehende Kunden, Pilotprojekte"
+                      placeholder="e.g. Existing customers, Pilot projects"
                       value={formData.references}
                       onChange={handleInputChange}
                       className="rounded-xl"
@@ -302,8 +302,8 @@ const PilotProjects = () => {
 
                 <div className="p-4 rounded-xl bg-secondary border border-border">
                   <p className="text-sm text-muted-foreground mb-2">
-                    <strong className="text-foreground">Hinweis:</strong> Nach dem Einreichen wird Ihre Bewerbung von unserem Team geprüft. 
-                    Sie erhalten innerhalb von 3-5 Werktagen eine Rückmeldung.
+                    <strong className="text-foreground">Note:</strong> After submission, your application will be reviewed by our team. 
+                    You will receive feedback within 3-5 business days.
                   </p>
                 </div>
 
@@ -314,13 +314,13 @@ const PilotProjects = () => {
                     onClick={() => setShowApplicationForm(false)}
                     className="rounded-xl"
                   >
-                    Abbrechen
+                    Cancel
                   </Button>
                   <Button 
                     type="submit" 
                     className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
                   >
-                    Bewerbung einreichen
+                    Submit Application
                     <Send className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
@@ -333,7 +333,7 @@ const PilotProjects = () => {
             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl h-14 text-lg"
           >
             <Plus className="w-5 h-5 mr-2" />
-            Pilotprojekt starten
+            Start Pilot Project
           </Button>
         )}
 
@@ -342,9 +342,9 @@ const PilotProjects = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <Package className="w-5 h-5 text-primary" />
-              Ihre Pilotprojekte
+              Your Pilot Projects
             </CardTitle>
-            <CardDescription>Übersicht Ihrer angebotenen Lösungen</CardDescription>
+            <CardDescription>Overview of your offered solutions</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {existingServices.map((service) => (
@@ -366,22 +366,22 @@ const PilotProjects = () => {
                     <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <Eye className="w-4 h-4" />
-                        {service.views} Aufrufe
+                        {service.views} Views
                       </span>
                       <span className="flex items-center gap-1">
                         <Send className="w-4 h-4" />
-                        {service.inquiries} Anfragen
+                        {service.inquiries} Inquiries
                       </span>
                       <span className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
-                        Erstellt: {service.createdAt}
+                        Created: {service.createdAt}
                       </span>
                     </div>
                   </div>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
                       <Edit className="w-4 h-4 mr-2" />
-                      Bearbeiten
+                      Edit
                     </Button>
                     <Button variant="outline" size="sm" className="border-destructive/30 text-destructive hover:bg-destructive/10 rounded-xl">
                       <Trash2 className="w-4 h-4" />
@@ -398,9 +398,9 @@ const PilotProjects = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <FileText className="w-5 h-5 text-accent" />
-              Bewerbungsstatus
+              Application Status
             </CardTitle>
-            <CardDescription>Status Ihrer Bewerbungen bei Partnern</CardDescription>
+            <CardDescription>Status of your applications with partners</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {applicationHistory.map((application) => (
@@ -426,7 +426,7 @@ const PilotProjects = () => {
               </div>
             ))}
             <Button variant="outline" className="w-full mt-4 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-              Alle Bewerbungen anzeigen
+              View All Applications
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </CardContent>

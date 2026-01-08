@@ -14,52 +14,52 @@ const ExitPreparation = () => {
   const exitReadiness = {
     overall: 68,
     categories: [
-      { name: "Finanzen", score: 85, icon: Euro },
-      { name: "Rechtliches", score: 70, icon: Shield },
+      { name: "Financials", score: 85, icon: Euro },
+      { name: "Legal", score: 70, icon: Shield },
       { name: "Team", score: 60, icon: Users },
-      { name: "Produkt", score: 75, icon: Lightbulb },
-      { name: "Marktposition", score: 50, icon: TrendingUp }
+      { name: "Product", score: 75, icon: Lightbulb },
+      { name: "Market Position", score: 50, icon: TrendingUp }
     ]
   };
 
   const exitStrategies = [
     {
       type: "Trade Sale",
-      description: "Verkauf an strategischen Käufer aus der Branche",
-      probability: "Hoch",
-      timeline: "12-18 Monate",
+      description: "Sale to a strategic buyer from the industry",
+      probability: "High",
+      timeline: "12-18 months",
       recommended: true
     },
     {
       type: "Secondary Sale",
-      description: "Verkauf an Private Equity oder anderen Investor",
-      probability: "Mittel",
-      timeline: "6-12 Monate",
+      description: "Sale to private equity or another investor",
+      probability: "Medium",
+      timeline: "6-12 months",
       recommended: false
     },
     {
       type: "IPO",
-      description: "Börsengang an reguliertem Markt",
-      probability: "Niedrig",
-      timeline: "24-36 Monate",
+      description: "Initial public offering on a regulated market",
+      probability: "Low",
+      timeline: "24-36 months",
       recommended: false
     }
   ];
 
   const checklist = [
-    { title: "Jahresabschlüsse geprüft (letzte 3 Jahre)", completed: true },
-    { title: "Cap Table bereinigt", completed: true },
-    { title: "IP-Rechte dokumentiert", completed: true },
-    { title: "Mitarbeiterverträge aktualisiert", completed: false },
-    { title: "Kundenliste und -verträge aufbereitet", completed: false },
-    { title: "Data Room vorbereitet", completed: false },
-    { title: "Management-Präsentation erstellt", completed: false }
+    { title: "Annual reports audited (last 3 years)", completed: true },
+    { title: "Cap table cleaned up", completed: true },
+    { title: "IP rights documented", completed: true },
+    { title: "Employee contracts updated", completed: false },
+    { title: "Customer list and contracts prepared", completed: false },
+    { title: "Data room prepared", completed: false },
+    { title: "Management presentation created", completed: false }
   ];
 
   const potentialBuyers = [
-    { name: "EnergieCorp AG", type: "Strategisch", interest: "Hoch", lastContact: "vor 2 Wochen" },
-    { name: "CleanTech Ventures", type: "Finanziell", interest: "Mittel", lastContact: "vor 1 Monat" },
-    { name: "GreenFuture Holdings", type: "Strategisch", interest: "Mittel", lastContact: "vor 3 Wochen" }
+    { name: "EnergieCorp AG", type: "Strategic", interest: "High", lastContact: "2 weeks ago" },
+    { name: "CleanTech Ventures", type: "Financial", interest: "Medium", lastContact: "1 month ago" },
+    { name: "GreenFuture Holdings", type: "Strategic", interest: "Medium", lastContact: "3 weeks ago" }
   ];
 
   return (
@@ -74,7 +74,7 @@ const ExitPreparation = () => {
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
-                <span className="hidden sm:inline font-medium">Zurück</span>
+                <span className="hidden sm:inline font-medium">Back</span>
               </Link>
               <div className="h-6 w-px bg-border" />
               <div className="flex items-center gap-3">
@@ -82,8 +82,8 @@ const ExitPreparation = () => {
                   <LogOut className="w-5 h-5 text-accent-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-foreground">Exit & Vorbereitung</h1>
-                  <p className="text-xs text-muted-foreground">Strategische Planung</p>
+                  <h1 className="text-lg font-bold text-foreground">Exit & Preparation</h1>
+                  <p className="text-xs text-muted-foreground">Strategic Planning</p>
                 </div>
               </div>
             </div>
@@ -105,9 +105,9 @@ const ExitPreparation = () => {
           <CardHeader className="bg-accent text-accent-foreground">
             <CardTitle className="text-xl font-bold flex items-center gap-2">
               <Target className="w-5 h-5" />
-              Exit-Readiness Score
+              Exit Readiness Score
             </CardTitle>
-            <CardDescription className="text-accent-foreground/80">Ihre aktuelle Vorbereitung auf einen Exit</CardDescription>
+            <CardDescription className="text-accent-foreground/80">Your current preparation for an exit</CardDescription>
           </CardHeader>
           <CardContent className="pt-6">
             <div className="flex flex-col md:flex-row items-center gap-8">
@@ -115,7 +115,7 @@ const ExitPreparation = () => {
                 <div className="w-32 h-32 rounded-full border-8 border-secondary flex items-center justify-center">
                   <div className="text-center">
                     <p className="text-4xl font-bold text-primary">{exitReadiness.overall}%</p>
-                    <p className="text-xs text-muted-foreground">Gesamt</p>
+                    <p className="text-xs text-muted-foreground">Overall</p>
                   </div>
                 </div>
               </div>
@@ -144,9 +144,9 @@ const ExitPreparation = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <BarChart3 className="w-5 h-5 text-primary" />
-              Exit-Strategien
+              Exit Strategies
             </CardTitle>
-            <CardDescription>Analysierte Optionen für Ihren Exit</CardDescription>
+            <CardDescription>Analyzed options for your exit</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {exitStrategies.map((strategy, index) => (
@@ -159,14 +159,14 @@ const ExitPreparation = () => {
                     <div className="flex items-center gap-3 mb-2">
                       <h3 className="font-semibold text-foreground text-lg">{strategy.type}</h3>
                       {strategy.recommended && (
-                        <Badge className="bg-primary/20 text-primary">Empfohlen</Badge>
+                        <Badge className="bg-primary/20 text-primary">Recommended</Badge>
                       )}
                     </div>
                     <p className="text-sm text-muted-foreground mb-3">{strategy.description}</p>
                     <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <TrendingUp className="w-4 h-4" />
-                        Wahrscheinlichkeit: {strategy.probability}
+                        Probability: {strategy.probability}
                       </span>
                       <span className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
@@ -181,7 +181,7 @@ const ExitPreparation = () => {
                       : "border-border text-foreground hover:bg-secondary rounded-xl"
                     }
                   >
-                    Details ansehen
+                    View Details
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
@@ -196,10 +196,10 @@ const ExitPreparation = () => {
             <CardHeader>
               <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-primary" />
-                Exit-Checkliste
+                Exit Checklist
               </CardTitle>
               <CardDescription>
-                {checklist.filter(i => i.completed).length} von {checklist.length} erledigt
+                {checklist.filter(i => i.completed).length} of {checklist.length} completed
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -226,9 +226,9 @@ const ExitPreparation = () => {
             <CardHeader>
               <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
                 <Building2 className="w-5 h-5 text-accent" />
-                Potenzielle Käufer
+                Potential Buyers
               </CardTitle>
-              <CardDescription>M&A Kontakte und Interessenten</CardDescription>
+              <CardDescription>M&A contacts and prospects</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -239,11 +239,11 @@ const ExitPreparation = () => {
                   >
                     <div>
                       <p className="font-medium text-foreground">{buyer.name}</p>
-                      <p className="text-xs text-muted-foreground">{buyer.type} · Kontakt {buyer.lastContact}</p>
+                      <p className="text-xs text-muted-foreground">{buyer.type} · Contact {buyer.lastContact}</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <Badge className={
-                        buyer.interest === "Hoch" 
+                        buyer.interest === "High" 
                           ? "bg-primary/20 text-primary" 
                           : "bg-muted text-muted-foreground"
                       }>
@@ -257,7 +257,7 @@ const ExitPreparation = () => {
                 ))}
               </div>
               <Button variant="outline" className="w-full mt-4 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-                Alle Kontakte anzeigen
+                View All Contacts
               </Button>
             </CardContent>
           </Card>
@@ -268,26 +268,26 @@ const ExitPreparation = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <FileText className="w-5 h-5 text-primary" />
-              Exit-Dokumente
+              Exit Documents
             </CardTitle>
-            <CardDescription>Wichtige Unterlagen für den Exit-Prozess</CardDescription>
+            <CardDescription>Important documents for the exit process</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:shadow-lg transition-all cursor-pointer">
                 <FileText className="w-8 h-8 text-primary mb-3" />
                 <h4 className="font-medium text-foreground">Information Memorandum</h4>
-                <p className="text-sm text-muted-foreground mt-1">Vorlage verfügbar</p>
+                <p className="text-sm text-muted-foreground mt-1">Template available</p>
               </div>
               <div className="p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:shadow-lg transition-all cursor-pointer">
                 <FileText className="w-8 h-8 text-primary mb-3" />
-                <h4 className="font-medium text-foreground">Bewertungstools</h4>
+                <h4 className="font-medium text-foreground">Valuation Tools</h4>
                 <p className="text-sm text-muted-foreground mt-1">DCF & Multiples</p>
               </div>
               <div className="p-4 rounded-2xl bg-accent/10 border border-accent/20 hover:shadow-lg transition-all cursor-pointer">
                 <FileText className="w-8 h-8 text-accent mb-3" />
                 <h4 className="font-medium text-foreground">Due Diligence Checklist</h4>
-                <p className="text-sm text-muted-foreground mt-1">Interaktive Liste</p>
+                <p className="text-sm text-muted-foreground mt-1">Interactive list</p>
               </div>
             </div>
           </CardContent>

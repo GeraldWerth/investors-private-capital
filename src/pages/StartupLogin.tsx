@@ -14,18 +14,18 @@ const StartupLogin = () => {
   const features = [
     {
       icon: TrendingUp,
-      title: "Fundingrunden",
-      description: "Bewerben Sie sich für aktuelle Finanzierungsrunden"
+      title: "Funding Rounds",
+      description: "Apply for current funding rounds"
     },
     {
       icon: Users,
-      title: "Pilotprojekte",
-      description: "Nehmen Sie an spannenden Pilotprojekten teil"
+      title: "Pilot Projects",
+      description: "Participate in exciting pilot projects"
     },
     {
       icon: LogOut,
-      title: "Exit & Vorbereitung",
-      description: "Planen Sie Ihren erfolgreichen Exit"
+      title: "Exit & Preparation",
+      description: "Plan your successful exit"
     }
   ];
 
@@ -45,13 +45,13 @@ const StartupLogin = () => {
           </div>
 
           <h2 className="text-3xl font-bold text-accent-foreground mb-4">
-            Willkommen im<br />
+            Welcome to the<br />
             <span className="text-primary">
-              Innovationsportal
+              Innovation Portal
             </span>
           </h2>
           <p className="text-accent-foreground/80 mb-10 text-lg">
-            Ihr zentraler Hub für Wachstum, Finanzierung und strategische Partnerschaften.
+            Your central hub for growth, financing, and strategic partnerships.
           </p>
 
           <div className="space-y-4">
@@ -83,18 +83,18 @@ const StartupLogin = () => {
               </div>
               <span className="text-xl font-bold text-foreground">EIN Energy</span>
             </div>
-            <CardTitle className="text-2xl font-bold text-foreground">Anmelden</CardTitle>
+            <CardTitle className="text-2xl font-bold text-foreground">Sign In</CardTitle>
             <CardDescription className="text-muted-foreground">
-              Melden Sie sich in Ihrem Startup-Portal an
+              Sign in to your startup portal
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 pt-4">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-foreground font-medium">E-Mail</Label>
+              <Label htmlFor="email" className="text-foreground font-medium">Email</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="ihre@startup.de"
+                placeholder="your@startup.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="h-12 border-border focus:border-primary focus:ring-primary rounded-xl bg-secondary/50"
@@ -103,9 +103,9 @@ const StartupLogin = () => {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password" className="text-foreground font-medium">Passwort</Label>
+                <Label htmlFor="password" className="text-foreground font-medium">Password</Label>
                 <button className="text-sm text-primary hover:text-accent font-medium transition-colors">
-                  Passwort vergessen?
+                  Forgot password?
                 </button>
               </div>
               <div className="relative">
@@ -129,22 +129,22 @@ const StartupLogin = () => {
 
             <Button asChild className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl shadow-lg transition-all duration-300 group">
               <Link to="/startup-dashboard">
-                Anmelden
+                Sign In
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
 
             <p className="text-center text-xs text-muted-foreground pt-2">
-              Mit der Anmeldung akzeptieren Sie unsere{" "}
-              <a href="#" className="text-primary hover:underline">Nutzungsbedingungen</a>
-              {" "}und{" "}
-              <a href="#" className="text-primary hover:underline">Datenschutzrichtlinie</a>
+              By signing in, you accept our{" "}
+              <a href="#" className="text-primary hover:underline">Terms of Service</a>
+              {" "}and{" "}
+              <a href="#" className="text-primary hover:underline">Privacy Policy</a>
             </p>
 
             <p className="text-center text-sm text-muted-foreground">
-              Noch kein Konto?{" "}
+              No account yet?{" "}
               <a href="#" className="text-primary hover:text-accent font-medium hover:underline transition-colors">
-                Kontaktieren Sie uns
+                Contact us
               </a>
             </p>
           </CardContent>

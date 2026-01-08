@@ -12,43 +12,43 @@ const StartupDashboard = () => {
   const dashboardTiles = [
     {
       icon: TrendingUp,
-      title: "Fundingrunden",
-      description: "Bewerben Sie sich für aktuelle Finanzierungsrunden",
-      stats: "2 offene Runden",
-      items: ["Activ Funding", "From Seed to Growth Stages", "Investor Matching"],
+      title: "Funding Rounds",
+      description: "Apply for current funding rounds",
+      stats: "2 open rounds",
+      items: ["Active Funding", "From Seed to Growth Stages", "Investor Matching"],
       link: "/funding-rounds"
     },
     {
       icon: FolderOpen,
       title: "Data Room",
-      description: "Dokumente für Funding & Exit hochladen",
-      stats: "2 Dateien",
+      description: "Upload documents for funding & exit",
+      stats: "2 files",
       items: ["Foundation & Governance", "Product & Market Logic", "Execution & Validation"],
       link: "/data-room"
     },
     {
       icon: LogOut,
-      title: "Exit & Vorbereitung",
-      description: "Planen Sie Ihren erfolgreichen Exit",
-      stats: "Roadmap erstellt",
-      items: ["Exit-Strategie", "Bewertung", "M&A"],
+      title: "Exit & Preparation",
+      description: "Plan your successful exit",
+      stats: "Roadmap created",
+      items: ["Exit Strategy", "Valuation", "M&A"],
       link: "/exit-preparation"
     },
     {
       icon: Users,
-      title: "Pilotprojekte",
-      description: "Bieten Sie Ihre Lösungen Partnern an",
-      stats: "3 aktive Angebote",
-      items: ["Ihre Leistungen", "Neue Bewerbung", "Bewerbungsstatus"],
+      title: "Pilot Projects",
+      description: "Offer your solutions to partners",
+      stats: "3 active offers",
+      items: ["Your Services", "New Application", "Application Status"],
       link: "/pilot-projects"
     }
   ];
 
   const quickActions = [
-    { icon: FileText, label: "Pitch Deck hochladen" },
-    { icon: Calendar, label: "Meeting planen" },
-    { icon: Target, label: "Meilenstein setzen" },
-    { icon: Building2, label: "Partner finden" }
+    { icon: FileText, label: "Upload Pitch Deck" },
+    { icon: Calendar, label: "Schedule Meeting" },
+    { icon: Target, label: "Set Milestone" },
+    { icon: Building2, label: "Find Partner" }
   ];
 
   return (
@@ -81,8 +81,8 @@ const StartupDashboard = () => {
                   </AvatarFallback>
                 </Avatar>
                 <div className="hidden sm:block">
-                  <p className="text-sm font-medium text-foreground">TechStartup GmbH</p>
-                  <p className="text-xs text-muted-foreground">Max Mustermann</p>
+                  <p className="text-sm font-medium text-foreground">TechStartup Inc.</p>
+                  <p className="text-xs text-muted-foreground">John Smith</p>
                 </div>
                 <User className="w-4 h-4 text-muted-foreground hidden sm:block" />
               </Link>
@@ -96,10 +96,10 @@ const StartupDashboard = () => {
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-            Willkommen zurück, Max! 👋
+            Welcome back, John! 👋
           </h2>
           <p className="text-muted-foreground">
-            Hier ist Ihr aktueller Überblick im EIN Energy Ökosystem.
+            Here is your current overview in the EIN Energy ecosystem.
           </p>
         </div>
 
@@ -157,7 +157,7 @@ const StartupDashboard = () => {
                   <Button 
                     className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl shadow-lg transition-all duration-300 group/btn"
                   >
-                    Bereich öffnen
+                    Open Section
                     <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
@@ -172,7 +172,7 @@ const StartupDashboard = () => {
             to="/startup-login" 
             className="text-sm text-primary hover:text-accent font-medium hover:underline transition-colors"
           >
-            ← Zurück zum Login
+            ← Back to Login
           </Link>
         </div>
       </main>
