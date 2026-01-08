@@ -36,7 +36,7 @@ const StartupDashboard = () => {
     },
     {
       icon: Users,
-      title: "Leistungen anbieten",
+      title: "Pilotprojekte",
       description: "Bieten Sie Ihre Lösungen Partnern an",
       stats: "3 aktive Angebote",
       items: ["Ihre Leistungen", "Neue Bewerbung", "Bewerbungsstatus"],

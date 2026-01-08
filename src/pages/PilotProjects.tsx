@@ -132,7 +132,7 @@ const PilotProjects = () => {
                   <Briefcase className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-foreground">Leistungen anbieten</h1>
+                  <h1 className="text-lg font-bold text-foreground">Pilotprojekte</h1>
                   <p className="text-xs text-muted-foreground">Ihre Lösungen für Partner</p>
                 </div>
               </div>
