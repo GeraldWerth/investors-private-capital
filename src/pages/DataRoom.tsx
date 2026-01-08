@@ -13,17 +13,17 @@ interface UploadedFile {
 
 const DataRoom = () => {
   const [files, setFiles] = useState<UploadedFile[]>([
-    { id: "1", name: "Gesellschaftsvertrag.pdf", category: "Legal", uploadedAt: "2024-01-15" },
-    { id: "2", name: "Jahresabschluss_2023.pdf", category: "Financials", uploadedAt: "2024-01-10" },
+    { id: "1", name: "Articles_of_Association.pdf", category: "Legal", uploadedAt: "2024-01-15" },
+    { id: "2", name: "Annual_Report_2023.pdf", category: "Financials", uploadedAt: "2024-01-10" },
   ]);
 
   const categories = [
-    { name: "Company & Legal", description: "Gesellschaftsverträge, Satzung, Patente, Lizenzen, Handelsregister" },
-    { name: "Financials & Funding", description: "Jahresabschlüsse, BWA, Forecasts, Cap Table, Funding History" },
-    { name: "Product & Technology", description: "Produktdokumentation, Roadmaps, Tech Stack, IP-Portfolio" },
-    { name: "Market & Business Model", description: "Marktanalysen, Wettbewerb, Geschäftsmodell, Pricing" },
-    { name: "Team & Organization", description: "Lebensläufe, Organigramme, Vesting, Berater" },
-    { name: "Traction & Partnerships", description: "KPIs, Kundenverträge, LOIs, Partnerschaften, Referenzen" },
+    { name: "Company & Legal", description: "Articles of association, bylaws, patents, licenses, commercial register" },
+    { name: "Financials & Funding", description: "Annual reports, financial statements, forecasts, cap table, funding history" },
+    { name: "Product & Technology", description: "Product documentation, roadmaps, tech stack, IP portfolio" },
+    { name: "Market & Business Model", description: "Market analysis, competition, business model, pricing" },
+    { name: "Team & Organization", description: "CVs, org charts, vesting, advisors" },
+    { name: "Traction & Partnerships", description: "KPIs, customer contracts, LOIs, partnerships, references" },
   ];
 
   const handleFileUpload = (category: string) => {
@@ -61,7 +61,7 @@ const DataRoom = () => {
             </Link>
             <div>
               <h1 className="text-2xl font-bold text-foreground">Data Room</h1>
-              <p className="text-muted-foreground">Dokumente für Funding & Exit</p>
+              <p className="text-muted-foreground">Documents for Funding & Exit</p>
             </div>
           </div>
         </div>
@@ -73,10 +73,10 @@ const DataRoom = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-foreground">
               <Upload className="h-5 w-5 text-primary" />
-              Alle Dokumente hochladen
+              Upload All Documents
             </CardTitle>
             <CardDescription className="text-muted-foreground">
-              Laden Sie alle Dokumente in einer einzigen Datei hoch (z.B. ZIP-Archiv mit allen Unterlagen)
+              Upload all documents in a single file (e.g. ZIP archive with all materials)
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -92,7 +92,7 @@ const DataRoom = () => {
                       <FileText className="h-5 w-5 text-primary" />
                       <div>
                         <span className="text-sm font-medium text-foreground">{file.name}</span>
-                        <p className="text-xs text-muted-foreground">Hochgeladen am {file.uploadedAt}</p>
+                        <p className="text-xs text-muted-foreground">Uploaded on {file.uploadedAt}</p>
                       </div>
                     </div>
                     <Button
@@ -111,7 +111,7 @@ const DataRoom = () => {
                 onClick={() => handleFileUpload("All-in-One")}
               >
                 <Upload className="h-4 w-4 mr-2" />
-                Gesamtes Dokumentenpaket hochladen
+                Upload Complete Document Package
               </Button>
             </div>
           </CardContent>
@@ -162,7 +162,7 @@ const DataRoom = () => {
                   onClick={() => handleFileUpload(category.name)}
                 >
                   <Upload className="h-4 w-4 mr-2" />
-                  Hochladen
+                  Upload
                 </Button>
               </CardContent>
             </Card>

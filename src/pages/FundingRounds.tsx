@@ -13,18 +13,18 @@ const FundingRounds = () => {
   const monthlyRounds = [
     {
       id: 1,
-      month: "Februar 2026",
-      status: "Bewerbung offen",
-      deadline: "31. Januar 2026",
+      month: "February 2026",
+      status: "Applications Open",
+      deadline: "January 31, 2026",
       slots: 5,
       registered: 12,
       isNext: true
     },
     {
       id: 2,
-      month: "März 2026",
-      status: "Demnächst",
-      deadline: "28. Februar 2026",
+      month: "March 2026",
+      status: "Coming Soon",
+      deadline: "February 28, 2026",
       slots: 5,
       registered: 3,
       isNext: false
@@ -32,8 +32,8 @@ const FundingRounds = () => {
     {
       id: 3,
       month: "April 2026",
-      status: "Demnächst",
-      deadline: "31. März 2026",
+      status: "Coming Soon",
+      deadline: "March 31, 2026",
       slots: 5,
       registered: 0,
       isNext: false
@@ -42,14 +42,14 @@ const FundingRounds = () => {
 
 
   const applicationSteps = [
-    { step: 1, title: "Persönliche Daten", description: "Gründerprofil, Kontaktdaten, Erfahrung", completed: true },
-    { step: 2, title: "Pitchdeck hochladen", description: "Präsentation Ihres Startups", completed: true },
-    { step: 3, title: "Company & Legal", description: "Gesellschaftsverträge, Satzung, Patente", completed: true },
-    { step: 4, title: "Financials & Funding", description: "Jahresabschlüsse, Cap Table, Forecasts", completed: false },
-    { step: 5, title: "Product & Technology", description: "Produktdokumentation, Tech Stack, IP", completed: false },
-    { step: 6, title: "Market & Business Model", description: "Marktanalysen, Geschäftsmodell, Pricing", completed: false },
-    { step: 7, title: "Team & Organization", description: "Lebensläufe, Organigramme, Vesting", completed: false },
-    { step: 8, title: "Traction & Partnerships", description: "KPIs, Kundenverträge, Partnerschaften", completed: false }
+    { step: 1, title: "Personal Data", description: "Founder profile, contact details, experience", completed: true },
+    { step: 2, title: "Upload Pitch Deck", description: "Presentation of your startup", completed: true },
+    { step: 3, title: "Company & Legal", description: "Articles of association, bylaws, patents", completed: true },
+    { step: 4, title: "Financials & Funding", description: "Annual reports, cap table, forecasts", completed: false },
+    { step: 5, title: "Product & Technology", description: "Product documentation, tech stack, IP", completed: false },
+    { step: 6, title: "Market & Business Model", description: "Market analysis, business model, pricing", completed: false },
+    { step: 7, title: "Team & Organization", description: "CVs, org charts, vesting", completed: false },
+    { step: 8, title: "Traction & Partnerships", description: "KPIs, customer contracts, partnerships", completed: false }
   ];
 
   return (
@@ -64,7 +64,7 @@ const FundingRounds = () => {
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
-                <span className="hidden sm:inline font-medium">Zurück</span>
+                <span className="hidden sm:inline font-medium">Back</span>
               </Link>
               <div className="h-6 w-px bg-border" />
               <div className="flex items-center gap-3">
@@ -72,8 +72,8 @@ const FundingRounds = () => {
                   <TrendingUp className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-foreground">Fundingrunden</h1>
-                  <p className="text-xs text-muted-foreground">Finanzierung & Investoren</p>
+                  <h1 className="text-lg font-bold text-foreground">Funding Rounds</h1>
+                  <p className="text-xs text-muted-foreground">Financing & Investors</p>
                 </div>
               </div>
             </div>
@@ -99,7 +99,7 @@ const FundingRounds = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">2</p>
-                <p className="text-xs text-muted-foreground">Offene Runden</p>
+                <p className="text-xs text-muted-foreground">Open Rounds</p>
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@ const FundingRounds = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">1</p>
-                <p className="text-xs text-muted-foreground">Bewerbung aktiv</p>
+                <p className="text-xs text-muted-foreground">Active Application</p>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ const FundingRounds = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">20</p>
-                <p className="text-xs text-muted-foreground">Investoren</p>
+                <p className="text-xs text-muted-foreground">Investors</p>
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@ const FundingRounds = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">12M</p>
-                <p className="text-xs text-muted-foreground">Verfügbar</p>
+                <p className="text-xs text-muted-foreground">Available</p>
               </div>
             </div>
           </div>
@@ -143,9 +143,9 @@ const FundingRounds = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-primary" />
-              Kommende Fundingrunden
+              Upcoming Funding Rounds
             </CardTitle>
-            <CardDescription>Wir führen monatliche Fundingrunden durch. Bewerben Sie sich für die passende Finanzierungsrunde.</CardDescription>
+            <CardDescription>We conduct monthly funding rounds. Apply for the right financing round.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -160,11 +160,11 @@ const FundingRounds = () => {
                       <h3 className="font-semibold text-foreground text-lg">{round.month}</h3>
                     </div>
                     {round.isNext && (
-                      <Badge className="bg-primary/20 text-primary">Aktuell</Badge>
+                      <Badge className="bg-primary/20 text-primary">Current</Badge>
                     )}
                   </div>
                   
-                  <Badge className={round.status === "Bewerbung offen" ? 'bg-green-500/20 text-green-600 mb-2' : 'bg-muted text-muted-foreground mb-2'}>
+                  <Badge className={round.status === "Applications Open" ? 'bg-green-500/20 text-green-600 mb-2' : 'bg-muted text-muted-foreground mb-2'}>
                     {round.status}
                   </Badge>
                   
@@ -173,11 +173,11 @@ const FundingRounds = () => {
                   <div className="space-y-2 text-sm text-muted-foreground mb-4">
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
-                      <span>Bewerbungsfrist: {round.deadline}</span>
+                      <span>Deadline: {round.deadline}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Target className="w-4 h-4" />
-                      <span>{round.slots} Plätze verfügbar</span>
+                      <span>{round.slots} slots available</span>
                     </div>
                   </div>
                   
@@ -185,7 +185,7 @@ const FundingRounds = () => {
                     className={`w-full rounded-xl ${round.isNext ? 'bg-primary hover:bg-primary/90 text-primary-foreground' : 'bg-accent/20 hover:bg-accent/30 text-accent-foreground'}`}
                     variant={round.isNext ? "default" : "outline"}
                   >
-                    {round.isNext ? "Jetzt bewerben" : "Interesse bekunden"}
+                    {round.isNext ? "Apply Now" : "Express Interest"}
                   </Button>
                 </div>
               ))}
@@ -198,9 +198,9 @@ const FundingRounds = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary" />
-              Bewerbungs-Checkliste
+              Application Checklist
             </CardTitle>
-            <CardDescription>Ihr Fortschritt für die Series A Bewerbung</CardDescription>
+            <CardDescription>Your progress for the Series A application</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
@@ -221,7 +221,7 @@ const FundingRounds = () => {
                   {!step.completed && (
                     <Badge variant="outline" className="shrink-0 border-accent/30 text-accent">
                       <AlertCircle className="w-3 h-3 mr-1" />
-                      Ausstehend
+                      Pending
                     </Badge>
                   )}
                 </div>
