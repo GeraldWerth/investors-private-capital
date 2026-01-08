@@ -31,7 +31,7 @@ const StartupDashboard = () => {
       title: "Exit & Vorbereitung",
       description: "Planen Sie Ihren erfolgreichen Exit",
       stats: "Roadmap erstellt",
-      items: ["Exit-Strategie", "Bewertungstools", "M&A Kontakte"],
+      items: ["Exit-Strategie", "Bewertung", "M&A Kontakte"],
       link: "/exit-preparation"
     },
     {
