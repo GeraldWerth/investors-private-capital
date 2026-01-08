@@ -15,7 +15,7 @@ const StartupDashboard = () => {
       title: "Fundingrunden",
       description: "Bewerben Sie sich für aktuelle Finanzierungsrunden",
       stats: "2 offene Runden",
-      items: ["From Seed to Growth Stages", "Series A Vorbereitung", "Investor Matching"],
+      items: ["From Seed to Growth Stages", "Activ Funding on Demand", "Investor Matching"],
       link: "/funding-rounds"
     },
     {
