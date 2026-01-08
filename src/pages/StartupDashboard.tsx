@@ -122,56 +122,47 @@ const StartupDashboard = () => {
         {/* Dashboard Tiles */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {dashboardTiles.map((tile, index) => (
-            <Card 
-              key={index}
-              className="border-0 shadow-xl bg-card/80 backdrop-blur-sm overflow-hidden hover:shadow-2xl transition-all duration-300 group cursor-pointer"
-            >
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between">
-                  <div className="w-12 h-12 rounded-2xl bg-accent flex items-center justify-center shadow-lg">
-                    <tile.icon className="w-6 h-6 text-accent-foreground" />
-                  </div>
-                  <span className="text-xs font-medium px-3 py-1 rounded-full bg-secondary text-foreground">
-                    {tile.stats}
-                  </span>
-                </div>
-                <CardTitle className="text-xl font-bold text-foreground mt-4 group-hover:text-primary transition-colors">
-                  {tile.title}
-                </CardTitle>
-                <CardDescription className="text-muted-foreground">
-                  {tile.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2 mb-4">
-                  {tile.items.map((item, itemIndex) => (
-                    <div 
-                      key={itemIndex}
-                      className="flex items-center justify-between p-3 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors group/item"
-                    >
-                      <span className="text-sm text-foreground">{item}</span>
-                      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover/item:text-primary group-hover/item:translate-x-1 transition-all" />
+            <Link key={index} to={tile.link} className="block">
+              <Card 
+                className="border-0 shadow-xl bg-card/80 backdrop-blur-sm overflow-hidden hover:shadow-2xl transition-all duration-300 group cursor-pointer h-full"
+              >
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-accent flex items-center justify-center shadow-lg">
+                      <tile.icon className="w-6 h-6 text-accent-foreground" />
                     </div>
-                  ))}
-                </div>
-                <Button 
-                  asChild={!!tile.link}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl shadow-lg transition-all duration-300 group/btn"
-                >
-                  {tile.link ? (
-                    <Link to={tile.link}>
-                      Bereich öffnen
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                    </Link>
-                  ) : (
-                    <>
-                      Bereich öffnen
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                    </>
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
+                    <span className="text-xs font-medium px-3 py-1 rounded-full bg-secondary text-foreground">
+                      {tile.stats}
+                    </span>
+                  </div>
+                  <CardTitle className="text-xl font-bold text-foreground mt-4 group-hover:text-primary transition-colors">
+                    {tile.title}
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground">
+                    {tile.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2 mb-4">
+                    {tile.items.map((item, itemIndex) => (
+                      <div 
+                        key={itemIndex}
+                        className="flex items-center justify-between p-3 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors group/item"
+                      >
+                        <span className="text-sm text-foreground">{item}</span>
+                        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover/item:text-primary group-hover/item:translate-x-1 transition-all" />
+                      </div>
+                    ))}
+                  </div>
+                  <Button 
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl shadow-lg transition-all duration-300 group/btn"
+                  >
+                    Bereich öffnen
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
 
