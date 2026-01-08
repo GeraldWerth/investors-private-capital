@@ -23,7 +23,7 @@ const StartupDashboard = () => {
       title: "Data Room",
       description: "Dokumente für Funding & Exit hochladen",
       stats: "2 Dateien",
-      items: ["Legal & Verträge", "Financials", "Due Diligence"],
+      items: ["Foundation & Governance", "Product & Market Logic", "Execution & Validation"],
       link: "/data-room"
     },
     {
