@@ -342,7 +342,7 @@ const PilotProjects = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <Package className="w-5 h-5 text-primary" />
-              Ihre Leistungen
+              Ihre Pilotprojekte
             </CardTitle>
             <CardDescription>Übersicht Ihrer angebotenen Lösungen</CardDescription>
           </CardHeader>
