@@ -1,58 +1,116 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import { 
   Rocket, Users, ArrowLeft, ArrowRight,
-  Calendar, Zap, FileText, CheckCircle2,
-  Clock, Building2, MessageSquare, Star,
-  ClipboardList, Settings
+  Plus, FileText, CheckCircle2,
+  Clock, Building2, Briefcase, Send,
+  Package, Eye, Edit, Trash2
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const PilotProjects = () => {
-  const activeProjects = [
+  const [showApplicationForm, setShowApplicationForm] = useState(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "",
+    description: "",
+    targetGroup: "",
+    pricing: "",
+    availability: "",
+    references: ""
+  });
+
+  const existingServices = [
     {
       id: 1,
-      name: "Smart Grid Integration",
-      partner: "EnergieCorp AG",
-      status: "In Umsetzung",
-      progress: 45,
-      startDate: "15. Nov 2025",
-      endDate: "30. Apr 2026",
-      description: "Integration unserer Lösung in das bestehende Smart Grid Netzwerk.",
-      nextMilestone: "Prototyp-Test Phase 2"
-    }
-  ];
-
-  const openProjects = [
+      title: "Smart Grid Optimierung",
+      category: "Software",
+      status: "Aktiv",
+      views: 124,
+      inquiries: 5,
+      createdAt: "15. Nov 2025"
+    },
     {
       id: 2,
-      name: "Dezentrale Energiespeicher",
-      partner: "GreenPower GmbH",
-      deadline: "28. Feb 2026",
-      duration: "6 Monate",
-      budget: "50.000 €",
-      description: "Pilotierung von dezentralen Speicherlösungen für Wohnquartiere."
+      title: "Energiespeicher-Lösung",
+      category: "Hardware",
+      status: "Aktiv",
+      views: 89,
+      inquiries: 3,
+      createdAt: "20. Dez 2025"
     },
     {
       id: 3,
-      name: "KI-gestützte Netzoptimierung",
-      partner: "TechGrid Solutions",
-      deadline: "15. März 2026",
-      duration: "12 Monate",
-      budget: "120.000 €",
-      description: "Entwicklung und Test von KI-Algorithmen zur Netzstabilisierung."
+      title: "KI-Lastprognose",
+      category: "KI/ML",
+      status: "In Prüfung",
+      views: 12,
+      inquiries: 0,
+      createdAt: "05. Jan 2026"
     }
   ];
 
-  const projectMilestones = [
-    { date: "15. Nov", title: "Projektstart", completed: true },
-    { date: "15. Dez", title: "Konzeptfreigabe", completed: true },
-    { date: "15. Jan", title: "Prototyp v1", completed: true },
-    { date: "15. Feb", title: "Prototyp-Test Phase 2", completed: false, current: true },
-    { date: "30. Apr", title: "Projektabschluss", completed: false }
+  const applicationHistory = [
+    {
+      id: 1,
+      company: "EnergieCorp AG",
+      project: "Netzintegration 2026",
+      status: "Angenommen",
+      date: "10. Jan 2026"
+    },
+    {
+      id: 2,
+      company: "GreenPower GmbH",
+      project: "Speicheroptimierung",
+      status: "In Prüfung",
+      date: "03. Jan 2026"
+    },
+    {
+      id: 3,
+      company: "TechGrid Solutions",
+      project: "KI-Pilotprojekt",
+      status: "Abgelehnt",
+      date: "20. Dez 2025"
+    }
   ];
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission
+    setShowApplicationForm(false);
+    setFormData({
+      title: "",
+      category: "",
+      description: "",
+      targetGroup: "",
+      pricing: "",
+      availability: "",
+      references: ""
+    });
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Aktiv":
+      case "Angenommen":
+        return "bg-primary/20 text-primary";
+      case "In Prüfung":
+        return "bg-accent/20 text-accent";
+      case "Abgelehnt":
+        return "bg-destructive/20 text-destructive";
+      default:
+        return "bg-muted text-muted-foreground";
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -71,11 +129,11 @@ const PilotProjects = () => {
               <div className="h-6 w-px bg-border" />
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg">
-                  <Users className="w-5 h-5 text-primary-foreground" />
+                  <Briefcase className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-foreground">Pilotprojekte</h1>
-                  <p className="text-xs text-muted-foreground">Partnerschaften & Projekte</p>
+                  <h1 className="text-lg font-bold text-foreground">Leistungen anbieten</h1>
+                  <p className="text-xs text-muted-foreground">Ihre Lösungen für Partner</p>
                 </div>
               </div>
             </div>
@@ -97,222 +155,279 @@ const PilotProjects = () => {
           <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Zap className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-foreground">1</p>
-                <p className="text-xs text-muted-foreground">Aktives Projekt</p>
-              </div>
-            </div>
-          </div>
-          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <ClipboardList className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-foreground">2</p>
-                <p className="text-xs text-muted-foreground">Ausschreibungen</p>
-              </div>
-            </div>
-          </div>
-          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Building2 className="w-5 h-5 text-primary" />
+                <Package className="w-5 h-5 text-primary" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">3</p>
-                <p className="text-xs text-muted-foreground">Partner</p>
+                <p className="text-xs text-muted-foreground">Aktive Angebote</p>
               </div>
             </div>
           </div>
           <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Star className="w-5 h-5 text-primary" />
+                <Eye className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">4.8</p>
-                <p className="text-xs text-muted-foreground">Bewertung</p>
+                <p className="text-2xl font-bold text-foreground">225</p>
+                <p className="text-xs text-muted-foreground">Aufrufe gesamt</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Send className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">8</p>
+                <p className="text-xs text-muted-foreground">Anfragen</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <CheckCircle2 className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">1</p>
+                <p className="text-xs text-muted-foreground">Angenommen</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Active Project */}
-        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <Zap className="w-5 h-5 text-primary" />
-              Aktives Projekt
-            </CardTitle>
-            <CardDescription>Ihr laufendes Pilotprojekt im Überblick</CardDescription>
-          </CardHeader>
-          <CardContent>
-            {activeProjects.map((project) => (
-              <div key={project.id} className="space-y-6">
-                <div className="p-5 rounded-2xl bg-primary/5 border border-primary/20">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                    <div>
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="font-semibold text-foreground text-lg">{project.name}</h3>
-                        <Badge className="bg-primary/20 text-primary">{project.status}</Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">{project.description}</p>
-                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <Building2 className="w-4 h-4" />
-                          Partner: {project.partner}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          {project.startDate} - {project.endDate}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-                        <MessageSquare className="w-4 h-4 mr-2" />
-                        Chat
-                      </Button>
-                      <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-                        <Settings className="w-4 h-4 mr-2" />
-                        Details
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="mb-4">
-                    <div className="flex items-center justify-between text-sm mb-2">
-                      <span className="text-muted-foreground">Projektfortschritt</span>
-                      <span className="font-medium text-primary">{project.progress}%</span>
-                    </div>
-                    <Progress value={project.progress} className="h-3" />
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-card/60 border border-border">
-                    <p className="text-sm text-muted-foreground mb-1">Nächster Meilenstein</p>
-                    <p className="font-medium text-foreground">{project.nextMilestone}</p>
-                  </div>
-                </div>
-
-                {/* Timeline */}
-                <div>
-                  <h4 className="font-medium text-foreground mb-4">Projekt-Timeline</h4>
-                  <div className="flex items-center justify-between relative">
-                    <div className="absolute top-4 left-0 right-0 h-1 bg-muted rounded-full" />
-                    <div 
-                      className="absolute top-4 left-0 h-1 bg-primary rounded-full transition-all"
-                      style={{ width: `${(projectMilestones.filter(m => m.completed).length / projectMilestones.length) * 100}%` }}
+        {/* New Application Form */}
+        {showApplicationForm ? (
+          <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                <Plus className="w-5 h-5 text-primary" />
+                Neue Leistung anbieten
+              </CardTitle>
+              <CardDescription>Erstellen Sie eine detaillierte Bewerbung für Ihre Lösung</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="title">Titel der Leistung *</Label>
+                    <Input 
+                      id="title" 
+                      name="title" 
+                      placeholder="z.B. Smart Grid Optimierung"
+                      value={formData.title}
+                      onChange={handleInputChange}
+                      className="rounded-xl"
+                      required
                     />
-                    {projectMilestones.map((milestone, index) => (
-                      <div key={index} className="relative z-10 flex flex-col items-center">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          milestone.completed 
-                            ? 'bg-primary text-primary-foreground' 
-                            : milestone.current 
-                              ? 'bg-card border-2 border-primary text-primary' 
-                              : 'bg-muted text-muted-foreground'
-                        }`}>
-                          {milestone.completed ? <CheckCircle2 className="w-5 h-5" /> : index + 1}
-                        </div>
-                        <p className={`text-xs mt-2 text-center max-w-16 ${milestone.current ? 'text-primary font-medium' : 'text-muted-foreground'}`}>
-                          {milestone.title}
-                        </p>
-                        <p className="text-xs text-muted-foreground">{milestone.date}</p>
-                      </div>
-                    ))}
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="category">Kategorie *</Label>
+                    <Input 
+                      id="category" 
+                      name="category" 
+                      placeholder="z.B. Software, Hardware, Beratung"
+                      value={formData.category}
+                      onChange={handleInputChange}
+                      className="rounded-xl"
+                      required
+                    />
                   </div>
                 </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
 
-        {/* Open Projects */}
+                <div className="space-y-2">
+                  <Label htmlFor="description">Detaillierte Beschreibung *</Label>
+                  <Textarea 
+                    id="description" 
+                    name="description" 
+                    placeholder="Beschreiben Sie Ihre Lösung ausführlich: Was bieten Sie an? Welche Vorteile hat Ihre Lösung? Welche Technologien nutzen Sie?"
+                    value={formData.description}
+                    onChange={handleInputChange}
+                    className="rounded-xl min-h-32"
+                    required
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="targetGroup">Zielgruppe</Label>
+                    <Input 
+                      id="targetGroup" 
+                      name="targetGroup" 
+                      placeholder="z.B. Energieversorger, Netzbetreiber"
+                      value={formData.targetGroup}
+                      onChange={handleInputChange}
+                      className="rounded-xl"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="pricing">Preismodell</Label>
+                    <Input 
+                      id="pricing" 
+                      name="pricing" 
+                      placeholder="z.B. Lizenz, SaaS, Projektbasiert"
+                      value={formData.pricing}
+                      onChange={handleInputChange}
+                      className="rounded-xl"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="availability">Verfügbarkeit</Label>
+                    <Input 
+                      id="availability" 
+                      name="availability" 
+                      placeholder="z.B. Sofort, Q2 2026"
+                      value={formData.availability}
+                      onChange={handleInputChange}
+                      className="rounded-xl"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="references">Referenzen</Label>
+                    <Input 
+                      id="references" 
+                      name="references" 
+                      placeholder="z.B. Bestehende Kunden, Pilotprojekte"
+                      value={formData.references}
+                      onChange={handleInputChange}
+                      className="rounded-xl"
+                    />
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-secondary border border-border">
+                  <p className="text-sm text-muted-foreground mb-2">
+                    <strong className="text-foreground">Hinweis:</strong> Nach dem Einreichen wird Ihre Bewerbung von unserem Team geprüft. 
+                    Sie erhalten innerhalb von 3-5 Werktagen eine Rückmeldung.
+                  </p>
+                </div>
+
+                <div className="flex gap-3 justify-end">
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    onClick={() => setShowApplicationForm(false)}
+                    className="rounded-xl"
+                  >
+                    Abbrechen
+                  </Button>
+                  <Button 
+                    type="submit" 
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
+                  >
+                    Bewerbung einreichen
+                    <Send className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        ) : (
+          <Button 
+            onClick={() => setShowApplicationForm(true)}
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl h-14 text-lg"
+          >
+            <Plus className="w-5 h-5 mr-2" />
+            Neue Leistung anbieten
+          </Button>
+        )}
+
+        {/* Existing Services */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <ClipboardList className="w-5 h-5 text-accent" />
-              Neue Ausschreibungen
+              <Package className="w-5 h-5 text-primary" />
+              Ihre Leistungen
             </CardTitle>
-            <CardDescription>Bewerben Sie sich für neue Pilotprojekte</CardDescription>
+            <CardDescription>Übersicht Ihrer angebotenen Lösungen</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {openProjects.map((project) => (
+            {existingServices.map((service) => (
               <div 
-                key={project.id}
+                key={service.id}
                 className="p-5 rounded-2xl bg-secondary border border-border hover:shadow-lg transition-all"
               >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="font-semibold text-foreground">{project.name}</h3>
-                      <Badge variant="outline" className="border-accent/30 text-accent">
-                        Offen
+                      <h3 className="font-semibold text-foreground">{service.title}</h3>
+                      <Badge className={getStatusColor(service.status)}>
+                        {service.status}
+                      </Badge>
+                      <Badge variant="outline" className="border-muted-foreground/30">
+                        {service.category}
                       </Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-3">{project.description}</p>
                     <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
-                        <Building2 className="w-4 h-4" />
-                        {project.partner}
+                        <Eye className="w-4 h-4" />
+                        {service.views} Aufrufe
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Send className="w-4 h-4" />
+                        {service.inquiries} Anfragen
                       </span>
                       <span className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
-                        {project.duration}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        Deadline: {project.deadline}
+                        Erstellt: {service.createdAt}
                       </span>
                     </div>
                   </div>
-                  <Button className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl">
-                    Bewerben
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
+                      <Edit className="w-4 h-4 mr-2" />
+                      Bearbeiten
+                    </Button>
+                    <Button variant="outline" size="sm" className="border-destructive/30 text-destructive hover:bg-destructive/10 rounded-xl">
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             ))}
           </CardContent>
         </Card>
 
-        {/* Reports */}
+        {/* Application Status */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <FileText className="w-5 h-5 text-primary" />
-              Projektberichte
+              <FileText className="w-5 h-5 text-accent" />
+              Bewerbungsstatus
             </CardTitle>
-            <CardDescription>Dokumentation und Berichte Ihrer Projekte</CardDescription>
+            <CardDescription>Status Ihrer Bewerbungen bei Partnern</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border hover:bg-primary/5 transition-colors cursor-pointer">
-                <div className="flex items-center gap-3">
-                  <FileText className="w-5 h-5 text-primary" />
+          <CardContent className="space-y-3">
+            {applicationHistory.map((application) => (
+              <div 
+                key={application.id}
+                className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border hover:bg-primary/5 transition-colors"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-primary" />
+                  </div>
                   <div>
-                    <p className="font-medium text-foreground">Monatsbericht Dezember 2025</p>
-                    <p className="text-sm text-muted-foreground">Smart Grid Integration</p>
+                    <p className="font-medium text-foreground">{application.project}</p>
+                    <p className="text-sm text-muted-foreground">{application.company}</p>
                   </div>
                 </div>
-                <Badge className="bg-primary/20 text-primary">PDF</Badge>
-              </div>
-              <div className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border hover:bg-primary/5 transition-colors cursor-pointer">
                 <div className="flex items-center gap-3">
-                  <FileText className="w-5 h-5 text-primary" />
-                  <div>
-                    <p className="font-medium text-foreground">Meilenstein-Report: Konzeptfreigabe</p>
-                    <p className="text-sm text-muted-foreground">Smart Grid Integration</p>
-                  </div>
+                  <span className="text-sm text-muted-foreground hidden sm:inline">{application.date}</span>
+                  <Badge className={getStatusColor(application.status)}>
+                    {application.status}
+                  </Badge>
                 </div>
-                <Badge className="bg-primary/20 text-primary">PDF</Badge>
               </div>
-            </div>
+            ))}
             <Button variant="outline" className="w-full mt-4 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-              Alle Berichte anzeigen
+              Alle Bewerbungen anzeigen
+              <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </CardContent>
         </Card>

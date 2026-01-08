@@ -36,10 +36,10 @@ const StartupDashboard = () => {
     },
     {
       icon: Users,
-      title: "Pilotprojekte",
-      description: "Nehmen Sie an spannenden Pilotprojekten teil",
-      stats: "1 aktives Projekt",
-      items: ["Smart Grid Integration", "Neue Ausschreibungen", "Projektberichte"],
+      title: "Leistungen anbieten",
+      description: "Bieten Sie Ihre Lösungen Partnern an",
+      stats: "3 aktive Angebote",
+      items: ["Ihre Leistungen", "Neue Bewerbung", "Bewerbungsstatus"],
       link: "/pilot-projects"
     }
   ];
