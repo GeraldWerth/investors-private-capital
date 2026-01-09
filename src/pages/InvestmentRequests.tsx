@@ -64,7 +64,7 @@ const DataRoom = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
               <Link 
-                to="/startup-dashboard" 
+                to="/private-capital-dashboard"
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
