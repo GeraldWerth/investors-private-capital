@@ -12,7 +12,7 @@ const StartupDashboard = () => {
   const dashboardTiles = [
     {
       icon: Target,
-      title: "Investment Focus",
+      title: "Your Investment Focus",
       description: "Define and manage your investment criteria",
       stats: "3 sectors",
       items: ["Industry Preferences", "Investment Size", "Stage Focus"],
