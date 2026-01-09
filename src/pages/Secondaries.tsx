@@ -1,14 +1,21 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
 import { 
-  TrendingUp, ArrowLeft, ArrowRight,
-  Euro, Building2, Users,
-  BarChart3, Clock, Repeat, Filter
+  TrendingUp, ArrowLeft, Plus,
+  Euro, Building2, Search,
+  BarChart3, Clock, Repeat, Filter, Send
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const ExitPreparation = () => {
+  const { toast } = useToast();
+  const [showOfferForm, setShowOfferForm] = useState(false);
+
   const availableSecondaries = [
     {
       id: 1,
@@ -45,6 +52,31 @@ const ExitPreparation = () => {
     }
   ];
 
+  const myOffers = [
+    {
+      id: 1,
+      company: "WindTech Solutions",
+      sector: "Wind Energy",
+      sharesOffered: "10%",
+      valuation: "€32M",
+      askingPrice: "€3.2M",
+      status: "Active",
+      inquiries: 4,
+      createdAt: "Jan 5, 2026"
+    },
+    {
+      id: 2,
+      company: "SmartCharge Inc",
+      sector: "EV Charging",
+      sharesOffered: "6%",
+      valuation: "€18M",
+      askingPrice: "€1.1M",
+      status: "Pending Review",
+      inquiries: 0,
+      createdAt: "Jan 8, 2026"
+    }
+  ];
+
   const activeNegotiations = [
     { company: "EnergyAI Platform", shares: "6%", stage: "Due Diligence", lastUpdate: "2 days ago" },
     { company: "WindTech Pro", shares: "4%", stage: "Term Sheet", lastUpdate: "1 week ago" }
@@ -66,6 +98,25 @@ const ExitPreparation = () => {
       default:
         return "bg-muted text-muted-foreground";
     }
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Active":
+        return "bg-green-500/20 text-green-600";
+      case "Pending Review":
+        return "bg-accent/20 text-accent";
+      default:
+        return "bg-muted text-muted-foreground";
+    }
+  };
+
+  const handleSubmitOffer = () => {
+    toast({
+      title: "Offer Submitted",
+      description: "Your secondary offer has been submitted for review.",
+    });
+    setShowOfferForm(false);
   };
 
   return (
@@ -154,141 +205,297 @@ const ExitPreparation = () => {
           </div>
         </div>
 
-        {/* Filter Bar */}
-        <div className="flex gap-3 flex-wrap">
-          <Button variant="outline" size="sm" className="rounded-xl border-primary text-primary">
-            <Filter className="w-4 h-4 mr-2" />
-            All Sectors
-          </Button>
-          <Button variant="outline" size="sm" className="rounded-xl">€500K - €2M</Button>
-          <Button variant="outline" size="sm" className="rounded-xl">€2M - €5M</Button>
-          <Button variant="outline" size="sm" className="rounded-xl">€5M+</Button>
-        </div>
+        {/* Tabs for Offers and Requests */}
+        <Tabs defaultValue="requests" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 rounded-xl bg-muted p-1">
+            <TabsTrigger value="requests" className="rounded-lg data-[state=active]:bg-background">
+              <Search className="w-4 h-4 mr-2" />
+              Requests (Buy)
+            </TabsTrigger>
+            <TabsTrigger value="offers" className="rounded-lg data-[state=active]:bg-background">
+              <Send className="w-4 h-4 mr-2" />
+              Offers (Sell)
+            </TabsTrigger>
+          </TabsList>
 
-        {/* Available Secondaries */}
-        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <Repeat className="w-5 h-5 text-primary" />
-              Available Secondary Shares
-            </CardTitle>
-            <CardDescription>Explore secondary market opportunities from our network</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {availableSecondaries.map((secondary) => (
-              <div 
-                key={secondary.id}
-                className="p-5 rounded-2xl bg-secondary border border-border hover:shadow-lg transition-all"
+          {/* Requests Tab - Browse Available Secondaries */}
+          <TabsContent value="requests" className="space-y-6">
+            {/* Filter Bar */}
+            <div className="flex gap-3 flex-wrap">
+              <Button variant="outline" size="sm" className="rounded-xl border-primary text-primary">
+                <Filter className="w-4 h-4 mr-2" />
+                All Sectors
+              </Button>
+              <Button variant="outline" size="sm" className="rounded-xl">€500K - €2M</Button>
+              <Button variant="outline" size="sm" className="rounded-xl">€2M - €5M</Button>
+              <Button variant="outline" size="sm" className="rounded-xl">€5M+</Button>
+            </div>
+
+            {/* Available Secondaries */}
+            <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                  <Repeat className="w-5 h-5 text-primary" />
+                  Available Secondary Shares
+                </CardTitle>
+                <CardDescription>Explore secondary market opportunities from our network</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {availableSecondaries.map((secondary) => (
+                  <div 
+                    key={secondary.id}
+                    className="p-5 rounded-2xl bg-secondary border border-border hover:shadow-lg transition-all"
+                  >
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <div className="flex items-center gap-3 mb-2">
+                            <h3 className="font-semibold text-foreground text-lg">{secondary.company}</h3>
+                            <Badge className={getUrgencyColor(secondary.urgency)}>
+                              {secondary.urgency} Priority
+                            </Badge>
+                          </div>
+                          <div className="flex flex-wrap gap-2 mb-3">
+                            <Badge variant="outline" className="border-muted-foreground/30">{secondary.sector}</Badge>
+                            <Badge variant="outline" className="border-muted-foreground/30">Seller: {secondary.seller}</Badge>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-2xl font-bold text-primary">{secondary.askingPrice}</p>
+                          <p className="text-sm text-muted-foreground">for {secondary.sharesAvailable} shares</p>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-3 bg-background/50 rounded-xl">
+                        <div>
+                          <p className="text-xs text-muted-foreground">Valuation</p>
+                          <p className="font-semibold text-foreground">{secondary.valuation}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Shares</p>
+                          <p className="font-semibold text-foreground">{secondary.sharesAvailable}</p>
+                        </div>
+                        <div className="col-span-2">
+                          <p className="text-xs text-muted-foreground mb-1">Highlights</p>
+                          <div className="flex flex-wrap gap-1">
+                            {secondary.highlights.map((h) => (
+                              <Badge key={h} className="bg-primary/10 text-primary text-xs">{h}</Badge>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-2">
+                        <Button variant="outline" className="flex-1 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
+                          View Details
+                        </Button>
+                        <Button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
+                          Express Interest
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Active Negotiations */}
+              <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-accent" />
+                    Active Negotiations
+                  </CardTitle>
+                  <CardDescription>Your ongoing secondary deals</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {activeNegotiations.map((deal, index) => (
+                    <div 
+                      key={index}
+                      className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border"
+                    >
+                      <div>
+                        <p className="font-medium text-foreground">{deal.company}</p>
+                        <p className="text-sm text-muted-foreground">{deal.shares} · {deal.lastUpdate}</p>
+                      </div>
+                      <Badge className="bg-accent/20 text-accent">{deal.stage}</Badge>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+
+              {/* Portfolio Exits */}
+              <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                    <TrendingUp className="w-5 h-5 text-primary" />
+                    Recent Exits
+                  </CardTitle>
+                  <CardDescription>Your successful portfolio exits</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {portfolioExits.map((exit, index) => (
+                    <div 
+                      key={index}
+                      className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                          <Building2 className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-foreground">{exit.company}</p>
+                          <p className="text-sm text-muted-foreground">{exit.exitType} · {exit.date}</p>
+                        </div>
+                      </div>
+                      <span className="font-bold text-primary">{exit.multiple}</span>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* Offers Tab - Sell Your Secondaries */}
+          <TabsContent value="offers" className="space-y-6">
+            {/* Create Offer Button */}
+            <div className="flex justify-end">
+              <Button 
+                onClick={() => setShowOfferForm(!showOfferForm)}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
               >
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="font-semibold text-foreground text-lg">{secondary.company}</h3>
-                        <Badge className={getUrgencyColor(secondary.urgency)}>
-                          {secondary.urgency} Priority
-                        </Badge>
-                      </div>
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        <Badge variant="outline" className="border-muted-foreground/30">{secondary.sector}</Badge>
-                        <Badge variant="outline" className="border-muted-foreground/30">Seller: {secondary.seller}</Badge>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-2xl font-bold text-primary">{secondary.askingPrice}</p>
-                      <p className="text-sm text-muted-foreground">for {secondary.sharesAvailable} shares</p>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-3 bg-background/50 rounded-xl">
-                    <div>
-                      <p className="text-xs text-muted-foreground">Valuation</p>
-                      <p className="font-semibold text-foreground">{secondary.valuation}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-muted-foreground">Shares</p>
-                      <p className="font-semibold text-foreground">{secondary.sharesAvailable}</p>
-                    </div>
-                    <div className="col-span-2">
-                      <p className="text-xs text-muted-foreground mb-1">Highlights</p>
-                      <div className="flex flex-wrap gap-1">
-                        {secondary.highlights.map((h) => (
-                          <Badge key={h} className="bg-primary/10 text-primary text-xs">{h}</Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                <Plus className="w-4 h-4 mr-2" />
+                Create New Offer
+              </Button>
+            </div>
 
-                  <div className="flex gap-2">
-                    <Button variant="outline" className="flex-1 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-                      View Details
-                    </Button>
-                    <Button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
-                      Express Interest
-                    </Button>
+            {/* New Offer Form */}
+            {showOfferForm && (
+              <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm border-l-4 border-l-primary">
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold text-foreground">Create Secondary Offer</CardTitle>
+                  <CardDescription>List your shares for sale on the secondary market</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-2 block">Company Name</label>
+                      <Input placeholder="Enter company name" className="rounded-xl" />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-2 block">Sector</label>
+                      <Input placeholder="e.g., CleanTech, Smart Grid" className="rounded-xl" />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-2 block">Shares Offered (%)</label>
+                      <Input placeholder="e.g., 5%" className="rounded-xl" />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-2 block">Current Valuation</label>
+                      <Input placeholder="e.g., €20M" className="rounded-xl" />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-2 block">Asking Price</label>
+                      <Input placeholder="e.g., €1M" className="rounded-xl" />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-2 block">Priority Level</label>
+                      <Input placeholder="High, Medium, Low" className="rounded-xl" />
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Active Negotiations */}
-          <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                <Clock className="w-5 h-5 text-accent" />
-                Active Negotiations
-              </CardTitle>
-              <CardDescription>Your ongoing secondary deals</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {activeNegotiations.map((deal, index) => (
-                <div 
-                  key={index}
-                  className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border"
-                >
                   <div>
-                    <p className="font-medium text-foreground">{deal.company}</p>
-                    <p className="text-sm text-muted-foreground">{deal.shares} · {deal.lastUpdate}</p>
+                    <label className="text-sm font-medium text-foreground mb-2 block">Highlights (comma separated)</label>
+                    <Input placeholder="e.g., Profitable, Strong Growth, Key Partnerships" className="rounded-xl" />
                   </div>
-                  <Badge className="bg-accent/20 text-accent">{deal.stage}</Badge>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+                  <div className="flex gap-3 pt-2">
+                    <Button 
+                      variant="outline" 
+                      onClick={() => setShowOfferForm(false)}
+                      className="rounded-xl"
+                    >
+                      Cancel
+                    </Button>
+                    <Button 
+                      onClick={handleSubmitOffer}
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
+                    >
+                      <Send className="w-4 h-4 mr-2" />
+                      Submit Offer
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
-          {/* Portfolio Exits */}
-          <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-primary" />
-                Recent Exits
-              </CardTitle>
-              <CardDescription>Your successful portfolio exits</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {portfolioExits.map((exit, index) => (
-                <div 
-                  key={index}
-                  className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Building2 className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-foreground">{exit.company}</p>
-                      <p className="text-sm text-muted-foreground">{exit.exitType} · {exit.date}</p>
+            {/* My Offers */}
+            <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                  <Send className="w-5 h-5 text-primary" />
+                  My Offers
+                </CardTitle>
+                <CardDescription>Your secondary shares listed for sale</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {myOffers.map((offer) => (
+                  <div 
+                    key={offer.id}
+                    className="p-5 rounded-2xl bg-secondary border border-border hover:shadow-lg transition-all"
+                  >
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <div className="flex items-center gap-3 mb-2">
+                            <h3 className="font-semibold text-foreground text-lg">{offer.company}</h3>
+                            <Badge className={getStatusColor(offer.status)}>
+                              {offer.status}
+                            </Badge>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            <Badge variant="outline" className="border-muted-foreground/30">{offer.sector}</Badge>
+                            <Badge variant="outline" className="border-muted-foreground/30">Created: {offer.createdAt}</Badge>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-2xl font-bold text-primary">{offer.askingPrice}</p>
+                          <p className="text-sm text-muted-foreground">for {offer.sharesOffered} shares</p>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-3 gap-4 p-3 bg-background/50 rounded-xl">
+                        <div>
+                          <p className="text-xs text-muted-foreground">Valuation</p>
+                          <p className="font-semibold text-foreground">{offer.valuation}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Shares</p>
+                          <p className="font-semibold text-foreground">{offer.sharesOffered}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Inquiries</p>
+                          <p className="font-semibold text-foreground">{offer.inquiries}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-2">
+                        <Button variant="outline" className="flex-1 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
+                          Edit Offer
+                        </Button>
+                        <Button variant="outline" className="flex-1 rounded-xl text-destructive border-destructive/30 hover:bg-destructive/10">
+                          Remove
+                        </Button>
+                        <Button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
+                          View Inquiries ({offer.inquiries})
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                  <span className="font-bold text-primary">{exit.multiple}</span>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-        </div>
+                ))}
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );
