@@ -1,66 +1,72 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { 
-  Rocket, LogOut, ArrowLeft, ArrowRight,
-  Calendar, Euro, TrendingUp, FileText,
-  CheckCircle2, Target, Building2, Users,
-  BarChart3, Shield, Lightbulb, Phone
+  TrendingUp, ArrowLeft, ArrowRight,
+  Euro, Building2, Users,
+  BarChart3, Clock, Repeat, Filter
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const ExitPreparation = () => {
-  const exitReadiness = {
-    overall: 68,
-    categories: [
-      { name: "Financials", score: 85, icon: Euro },
-      { name: "Legal", score: 70, icon: Shield },
-      { name: "Team", score: 60, icon: Users },
-      { name: "Product", score: 75, icon: Lightbulb },
-      { name: "Market Position", score: 50, icon: TrendingUp }
-    ]
-  };
-
-  const exitStrategies = [
+  const availableSecondaries = [
     {
-      type: "Trade Sale",
-      description: "Sale to a strategic buyer from the industry",
-      probability: "High",
-      timeline: "12-18 months",
-      recommended: true
+      id: 1,
+      company: "SolarFlow GmbH",
+      sector: "CleanTech",
+      sharesAvailable: "8%",
+      valuation: "€45M",
+      askingPrice: "€3.6M",
+      seller: "Early Investor",
+      urgency: "High",
+      highlights: ["Profitable", "Strong Growth", "Strategic Buyer Interest"]
     },
     {
-      type: "Secondary Sale",
-      description: "Sale to private equity or another investor",
-      probability: "Medium",
-      timeline: "6-12 months",
-      recommended: false
+      id: 2,
+      company: "GridOptimize",
+      sector: "Smart Grid",
+      sharesAvailable: "5%",
+      valuation: "€28M",
+      askingPrice: "€1.4M",
+      seller: "Founder",
+      urgency: "Medium",
+      highlights: ["Series B Upcoming", "Key Partnerships"]
     },
     {
-      type: "IPO",
-      description: "Initial public offering on a regulated market",
-      probability: "Low",
-      timeline: "24-36 months",
-      recommended: false
+      id: 3,
+      company: "BatteryNext",
+      sector: "Energy Storage",
+      sharesAvailable: "12%",
+      valuation: "€62M",
+      askingPrice: "€7.4M",
+      seller: "VC Fund",
+      urgency: "Low",
+      highlights: ["Market Leader", "Patent Portfolio"]
     }
   ];
 
-  const checklist = [
-    { title: "Annual reports audited (last 3 years)", completed: true },
-    { title: "Cap table cleaned up", completed: true },
-    { title: "IP rights documented", completed: true },
-    { title: "Employee contracts updated", completed: false },
-    { title: "Customer list and contracts prepared", completed: false },
-    { title: "Data room prepared", completed: false },
-    { title: "Management presentation created", completed: false }
+  const activeNegotiations = [
+    { company: "EnergyAI Platform", shares: "6%", stage: "Due Diligence", lastUpdate: "2 days ago" },
+    { company: "WindTech Pro", shares: "4%", stage: "Term Sheet", lastUpdate: "1 week ago" }
   ];
 
-  const potentialBuyers = [
-    { name: "EnergieCorp AG", type: "Strategic", interest: "High", lastContact: "2 weeks ago" },
-    { name: "CleanTech Ventures", type: "Financial", interest: "Medium", lastContact: "1 month ago" },
-    { name: "GreenFuture Holdings", type: "Strategic", interest: "Medium", lastContact: "3 weeks ago" }
+  const portfolioExits = [
+    { company: "CleanEnergy Co", exitType: "Trade Sale", multiple: "4.2x", date: "Dec 2025" },
+    { company: "SmartMeter GmbH", exitType: "Secondary", multiple: "2.8x", date: "Oct 2025" }
   ];
+
+  const getUrgencyColor = (urgency: string) => {
+    switch (urgency) {
+      case "High":
+        return "bg-red-500/20 text-red-600";
+      case "Medium":
+        return "bg-accent/20 text-accent";
+      case "Low":
+        return "bg-muted text-muted-foreground";
+      default:
+        return "bg-muted text-muted-foreground";
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -79,18 +85,18 @@ const ExitPreparation = () => {
               <div className="h-6 w-px bg-border" />
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center shadow-lg">
-                  <LogOut className="w-5 h-5 text-accent-foreground" />
+                  <Repeat className="w-5 h-5 text-accent-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-foreground">Exit & Preparation</h1>
-                  <p className="text-xs text-muted-foreground">Strategic Planning</p>
+                  <h1 className="text-lg font-bold text-foreground">Secondaries</h1>
+                  <p className="text-xs text-muted-foreground">Secondary Market Opportunities</p>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-                <Rocket className="w-4 h-4 text-accent-foreground" />
+                <TrendingUp className="w-4 h-4 text-accent-foreground" />
               </div>
               <span className="hidden sm:inline text-sm font-semibold text-foreground">EIN Energy</span>
             </div>
@@ -100,90 +106,127 @@ const ExitPreparation = () => {
 
       {/* Main Content */}
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-        {/* Exit Readiness Score */}
-        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm overflow-hidden">
-          <CardHeader className="bg-accent text-accent-foreground">
-            <CardTitle className="text-xl font-bold flex items-center gap-2">
-              <Target className="w-5 h-5" />
-              Exit Readiness Score
-            </CardTitle>
-            <CardDescription className="text-accent-foreground/80">Your current preparation for an exit</CardDescription>
-          </CardHeader>
-          <CardContent className="pt-6">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="relative">
-                <div className="w-32 h-32 rounded-full border-8 border-secondary flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-4xl font-bold text-primary">{exitReadiness.overall}%</p>
-                    <p className="text-xs text-muted-foreground">Overall</p>
-                  </div>
-                </div>
+        {/* Stats Overview */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Repeat className="w-5 h-5 text-primary" />
               </div>
-              <div className="flex-1 space-y-3">
-                {exitReadiness.categories.map((category, index) => (
-                  <div key={index} className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
-                      <category.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between text-sm mb-1">
-                        <span className="font-medium text-foreground">{category.name}</span>
-                        <span className="text-primary">{category.score}%</span>
-                      </div>
-                      <Progress value={category.score} className="h-2" />
-                    </div>
-                  </div>
-                ))}
+              <div>
+                <p className="text-2xl font-bold text-foreground">12</p>
+                <p className="text-xs text-muted-foreground">Available</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Euro className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">€18M</p>
+                <p className="text-xs text-muted-foreground">Total Value</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <BarChart3 className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">2</p>
+                <p className="text-xs text-muted-foreground">In Negotiation</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">3.5x</p>
+                <p className="text-xs text-muted-foreground">Avg. Multiple</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        {/* Exit Strategies */}
+        {/* Filter Bar */}
+        <div className="flex gap-3 flex-wrap">
+          <Button variant="outline" size="sm" className="rounded-xl border-primary text-primary">
+            <Filter className="w-4 h-4 mr-2" />
+            All Sectors
+          </Button>
+          <Button variant="outline" size="sm" className="rounded-xl">€500K - €2M</Button>
+          <Button variant="outline" size="sm" className="rounded-xl">€2M - €5M</Button>
+          <Button variant="outline" size="sm" className="rounded-xl">€5M+</Button>
+        </div>
+
+        {/* Available Secondaries */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <BarChart3 className="w-5 h-5 text-primary" />
-              Exit Strategies
+              <Repeat className="w-5 h-5 text-primary" />
+              Available Secondary Shares
             </CardTitle>
-            <CardDescription>Analyzed options for your exit</CardDescription>
+            <CardDescription>Explore secondary market opportunities from our network</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {exitStrategies.map((strategy, index) => (
+            {availableSecondaries.map((secondary) => (
               <div 
-                key={index}
-                className={`p-5 rounded-2xl border ${strategy.recommended ? 'bg-primary/5 border-primary/20' : 'bg-secondary border-border'}`}
+                key={secondary.id}
+                className="p-5 rounded-2xl bg-secondary border border-border hover:shadow-lg transition-all"
               >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="font-semibold text-foreground text-lg">{strategy.type}</h3>
-                      {strategy.recommended && (
-                        <Badge className="bg-primary/20 text-primary">Recommended</Badge>
-                      )}
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="font-semibold text-foreground text-lg">{secondary.company}</h3>
+                        <Badge className={getUrgencyColor(secondary.urgency)}>
+                          {secondary.urgency} Priority
+                        </Badge>
+                      </div>
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        <Badge variant="outline" className="border-muted-foreground/30">{secondary.sector}</Badge>
+                        <Badge variant="outline" className="border-muted-foreground/30">Seller: {secondary.seller}</Badge>
+                      </div>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-3">{strategy.description}</p>
-                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <TrendingUp className="w-4 h-4" />
-                        Probability: {strategy.probability}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        Timeline: {strategy.timeline}
-                      </span>
+                    <div className="text-right">
+                      <p className="text-2xl font-bold text-primary">{secondary.askingPrice}</p>
+                      <p className="text-sm text-muted-foreground">for {secondary.sharesAvailable} shares</p>
                     </div>
                   </div>
-                  <Button 
-                    variant={strategy.recommended ? "default" : "outline"}
-                    className={strategy.recommended 
-                      ? "bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl" 
-                      : "border-border text-foreground hover:bg-secondary rounded-xl"
-                    }
-                  >
-                    View Details
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-3 bg-background/50 rounded-xl">
+                    <div>
+                      <p className="text-xs text-muted-foreground">Valuation</p>
+                      <p className="font-semibold text-foreground">{secondary.valuation}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">Shares</p>
+                      <p className="font-semibold text-foreground">{secondary.sharesAvailable}</p>
+                    </div>
+                    <div className="col-span-2">
+                      <p className="text-xs text-muted-foreground mb-1">Highlights</p>
+                      <div className="flex flex-wrap gap-1">
+                        {secondary.highlights.map((h) => (
+                          <Badge key={h} className="bg-primary/10 text-primary text-xs">{h}</Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <Button variant="outline" className="flex-1 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
+                      View Details
+                    </Button>
+                    <Button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
+                      Express Interest
+                    </Button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -191,107 +234,61 @@ const ExitPreparation = () => {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Checklist */}
+          {/* Active Negotiations */}
           <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-primary" />
-                Exit Checklist
+                <Clock className="w-5 h-5 text-accent" />
+                Active Negotiations
               </CardTitle>
-              <CardDescription>
-                {checklist.filter(i => i.completed).length} of {checklist.length} completed
-              </CardDescription>
+              <CardDescription>Your ongoing secondary deals</CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                {checklist.map((item, index) => (
-                  <div 
-                    key={index}
-                    className={`flex items-center gap-3 p-3 rounded-xl ${item.completed ? 'bg-primary/10 border border-primary/20' : 'bg-secondary border border-border'}`}
-                  >
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center ${item.completed ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                      {item.completed && <CheckCircle2 className="w-4 h-4" />}
-                    </div>
-                    <span className={`text-sm ${item.completed ? 'text-primary' : 'text-muted-foreground'}`}>
-                      {item.title}
-                    </span>
+            <CardContent className="space-y-3">
+              {activeNegotiations.map((deal, index) => (
+                <div 
+                  key={index}
+                  className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border"
+                >
+                  <div>
+                    <p className="font-medium text-foreground">{deal.company}</p>
+                    <p className="text-sm text-muted-foreground">{deal.shares} · {deal.lastUpdate}</p>
                   </div>
-                ))}
-              </div>
+                  <Badge className="bg-accent/20 text-accent">{deal.stage}</Badge>
+                </div>
+              ))}
             </CardContent>
           </Card>
 
-          {/* Potential Buyers */}
+          {/* Portfolio Exits */}
           <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                <Building2 className="w-5 h-5 text-accent" />
-                Potential Buyers
+                <TrendingUp className="w-5 h-5 text-primary" />
+                Recent Exits
               </CardTitle>
-              <CardDescription>M&A contacts and prospects</CardDescription>
+              <CardDescription>Your successful portfolio exits</CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {potentialBuyers.map((buyer, index) => (
-                  <div 
-                    key={index}
-                    className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border hover:bg-primary/5 transition-colors"
-                  >
-                    <div>
-                      <p className="font-medium text-foreground">{buyer.name}</p>
-                      <p className="text-xs text-muted-foreground">{buyer.type} · Contact {buyer.lastContact}</p>
+            <CardContent className="space-y-3">
+              {portfolioExits.map((exit, index) => (
+                <div 
+                  key={index}
+                  className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Building2 className="w-5 h-5 text-primary" />
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Badge className={
-                        buyer.interest === "High" 
-                          ? "bg-primary/20 text-primary" 
-                          : "bg-muted text-muted-foreground"
-                      }>
-                        {buyer.interest}
-                      </Badge>
-                      <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/10">
-                        <Phone className="w-4 h-4" />
-                      </Button>
+                    <div>
+                      <p className="font-medium text-foreground">{exit.company}</p>
+                      <p className="text-sm text-muted-foreground">{exit.exitType} · {exit.date}</p>
                     </div>
                   </div>
-                ))}
-              </div>
-              <Button variant="outline" className="w-full mt-4 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-                View All Contacts
-              </Button>
+                  <span className="font-bold text-primary">{exit.multiple}</span>
+                </div>
+              ))}
             </CardContent>
           </Card>
         </div>
-
-        {/* Documents */}
-        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <FileText className="w-5 h-5 text-primary" />
-              Exit Documents
-            </CardTitle>
-            <CardDescription>Important documents for the exit process</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:shadow-lg transition-all cursor-pointer">
-                <FileText className="w-8 h-8 text-primary mb-3" />
-                <h4 className="font-medium text-foreground">Information Memorandum</h4>
-                <p className="text-sm text-muted-foreground mt-1">Template available</p>
-              </div>
-              <div className="p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:shadow-lg transition-all cursor-pointer">
-                <FileText className="w-8 h-8 text-primary mb-3" />
-                <h4 className="font-medium text-foreground">Valuation Tools</h4>
-                <p className="text-sm text-muted-foreground mt-1">DCF & Multiples</p>
-              </div>
-              <div className="p-4 rounded-2xl bg-accent/10 border border-accent/20 hover:shadow-lg transition-all cursor-pointer">
-                <FileText className="w-8 h-8 text-accent mb-3" />
-                <h4 className="font-medium text-foreground">Due Diligence Checklist</h4>
-                <p className="text-sm text-muted-foreground mt-1">Interactive list</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </main>
     </div>
   );

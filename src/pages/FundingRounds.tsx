@@ -3,53 +3,32 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { 
-  Rocket, TrendingUp, ArrowLeft, ArrowRight,
-  Calendar, Euro, Users, FileText, CheckCircle2,
-  Clock, Target, Building2, AlertCircle
+  TrendingUp, ArrowLeft, ArrowRight,
+  Target, Euro, Building2, Briefcase,
+  Factory, Zap, Leaf, Globe, Shield
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const FundingRounds = () => {
-  const monthlyRounds = [
-    {
-      id: 1,
-      month: "February 2026",
-      status: "Applications Open",
-      deadline: "January 31, 2026",
-      slots: 5,
-      registered: 12,
-      isNext: true
-    },
-    {
-      id: 2,
-      month: "March 2026",
-      status: "Coming Soon",
-      deadline: "February 28, 2026",
-      slots: 5,
-      registered: 3,
-      isNext: false
-    },
-    {
-      id: 3,
-      month: "April 2026",
-      status: "Coming Soon",
-      deadline: "March 31, 2026",
-      slots: 5,
-      registered: 0,
-      isNext: false
-    }
+  const investmentCriteria = {
+    sectors: ["CleanTech", "Energy Storage", "Smart Grid", "Renewables"],
+    stages: ["Seed", "Series A", "Series B"],
+    ticketSize: { min: "500K", max: "5M" },
+    geography: ["DACH", "Nordics", "Benelux"]
+  };
+
+  const sectorFocus = [
+    { name: "CleanTech", icon: Leaf, allocation: 35, deals: 8, color: "text-green-500" },
+    { name: "Energy Storage", icon: Zap, allocation: 25, deals: 5, color: "text-yellow-500" },
+    { name: "Smart Grid", icon: Globe, allocation: 20, deals: 4, color: "text-blue-500" },
+    { name: "Industrial Tech", icon: Factory, allocation: 12, deals: 3, color: "text-purple-500" },
+    { name: "Carbon Capture", icon: Shield, allocation: 8, deals: 2, color: "text-teal-500" }
   ];
 
-
-  const applicationSteps = [
-    { step: 1, title: "Personal Data", description: "Founder profile, contact details, experience", completed: true },
-    { step: 2, title: "Upload Pitch Deck", description: "Presentation of your startup", completed: true },
-    { step: 3, title: "Company & Legal", description: "Articles of association, bylaws, patents", completed: true },
-    { step: 4, title: "Financials & Funding", description: "Annual reports, cap table, forecasts", completed: false },
-    { step: 5, title: "Product & Technology", description: "Product documentation, tech stack, IP", completed: false },
-    { step: 6, title: "Market & Business Model", description: "Market analysis, business model, pricing", completed: false },
-    { step: 7, title: "Team & Organization", description: "CVs, org charts, vesting", completed: false },
-    { step: 8, title: "Traction & Partnerships", description: "KPIs, customer contracts, partnerships", completed: false }
+  const recentDeals = [
+    { company: "SolarFlow GmbH", stage: "Series A", amount: "€2.5M", sector: "CleanTech", status: "Closed" },
+    { company: "GridOptimize", stage: "Seed", amount: "€800K", sector: "Smart Grid", status: "Closed" },
+    { company: "BatteryNext", stage: "Series B", amount: "€4.2M", sector: "Energy Storage", status: "In Progress" }
   ];
 
   return (
@@ -69,18 +48,18 @@ const FundingRounds = () => {
               <div className="h-6 w-px bg-border" />
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg">
-                  <TrendingUp className="w-5 h-5 text-primary-foreground" />
+                  <Target className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-foreground">Funding Rounds</h1>
-                  <p className="text-xs text-muted-foreground">Financing & Investors</p>
+                  <h1 className="text-lg font-bold text-foreground">Investment Focus</h1>
+                  <p className="text-xs text-muted-foreground">Your Investment Criteria</p>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-                <Rocket className="w-4 h-4 text-accent-foreground" />
+                <TrendingUp className="w-4 h-4 text-accent-foreground" />
               </div>
               <span className="hidden sm:inline text-sm font-semibold text-foreground">EIN Energy</span>
             </div>
@@ -95,33 +74,11 @@ const FundingRounds = () => {
           <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Target className="w-5 h-5 text-primary" />
+                <Briefcase className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">2</p>
-                <p className="text-xs text-muted-foreground">Open Rounds</p>
-              </div>
-            </div>
-          </div>
-          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <FileText className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-foreground">1</p>
-                <p className="text-xs text-muted-foreground">Active Application</p>
-              </div>
-            </div>
-          </div>
-          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Users className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-foreground">20</p>
-                <p className="text-xs text-muted-foreground">Investors</p>
+                <p className="text-2xl font-bold text-foreground">22</p>
+                <p className="text-xs text-muted-foreground">Total Deals</p>
               </div>
             </div>
           </div>
@@ -131,105 +88,150 @@ const FundingRounds = () => {
                 <Euro className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">12M</p>
-                <p className="text-xs text-muted-foreground">Available</p>
+                <p className="text-2xl font-bold text-foreground">€28M</p>
+                <p className="text-xs text-muted-foreground">Invested</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Target className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">5</p>
+                <p className="text-xs text-muted-foreground">Sectors</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Building2 className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">3</p>
+                <p className="text-xs text-muted-foreground">Regions</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Open Funding Rounds */}
+        {/* Investment Criteria */}
+        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+              <Target className="w-5 h-5 text-primary" />
+              Your Investment Criteria
+            </CardTitle>
+            <CardDescription>Define and manage your investment preferences</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-4 rounded-xl bg-secondary border border-border">
+                <h4 className="font-semibold text-foreground mb-3">Target Sectors</h4>
+                <div className="flex flex-wrap gap-2">
+                  {investmentCriteria.sectors.map((sector) => (
+                    <Badge key={sector} className="bg-primary/20 text-primary">{sector}</Badge>
+                  ))}
+                </div>
+              </div>
+              <div className="p-4 rounded-xl bg-secondary border border-border">
+                <h4 className="font-semibold text-foreground mb-3">Investment Stages</h4>
+                <div className="flex flex-wrap gap-2">
+                  {investmentCriteria.stages.map((stage) => (
+                    <Badge key={stage} variant="outline" className="border-accent text-accent">{stage}</Badge>
+                  ))}
+                </div>
+              </div>
+              <div className="p-4 rounded-xl bg-secondary border border-border">
+                <h4 className="font-semibold text-foreground mb-3">Ticket Size</h4>
+                <p className="text-lg font-bold text-primary">
+                  €{investmentCriteria.ticketSize.min} - €{investmentCriteria.ticketSize.max}
+                </p>
+              </div>
+              <div className="p-4 rounded-xl bg-secondary border border-border">
+                <h4 className="font-semibold text-foreground mb-3">Geographic Focus</h4>
+                <div className="flex flex-wrap gap-2">
+                  {investmentCriteria.geography.map((geo) => (
+                    <Badge key={geo} variant="outline" className="border-muted-foreground">{geo}</Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <Button className="w-full mt-6 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
+              Edit Investment Criteria
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Sector Allocation */}
+        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+              <Briefcase className="w-5 h-5 text-primary" />
+              Sector Allocation
+            </CardTitle>
+            <CardDescription>Portfolio distribution by sector</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {sectorFocus.map((sector) => (
+                <div key={sector.name} className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
+                    <sector.icon className={`w-5 h-5 ${sector.color}`} />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between text-sm mb-1">
+                      <span className="font-medium text-foreground">{sector.name}</span>
+                      <span className="text-muted-foreground">{sector.deals} deals · {sector.allocation}%</span>
+                    </div>
+                    <Progress value={sector.allocation} className="h-2" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Recent Deals */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-primary" />
-              Upcoming Funding Rounds
+              Recent Investments
             </CardTitle>
-            <CardDescription>We conduct monthly funding rounds. Apply for the right financing round.</CardDescription>
+            <CardDescription>Your latest deals</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {monthlyRounds.map((round) => (
-                <div 
-                  key={round.id}
-                  className={`p-5 rounded-2xl border transition-all hover:shadow-lg ${round.isNext ? 'bg-primary/5 border-primary/30 ring-2 ring-primary/20' : 'bg-secondary border-border'}`}
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-5 h-5 text-primary" />
-                      <h3 className="font-semibold text-foreground text-lg">{round.month}</h3>
-                    </div>
-                    {round.isNext && (
-                      <Badge className="bg-primary/20 text-primary">Current</Badge>
-                    )}
+          <CardContent className="space-y-3">
+            {recentDeals.map((deal, index) => (
+              <div 
+                key={index}
+                className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border hover:bg-primary/5 transition-colors"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-primary" />
                   </div>
-                  
-                  <Badge className={round.status === "Applications Open" ? 'bg-green-500/20 text-green-600 mb-2' : 'bg-muted text-muted-foreground mb-2'}>
-                    {round.status}
+                  <div>
+                    <p className="font-medium text-foreground">{deal.company}</p>
+                    <p className="text-sm text-muted-foreground">{deal.sector} · {deal.stage}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="font-bold text-primary">{deal.amount}</span>
+                  <Badge className={deal.status === "Closed" ? "bg-primary/20 text-primary" : "bg-accent/20 text-accent"}>
+                    {deal.status}
                   </Badge>
-                  
-                  <p className="text-sm font-medium text-primary mb-3">From Seed to all Growth Stages</p>
-                  
-                  <div className="space-y-2 text-sm text-muted-foreground mb-4">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4" />
-                      <span>Deadline: {round.deadline}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Target className="w-4 h-4" />
-                      <span>{round.slots} slots available</span>
-                    </div>
-                  </div>
-                  
-                  <Button 
-                    className={`w-full rounded-xl ${round.isNext ? 'bg-primary hover:bg-primary/90 text-primary-foreground' : 'bg-accent/20 hover:bg-accent/30 text-accent-foreground'}`}
-                    variant={round.isNext ? "default" : "outline"}
-                  >
-                    {round.isNext ? "Apply Now" : "Express Interest"}
-                  </Button>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+            <Button variant="outline" className="w-full mt-4 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
+              View All Investments
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
           </CardContent>
         </Card>
-
-        {/* Application Checklist */}
-        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-primary" />
-              Application Checklist
-            </CardTitle>
-            <CardDescription>Your progress for the Series A application</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {applicationSteps.map((step) => (
-                <div 
-                  key={step.step}
-                  className={`flex items-center gap-4 p-4 rounded-xl ${step.completed ? 'bg-primary/10 border border-primary/20' : 'bg-secondary border border-border'}`}
-                >
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${step.completed ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
-                    {step.completed ? <CheckCircle2 className="w-5 h-5" /> : step.step}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <span className={`font-medium block ${step.completed ? 'text-primary' : 'text-foreground'}`}>
-                      {step.title}
-                    </span>
-                    <span className="text-sm text-muted-foreground">{step.description}</span>
-                  </div>
-                  {!step.completed && (
-                    <Badge variant="outline" className="shrink-0 border-accent/30 text-accent">
-                      <AlertCircle className="w-3 h-3 mr-1" />
-                      Pending
-                    </Badge>
-                  )}
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
       </main>
     </div>
   );
