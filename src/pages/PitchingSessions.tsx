@@ -187,9 +187,9 @@ const PilotProjects = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <Calendar className="w-5 h-5 text-primary" />
-              Upcoming Pitching Sessions
+              Anmeldung zu Pitchings
             </CardTitle>
-            <CardDescription>Your scheduled startup presentations</CardDescription>
+            <CardDescription>Wir führen monatliche Fundingrunden durch. Bewerben Sie sich für die passende Finanzierungsrunde.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {upcomingSessions.map((session) => (
