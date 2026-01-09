@@ -15,33 +15,30 @@ const PilotProjects = () => {
   const upcomingSessions = [
     {
       id: 1,
-      title: "Fundingrunde CleanTech",
-      sector: "CleanTech",
-      stages: ["Seed", "Series A"],
-      date: "15. Januar 2026",
-      time: "10:00 Uhr",
-      duration: "2 Stunden",
-      startups: 5
+      month: "Februar 2026",
+      status: "Aktuell",
+      statusType: "current",
+      stages: "Von Seed bis alle Growth Stages",
+      deadline: "31. Januar 2026",
+      slots: 5
     },
     {
       id: 2,
-      title: "Fundingrunde Energy Storage",
-      sector: "Energy Storage",
-      stages: ["Seed", "Series A", "Series B"],
-      date: "22. Januar 2026",
-      time: "14:00 Uhr",
-      duration: "2 Stunden",
-      startups: 4
+      month: "März 2026",
+      status: "Demnächst",
+      statusType: "upcoming",
+      stages: "Von Seed bis alle Growth Stages",
+      deadline: "28. Februar 2026",
+      slots: 5
     },
     {
       id: 3,
-      title: "Fundingrunde Smart Grid",
-      sector: "Smart Grid",
-      stages: ["Series A"],
-      date: "5. Februar 2026",
-      time: "11:00 Uhr",
-      duration: "2 Stunden",
-      startups: 6
+      month: "April 2026",
+      status: "Demnächst",
+      statusType: "upcoming",
+      stages: "Von Seed bis alle Growth Stages",
+      deadline: "31. März 2026",
+      slots: 5
     }
   ];
 
@@ -183,34 +180,36 @@ const PilotProjects = () => {
               {upcomingSessions.map((session) => (
                 <div 
                   key={session.id}
-                  className="p-5 rounded-2xl bg-secondary border border-border hover:shadow-lg transition-all flex flex-col"
+                  className={`p-5 rounded-2xl border hover:shadow-lg transition-all flex flex-col ${
+                    session.statusType === 'current' 
+                      ? 'bg-primary/5 border-primary/30' 
+                      : 'bg-secondary border-border'
+                  }`}
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-semibold text-foreground text-lg">{session.title}</h3>
+                    <h3 className="font-semibold text-foreground text-xl">{session.month}</h3>
+                    <Badge className={session.statusType === 'current' 
+                      ? 'bg-primary/20 text-primary' 
+                      : 'bg-accent/20 text-accent'}>
+                      {session.status}
+                    </Badge>
                   </div>
-                  <div className="flex flex-col gap-2 text-sm text-muted-foreground mb-4 flex-1">
-                    <span className="flex items-center gap-1">
-                      <Building2 className="w-4 h-4" />
-                      {session.sector}
-                    </span>
-                    <div className="flex flex-wrap gap-1">
-                      {session.stages.map((stage) => (
-                        <Badge key={stage} variant="outline" className="border-muted-foreground/30">
-                          {stage}
-                        </Badge>
-                      ))}
-                    </div>
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {session.date}
-                    </span>
-                    <span className="flex items-center gap-1">
+                  
+                  {session.statusType === 'current' && (
+                    <Badge className="bg-primary/20 text-primary w-fit mb-3">
+                      Bewerbungen offen
+                    </Badge>
+                  )}
+                  
+                  <div className="flex flex-col gap-3 text-sm text-muted-foreground mb-4 flex-1">
+                    <p className="text-foreground font-medium">{session.stages}</p>
+                    <span className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
-                      {session.time} ({session.duration})
+                      Deadline: {session.deadline}
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-2">
                       <Users className="w-4 h-4" />
-                      {session.startups} Startups pitchen
+                      {session.slots} Plätze verfügbar
                     </span>
                   </div>
                   <Button 
