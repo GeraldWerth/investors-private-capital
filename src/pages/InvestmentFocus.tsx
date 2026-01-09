@@ -129,7 +129,7 @@ const FundingRounds = () => {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="p-4 rounded-xl bg-secondary border border-border">
-                <h4 className="font-semibold text-foreground mb-3">Target Sectors</h4>
+                <h4 className="font-semibold text-foreground mb-3">Your Target Sectors</h4>
                 <div className="flex flex-wrap gap-2">
                   {investmentCriteria.sectors.map((sector) => (
                     <Badge key={sector} className="bg-primary/20 text-primary">{sector}</Badge>
@@ -137,7 +137,7 @@ const FundingRounds = () => {
                 </div>
               </div>
               <div className="p-4 rounded-xl bg-secondary border border-border">
-                <h4 className="font-semibold text-foreground mb-3">Investment Stages</h4>
+                <h4 className="font-semibold text-foreground mb-3">Your Investment Stages</h4>
                 <div className="flex flex-wrap gap-2">
                   {investmentCriteria.stages.map((stage) => (
                     <Badge key={stage} variant="outline" className="border-accent text-accent">{stage}</Badge>
@@ -145,13 +145,13 @@ const FundingRounds = () => {
                 </div>
               </div>
               <div className="p-4 rounded-xl bg-secondary border border-border">
-                <h4 className="font-semibold text-foreground mb-3">Ticket Size</h4>
+                <h4 className="font-semibold text-foreground mb-3">Your Ticket Size</h4>
                 <p className="text-lg font-bold text-primary">
                   €{investmentCriteria.ticketSize.min} - €{investmentCriteria.ticketSize.max}
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-secondary border border-border">
-                <h4 className="font-semibold text-foreground mb-3">Geographic Focus</h4>
+                <h4 className="font-semibold text-foreground mb-3">Your Geographic Focus</h4>
                 <div className="flex flex-wrap gap-2">
                   {investmentCriteria.geography.map((geo) => (
                     <Badge key={geo} variant="outline" className="border-muted-foreground">{geo}</Badge>
