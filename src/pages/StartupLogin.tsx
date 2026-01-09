@@ -128,7 +128,7 @@ const StartupLogin = () => {
             </div>
 
             <Button asChild className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl shadow-lg transition-all duration-300 group">
-              <Link to="/startup-dashboard">
+              <Link to="/private-capital-dashboard">
                 Sign In
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
