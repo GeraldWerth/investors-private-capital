@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 
 const DataRoom = () => {
@@ -196,25 +196,24 @@ const DataRoom = () => {
               toast.success("Ihr Suchauftrag wurde erfolgreich übermittelt. Wir melden uns in Kürze bei Ihnen.");
               setShowRequestForm(false);
             }}>
-              {/* Request Type */}
               <div className="space-y-3">
-                <Label className="text-base font-semibold">Art des Suchauftrags</Label>
-                <RadioGroup defaultValue="investment" className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Label className="text-base font-semibold">Art des Suchauftrags (Mehrfachauswahl möglich)</Label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex items-start space-x-3 p-4 rounded-xl border border-border bg-secondary hover:border-primary/50 transition-colors">
-                    <RadioGroupItem value="investment" id="investment" className="mt-1" />
+                    <Checkbox id="investment" className="mt-1" />
                     <div>
                       <Label htmlFor="investment" className="font-medium cursor-pointer">Primärinvestition</Label>
                       <p className="text-sm text-muted-foreground">Direktinvestition in Startups oder Fonds</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3 p-4 rounded-xl border border-border bg-secondary hover:border-primary/50 transition-colors">
-                    <RadioGroupItem value="secondary" id="secondary" className="mt-1" />
+                    <Checkbox id="secondary" className="mt-1" />
                     <div>
                       <Label htmlFor="secondary" className="font-medium cursor-pointer">Secondary</Label>
                       <p className="text-sm text-muted-foreground">Kauf von bestehenden Anteilen</p>
                     </div>
                   </div>
-                </RadioGroup>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
