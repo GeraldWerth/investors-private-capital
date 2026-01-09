@@ -2,15 +2,18 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { 
-  TrendingUp, Users, ArrowLeft, ArrowRight,
+  TrendingUp, Users, ArrowLeft,
   Calendar, Video, CheckCircle2,
-  Clock, Building2, Play, Eye, Star
+  Clock, Bell
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const PilotProjects = () => {
   const [registrations, setRegistrations] = useState<{ [key: number]: boolean }>({});
+  const [autoRegister, setAutoRegister] = useState(false);
 
   const upcomingSessions = [
     {
@@ -185,6 +188,47 @@ const PilotProjects = () => {
                 </div>
               ))}
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Auto-Register Preference */}
+        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+              <Bell className="w-5 h-5 text-primary" />
+              Automatische Teilnahme
+            </CardTitle>
+            <CardDescription>Aktivieren Sie diese Option, um automatisch für alle zukünftigen Pitching Sessions angemeldet zu werden.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <Label htmlFor="auto-register" className="font-medium text-foreground cursor-pointer">
+                    An allen künftigen Pitchings teilnehmen
+                  </Label>
+                  <p className="text-sm text-muted-foreground">
+                    Sie werden automatisch für jede neue Fundingrunde angemeldet.
+                  </p>
+                </div>
+              </div>
+              <Switch
+                id="auto-register"
+                checked={autoRegister}
+                onCheckedChange={setAutoRegister}
+              />
+            </div>
+            {autoRegister && (
+              <div className="mt-4 p-4 rounded-xl bg-primary/10 border border-primary/30">
+                <p className="text-sm text-primary flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4" />
+                  Sie sind für alle zukünftigen Pitching Sessions angemeldet.
+                </p>
+              </div>
+            )}
           </CardContent>
         </Card>
 
