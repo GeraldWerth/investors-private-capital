@@ -19,7 +19,7 @@ const PilotProjects = () => {
       status: "Aktuell",
       statusType: "current",
       stages: "Von Seed bis alle Growth Stages",
-      deadline: "12. Januar 2026"
+      deadline: "12. Februar 2026"
     },
     {
       id: 2,
@@ -27,7 +27,7 @@ const PilotProjects = () => {
       status: "Demnächst",
       statusType: "upcoming",
       stages: "Von Seed bis alle Growth Stages",
-      deadline: "12. Februar 2026"
+      deadline: "12. März 2026"
     },
     {
       id: 3,
@@ -35,7 +35,7 @@ const PilotProjects = () => {
       status: "Demnächst",
       statusType: "upcoming",
       stages: "Von Seed bis alle Growth Stages",
-      deadline: "12. März 2026"
+      deadline: "12. April 2026"
     }
   ];
 
