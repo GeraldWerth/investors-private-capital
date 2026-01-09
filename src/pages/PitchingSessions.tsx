@@ -174,7 +174,7 @@ const PilotProjects = () => {
               Anmeldung zu Pitchings
             </CardTitle>
             <CardDescription>Wir führen monatliche Fundingrunden durch. Melden Sie sich für die nächsten Finanzierungsrunden an.</CardDescription>
-            <p className="text-sm text-muted-foreground mt-2">Hinweis: Alle teilnehmenden Startups bieten Lösungen, die sich direkt oder indirekt auf den Energy Sector beziehen.</p>
+            <p className="text-sm text-muted-foreground mt-2"><span className="font-bold">Hinweis:</span> Alle teilnehmenden Startups bieten Lösungen, die sich direkt oder indirekt auf den Energy Sector beziehen.</p>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
