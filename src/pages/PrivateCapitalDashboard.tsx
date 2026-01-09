@@ -20,7 +20,7 @@ const StartupDashboard = () => {
     },
     {
       icon: Users,
-      title: "Pitching Sessions",
+      title: "Upcoming Pitching Sessions",
       description: "Review startup pitches and presentations",
       stats: "5 upcoming",
       items: ["Scheduled Pitches", "Past Sessions", "Invite Startups"],
