@@ -16,7 +16,7 @@ const StartupDashboard = () => {
       description: "Define and manage your investment criteria",
       stats: "3 sectors",
       items: ["Industry Preferences", "Investment Size", "Stage Focus"],
-      link: "/funding-rounds"
+      link: "/investment-focus"
     },
     {
       icon: Users,
@@ -24,7 +24,7 @@ const StartupDashboard = () => {
       description: "Review startup pitches and presentations",
       stats: "5 upcoming",
       items: ["Scheduled Pitches", "Past Sessions", "Invite Startups"],
-      link: "/pilot-projects"
+      link: "/pitching-sessions"
     },
     {
       icon: Repeat,
@@ -32,7 +32,7 @@ const StartupDashboard = () => {
       description: "Explore secondary market opportunities",
       stats: "12 available",
       items: ["Available Shares", "Active Negotiations", "Portfolio Exits"],
-      link: "/exit-preparation"
+      link: "/secondaries"
     },
     {
       icon: Search,
@@ -40,7 +40,7 @@ const StartupDashboard = () => {
       description: "Search and request private capital investments",
       stats: "8 matches",
       items: ["Browse Opportunities", "Submit Request", "Saved Searches"],
-      link: "/data-room"
+      link: "/investment-requests"
     }
   ];
 
