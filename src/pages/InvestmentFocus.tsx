@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { 
   TrendingUp, ArrowLeft, ArrowRight,
   Target, Euro, Building2, Briefcase,
@@ -10,6 +12,7 @@ import {
 import { Link } from "react-router-dom";
 
 const FundingRounds = () => {
+  const [investmentFrequency, setInvestmentFrequency] = useState("");
   const investmentCriteria = {
     sectors: ["CleanTech", "Energy Storage", "Smart Grid", "Renewables"],
     stages: ["Seed", "Series A", "Series B"],
@@ -157,6 +160,21 @@ const FundingRounds = () => {
                     <Badge key={geo} variant="outline" className="border-muted-foreground">{geo}</Badge>
                   ))}
                 </div>
+              </div>
+              <div className="p-4 rounded-xl bg-secondary border border-border md:col-span-2">
+                <h4 className="font-semibold text-foreground mb-3">Your Investment Frequency</h4>
+                <Select value={investmentFrequency} onValueChange={setInvestmentFrequency}>
+                  <SelectTrigger className="w-full md:w-64 bg-background">
+                    <SelectValue placeholder="Select frequency" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background z-50">
+                    <SelectItem value="less-than-1">Less than 1x per year</SelectItem>
+                    <SelectItem value="1-2">1-2x per year</SelectItem>
+                    <SelectItem value="3-5">3-5x per year</SelectItem>
+                    <SelectItem value="6-10">6-10x per year</SelectItem>
+                    <SelectItem value="more-than-10">More than 10x per year</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             <Button className="w-full mt-6 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
