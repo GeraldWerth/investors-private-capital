@@ -174,6 +174,7 @@ const PilotProjects = () => {
               Anmeldung zu Pitchings
             </CardTitle>
             <CardDescription>Wir führen monatliche Fundingrunden durch. Melden Sie sich für die nächsten Finanzierungsrunden an.</CardDescription>
+            <p className="text-sm text-muted-foreground mt-2">Hinweis: Alle teilnehmenden Startups bieten Lösungen, die sich direkt oder indirekt auf den Energy Sector beziehen.</p>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -202,7 +203,6 @@ const PilotProjects = () => {
                   )}
                   
                   <div className="flex flex-col gap-3 text-sm text-muted-foreground mb-4 flex-1">
-                    <p className="text-foreground font-medium">{session.stages}</p>
                     <span className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
                       Deadline: {session.deadline}
