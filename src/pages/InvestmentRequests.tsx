@@ -142,31 +142,31 @@ const DataRoom = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <Send className="w-5 h-5 text-primary" />
-              Suchauftrag an EIN Energy
+              Search Request to EIN Energy
             </CardTitle>
-            <CardDescription>Beauftragen Sie EIN Energy gezielt mit der Suche nach Investitionen oder Secondaries</CardDescription>
+            <CardDescription>Commission EIN Energy to search for investments or secondaries on your behalf</CardDescription>
           </CardHeader>
           <CardContent>
             <form className="space-y-6" onSubmit={(e) => { 
               e.preventDefault(); 
-              toast.success("Ihr Suchauftrag wurde erfolgreich übermittelt. Wir melden uns in Kürze bei Ihnen.");
+              toast.success("Your search request has been submitted successfully. We will get back to you shortly.");
               setShowRequestForm(false);
             }}>
               <div className="space-y-3">
-                <Label className="text-base font-semibold">Art des Suchauftrags (Mehrfachauswahl möglich)</Label>
+                <Label className="text-base font-semibold">Type of Search Request (multiple selection possible)</Label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex items-start space-x-3 p-4 rounded-xl border border-border bg-secondary hover:border-primary/50 transition-colors">
                     <Checkbox id="investment" className="mt-1" />
                     <div>
-                      <Label htmlFor="investment" className="font-medium cursor-pointer">Primärinvestition</Label>
-                      <p className="text-sm text-muted-foreground">Direktinvestition in Startups oder Fonds</p>
+                      <Label htmlFor="investment" className="font-medium cursor-pointer">Primary Investment</Label>
+                      <p className="text-sm text-muted-foreground">Direct investment in startups or funds</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3 p-4 rounded-xl border border-border bg-secondary hover:border-primary/50 transition-colors">
                     <Checkbox id="secondary" className="mt-1" />
                     <div>
                       <Label htmlFor="secondary" className="font-medium cursor-pointer">Secondary</Label>
-                      <p className="text-sm text-muted-foreground">Kauf von bestehenden Anteilen</p>
+                      <p className="text-sm text-muted-foreground">Purchase of existing shares</p>
                     </div>
                   </div>
                 </div>
@@ -174,33 +174,33 @@ const DataRoom = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label>Zielsektoren</Label>
-                  <Input placeholder="z.B. CleanTech, Renewables, Energy Storage" className="rounded-xl" />
+                  <Label>Target Sectors</Label>
+                  <Input placeholder="e.g. CleanTech, Renewables, Energy Storage" className="rounded-xl" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Investmentphase</Label>
-                  <Input placeholder="z.B. Seed, Series A, Series B, Growth" className="rounded-xl" />
+                  <Label>Investment Stage</Label>
+                  <Input placeholder="e.g. Seed, Series A, Series B, Growth" className="rounded-xl" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Ticketgröße</Label>
-                  <Input placeholder="z.B. €500K - €2M" className="rounded-xl" />
+                  <Label>Ticket Size</Label>
+                  <Input placeholder="e.g. €500K - €2M" className="rounded-xl" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Geografischer Fokus</Label>
-                  <Input placeholder="z.B. DACH, EU, Global" className="rounded-xl" />
+                  <Label>Geographic Focus</Label>
+                  <Input placeholder="e.g. DACH, EU, Global" className="rounded-xl" />
                 </div>
               </div>
               <div className="space-y-2">
-                <Label>Besondere Anforderungen</Label>
+                <Label>Special Requirements</Label>
                 <Textarea 
-                  placeholder="Beschreiben Sie spezifische Kriterien: Mindest-Traction, Team-Hintergrund, Technologie-Anforderungen, gewünschte Rendite..."
+                  placeholder="Describe specific criteria: minimum traction, team background, technology requirements, desired returns..."
                   className="rounded-xl min-h-24"
                 />
               </div>
               <div className="flex gap-3 justify-end">
                 <Button type="submit" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
                   <Send className="w-4 h-4 mr-2" />
-                  Suchauftrag absenden
+                  Submit Search Request
                 </Button>
               </div>
             </form>
@@ -212,21 +212,21 @@ const DataRoom = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <Clock className="w-5 h-5 text-primary" />
-              Meine Suchaufträge
+              My Search Requests
             </CardTitle>
-            <CardDescription>Übersicht Ihrer beauftragten Suchen</CardDescription>
+            <CardDescription>Overview of your commissioned searches</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {[
               {
                 id: 1,
-                type: ["Primärinvestition"],
+                type: ["Primary Investment"],
                 sectors: "CleanTech, Renewables",
                 ticketSize: "€1M - €3M",
                 stage: "Series A",
                 region: "DACH",
                 status: "in_progress",
-                createdAt: "5. Januar 2026",
+                createdAt: "January 5, 2026",
                 matches: 3
               },
               {
@@ -237,18 +237,18 @@ const DataRoom = () => {
                 stage: "Series B",
                 region: "EU",
                 status: "completed",
-                createdAt: "20. Dezember 2025",
+                createdAt: "December 20, 2025",
                 matches: 5
               },
               {
                 id: 3,
-                type: ["Primärinvestition", "Secondary"],
+                type: ["Primary Investment", "Secondary"],
                 sectors: "Smart Grid, CleanTech",
                 ticketSize: "€2M - €5M",
                 stage: "Growth",
                 region: "Global",
                 status: "pending",
-                createdAt: "15. Dezember 2025",
+                createdAt: "December 15, 2025",
                 matches: 0
               }
             ].map((request) => (
@@ -274,7 +274,7 @@ const DataRoom = () => {
                         {request.status === 'completed' && <CheckCircle2 className="w-3 h-3 mr-1" />}
                         {request.status === 'in_progress' && <Clock className="w-3 h-3 mr-1" />}
                         {request.status === 'pending' && <AlertCircle className="w-3 h-3 mr-1" />}
-                        {request.status === 'completed' ? 'Abgeschlossen' : request.status === 'in_progress' ? 'In Bearbeitung' : 'Ausstehend'}
+                        {request.status === 'completed' ? 'Completed' : request.status === 'in_progress' ? 'In Progress' : 'Pending'}
                       </Badge>
                     </div>
                     <span className="text-sm text-muted-foreground">{request.createdAt}</span>
@@ -282,15 +282,15 @@ const DataRoom = () => {
                   
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-3 bg-background/50 rounded-xl">
                     <div>
-                      <p className="text-xs text-muted-foreground">Sektoren</p>
+                      <p className="text-xs text-muted-foreground">Sectors</p>
                       <p className="font-medium text-foreground text-sm">{request.sectors}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-muted-foreground">Ticketgröße</p>
+                      <p className="text-xs text-muted-foreground">Ticket Size</p>
                       <p className="font-medium text-foreground text-sm">{request.ticketSize}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-muted-foreground">Phase</p>
+                      <p className="text-xs text-muted-foreground">Stage</p>
                       <p className="font-medium text-foreground text-sm">{request.stage}</p>
                     </div>
                     <div>
@@ -302,10 +302,10 @@ const DataRoom = () => {
                   {request.matches > 0 && (
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-muted-foreground">
-                        {request.matches} passende Ergebnisse gefunden
+                        {request.matches} matching results found
                       </span>
                       <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-                        Ergebnisse anzeigen
+                        View Results
                       </Button>
                     </div>
                   )}
