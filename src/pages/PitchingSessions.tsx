@@ -10,82 +10,76 @@ import {
 import { Link } from "react-router-dom";
 
 const PilotProjects = () => {
+  const [registrations, setRegistrations] = useState<{ [key: number]: boolean }>({});
+
   const upcomingSessions = [
     {
       id: 1,
-      startup: "GreenFlow Energy",
+      title: "Fundingrunde CleanTech",
       sector: "CleanTech",
-      stage: "Series A",
-      date: "Jan 15, 2026",
-      time: "10:00 AM",
-      duration: "45 min",
-      status: "Confirmed"
+      stages: ["Seed", "Series A"],
+      date: "15. Januar 2026",
+      time: "10:00 Uhr",
+      duration: "2 Stunden",
+      startups: 5
     },
     {
       id: 2,
-      startup: "BatteryTech Solutions",
+      title: "Fundingrunde Energy Storage",
       sector: "Energy Storage",
-      stage: "Seed",
-      date: "Jan 16, 2026",
-      time: "2:00 PM",
-      duration: "30 min",
-      status: "Pending"
+      stages: ["Seed", "Series A", "Series B"],
+      date: "22. Januar 2026",
+      time: "14:00 Uhr",
+      duration: "2 Stunden",
+      startups: 4
     },
     {
       id: 3,
-      startup: "SmartGrid AI",
+      title: "Fundingrunde Smart Grid",
       sector: "Smart Grid",
-      stage: "Series A",
-      date: "Jan 18, 2026",
-      time: "11:00 AM",
-      duration: "45 min",
-      status: "Confirmed"
+      stages: ["Series A"],
+      date: "5. Februar 2026",
+      time: "11:00 Uhr",
+      duration: "2 Stunden",
+      startups: 6
     }
   ];
+
+  const toggleRegistration = (id: number) => {
+    setRegistrations(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
   const pastSessions = [
     {
       id: 1,
-      startup: "SolarFlow GmbH",
-      sector: "CleanTech",
-      date: "Jan 5, 2026",
-      rating: 4,
-      outcome: "Investment Made",
-      notes: "Strong team, clear market opportunity"
+      title: "Fundingrunde Renewables",
+      sector: "Renewables",
+      date: "5. Januar 2026",
+      startups: 4,
+      attended: true
     },
     {
       id: 2,
-      startup: "WindTech Pro",
-      sector: "Renewables",
-      date: "Dec 20, 2025",
-      rating: 3,
-      outcome: "Follow-up Scheduled",
-      notes: "Interesting tech, needs more traction"
+      title: "Fundingrunde CleanTech",
+      sector: "CleanTech",
+      date: "20. Dezember 2025",
+      startups: 5,
+      attended: true
     },
     {
       id: 3,
-      startup: "EnergyAI Platform",
+      title: "Fundingrunde Smart Grid",
       sector: "Smart Grid",
-      date: "Dec 15, 2025",
-      rating: 2,
-      outcome: "Passed",
-      notes: "Too early stage for our criteria"
+      date: "15. Dezember 2025",
+      startups: 3,
+      attended: false
     }
   ];
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Confirmed":
-      case "Investment Made":
-        return "bg-primary/20 text-primary";
-      case "Pending":
-      case "Follow-up Scheduled":
-        return "bg-accent/20 text-accent";
-      case "Passed":
-        return "bg-muted text-muted-foreground";
-      default:
-        return "bg-muted text-muted-foreground";
-    }
+  const getStatusColor = (registered: boolean) => {
+    return registered 
+      ? "bg-primary/20 text-primary" 
+      : "bg-muted text-muted-foreground";
   };
 
   return (
@@ -109,7 +103,7 @@ const PilotProjects = () => {
                 </div>
                 <div>
                   <h1 className="text-lg font-bold text-foreground">Pitching Sessions</h1>
-                  <p className="text-xs text-muted-foreground">Review Startup Pitches</p>
+                  <p className="text-xs text-muted-foreground">Anmeldung zu Fundingrunden</p>
                 </div>
               </div>
             </div>
@@ -134,19 +128,8 @@ const PilotProjects = () => {
                 <Calendar className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">5</p>
-                <p className="text-xs text-muted-foreground">Upcoming</p>
-              </div>
-            </div>
-          </div>
-          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Video className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-foreground">48</p>
-                <p className="text-xs text-muted-foreground">Total Sessions</p>
+                <p className="text-2xl font-bold text-foreground">3</p>
+                <p className="text-xs text-muted-foreground">Kommende Sessions</p>
               </div>
             </div>
           </div>
@@ -156,31 +139,35 @@ const PilotProjects = () => {
                 <CheckCircle2 className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">12</p>
-                <p className="text-xs text-muted-foreground">Investments</p>
+                <p className="text-2xl font-bold text-foreground">{Object.values(registrations).filter(Boolean).length}</p>
+                <p className="text-xs text-muted-foreground">Ihre Anmeldungen</p>
               </div>
             </div>
           </div>
           <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Star className="w-5 h-5 text-primary" />
+                <Video className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">25%</p>
-                <p className="text-xs text-muted-foreground">Conversion</p>
+                <p className="text-2xl font-bold text-foreground">12</p>
+                <p className="text-xs text-muted-foreground">Teilgenommen</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Users className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">15</p>
+                <p className="text-xs text-muted-foreground">Startups gesehen</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Invite Startups */}
-        <Button 
-          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl h-14 text-lg"
-        >
-          <Users className="w-5 h-5 mr-2" />
-          Invite Startups to Pitch
-        </Button>
 
         {/* Upcoming Sessions */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
@@ -198,20 +185,21 @@ const PilotProjects = () => {
                   key={session.id}
                   className="p-5 rounded-2xl bg-secondary border border-border hover:shadow-lg transition-all flex flex-col"
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <h3 className="font-semibold text-foreground text-lg">{session.startup}</h3>
-                    <Badge className={getStatusColor(session.status)}>
-                      {session.status}
-                    </Badge>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-semibold text-foreground text-lg">{session.title}</h3>
                   </div>
                   <div className="flex flex-col gap-2 text-sm text-muted-foreground mb-4 flex-1">
                     <span className="flex items-center gap-1">
                       <Building2 className="w-4 h-4" />
                       {session.sector}
                     </span>
-                    <Badge variant="outline" className="border-muted-foreground/30 w-fit">
-                      {session.stage}
-                    </Badge>
+                    <div className="flex flex-wrap gap-1">
+                      {session.stages.map((stage) => (
+                        <Badge key={stage} variant="outline" className="border-muted-foreground/30">
+                          {stage}
+                        </Badge>
+                      ))}
+                    </div>
                     <span className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
                       {session.date}
@@ -220,17 +208,20 @@ const PilotProjects = () => {
                       <Clock className="w-4 h-4" />
                       {session.time} ({session.duration})
                     </span>
+                    <span className="flex items-center gap-1">
+                      <Users className="w-4 h-4" />
+                      {session.startups} Startups pitchen
+                    </span>
                   </div>
-                  <div className="flex gap-2 mt-auto">
-                    <Button variant="outline" size="sm" className="flex-1 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-                      <Eye className="w-4 h-4 mr-2" />
-                      View Deck
-                    </Button>
-                    <Button size="sm" className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
-                      <Play className="w-4 h-4 mr-2" />
-                      Join
-                    </Button>
-                  </div>
+                  <Button 
+                    onClick={() => toggleRegistration(session.id)}
+                    className={`w-full rounded-xl ${registrations[session.id] 
+                      ? 'bg-primary/20 text-primary hover:bg-primary/30 border border-primary/30' 
+                      : 'bg-primary hover:bg-primary/90 text-primary-foreground'}`}
+                  >
+                    <CheckCircle2 className="w-4 h-4 mr-2" />
+                    {registrations[session.id] ? 'Angemeldet' : 'Anmelden'}
+                  </Button>
                 </div>
               ))}
             </div>
@@ -242,9 +233,9 @@ const PilotProjects = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <Video className="w-5 h-5 text-accent" />
-              Past Sessions
+              Vergangene Sessions
             </CardTitle>
-            <CardDescription>Review and rate completed pitches</CardDescription>
+            <CardDescription>Ihre bisherigen Teilnahmen an Fundingrunden</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {pastSessions.map((session) => (
@@ -257,27 +248,17 @@ const PilotProjects = () => {
                     <Building2 className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">{session.startup}</p>
-                    <p className="text-sm text-muted-foreground">{session.sector} · {session.date}</p>
+                    <p className="font-medium text-foreground">{session.title}</p>
+                    <p className="text-sm text-muted-foreground">{session.sector} · {session.date} · {session.startups} Startups</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="flex gap-1">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star 
-                        key={star} 
-                        className={`w-4 h-4 ${star <= session.rating ? 'text-yellow-500 fill-yellow-500' : 'text-muted-foreground'}`}
-                      />
-                    ))}
-                  </div>
-                  <Badge className={getStatusColor(session.outcome)}>
-                    {session.outcome}
-                  </Badge>
-                </div>
+                <Badge className={getStatusColor(session.attended)}>
+                  {session.attended ? 'Teilgenommen' : 'Nicht teilgenommen'}
+                </Badge>
               </div>
             ))}
             <Button variant="outline" className="w-full mt-4 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-              View All Sessions
+              Alle Sessions anzeigen
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </CardContent>
