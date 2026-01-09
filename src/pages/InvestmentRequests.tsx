@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, Search, Building2, TrendingUp, Filter, Bookmark, Send, Euro, Users, Target } from "lucide-react";
+import { ArrowLeft, Search, Building2, TrendingUp, Filter, Bookmark, Send, Target, RefreshCcw } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { toast } from "sonner";
 
 const DataRoom = () => {
   const [showRequestForm, setShowRequestForm] = useState(false);
@@ -179,55 +181,76 @@ const DataRoom = () => {
           </CardContent>
         </Card>
 
-        {/* Request Form */}
-        {showRequestForm && (
-          <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                <Send className="w-5 h-5 text-primary" />
-                Submit Investment Request
-              </CardTitle>
-              <CardDescription>Describe what you're looking for and we'll match you with opportunities</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label>Target Sectors</Label>
-                    <Input placeholder="e.g. CleanTech, Energy Storage" className="rounded-xl" />
+        {/* Investment Search Request Form */}
+        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm border-primary/20">
+          <CardHeader>
+            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+              <Send className="w-5 h-5 text-primary" />
+              Suchauftrag an EIN Energy
+            </CardTitle>
+            <CardDescription>Beauftragen Sie EIN Energy gezielt mit der Suche nach Investitionen oder Secondaries</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form className="space-y-6" onSubmit={(e) => { 
+              e.preventDefault(); 
+              toast.success("Ihr Suchauftrag wurde erfolgreich übermittelt. Wir melden uns in Kürze bei Ihnen.");
+              setShowRequestForm(false);
+            }}>
+              {/* Request Type */}
+              <div className="space-y-3">
+                <Label className="text-base font-semibold">Art des Suchauftrags</Label>
+                <RadioGroup defaultValue="investment" className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-start space-x-3 p-4 rounded-xl border border-border bg-secondary hover:border-primary/50 transition-colors">
+                    <RadioGroupItem value="investment" id="investment" className="mt-1" />
+                    <div>
+                      <Label htmlFor="investment" className="font-medium cursor-pointer">Primärinvestition</Label>
+                      <p className="text-sm text-muted-foreground">Direktinvestition in Startups oder Fonds</p>
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label>Investment Stage</Label>
-                    <Input placeholder="e.g. Seed, Series A, Series B" className="rounded-xl" />
+                  <div className="flex items-start space-x-3 p-4 rounded-xl border border-border bg-secondary hover:border-primary/50 transition-colors">
+                    <RadioGroupItem value="secondary" id="secondary" className="mt-1" />
+                    <div>
+                      <Label htmlFor="secondary" className="font-medium cursor-pointer">Secondary</Label>
+                      <p className="text-sm text-muted-foreground">Kauf von bestehenden Anteilen</p>
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label>Ticket Size</Label>
-                    <Input placeholder="e.g. €500K - €2M" className="rounded-xl" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Geographic Focus</Label>
-                    <Input placeholder="e.g. DACH, EU, Global" className="rounded-xl" />
-                  </div>
+                </RadioGroup>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label>Zielsektoren</Label>
+                  <Input placeholder="z.B. CleanTech, Renewables, Energy Storage" className="rounded-xl" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Additional Requirements</Label>
-                  <Textarea 
-                    placeholder="Describe any specific criteria: minimum traction, team background, technology requirements..."
-                    className="rounded-xl min-h-24"
-                  />
+                  <Label>Investmentphase</Label>
+                  <Input placeholder="z.B. Seed, Series A, Series B, Growth" className="rounded-xl" />
                 </div>
-                <div className="flex gap-3 justify-end">
-                  <Button variant="outline" onClick={() => setShowRequestForm(false)} className="rounded-xl">
-                    Cancel
-                  </Button>
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
-                    Submit Request
-                  </Button>
+                <div className="space-y-2">
+                  <Label>Ticketgröße</Label>
+                  <Input placeholder="z.B. €500K - €2M" className="rounded-xl" />
                 </div>
-              </form>
-            </CardContent>
-          </Card>
-        )}
+                <div className="space-y-2">
+                  <Label>Geografischer Fokus</Label>
+                  <Input placeholder="z.B. DACH, EU, Global" className="rounded-xl" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label>Besondere Anforderungen</Label>
+                <Textarea 
+                  placeholder="Beschreiben Sie spezifische Kriterien: Mindest-Traction, Team-Hintergrund, Technologie-Anforderungen, gewünschte Rendite..."
+                  className="rounded-xl min-h-24"
+                />
+              </div>
+              <div className="flex gap-3 justify-end">
+                <Button type="submit" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
+                  <Send className="w-4 h-4 mr-2" />
+                  Suchauftrag absenden
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
 
         {/* Matching Opportunities */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
