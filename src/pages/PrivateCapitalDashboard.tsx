@@ -15,7 +15,7 @@ const StartupDashboard = () => {
       title: "Your Investment Focus",
       description: "Define and manage your investment criteria",
       stats: "3 sectors",
-      items: ["Industry Preferences", "Investment Size", "Stage Focus"],
+      items: ["Your Industry Preferences", "Your Investment Size", "Your Stage Focus"],
       link: "/investment-focus"
     },
     {
