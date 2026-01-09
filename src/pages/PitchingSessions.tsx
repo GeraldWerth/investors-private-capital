@@ -191,51 +191,49 @@ const PilotProjects = () => {
             </CardTitle>
             <CardDescription>Wir führen monatliche Fundingrunden durch. Bewerben Sie sich für die passende Finanzierungsrunde.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            {upcomingSessions.map((session) => (
-              <div 
-                key={session.id}
-                className="p-5 rounded-2xl bg-secondary border border-border hover:shadow-lg transition-all"
-              >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="font-semibold text-foreground text-lg">{session.startup}</h3>
-                      <Badge className={getStatusColor(session.status)}>
-                        {session.status}
-                      </Badge>
-                    </div>
-                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <Building2 className="w-4 h-4" />
-                        {session.sector}
-                      </span>
-                      <Badge variant="outline" className="border-muted-foreground/30">
-                        {session.stage}
-                      </Badge>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {session.date}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        {session.time} ({session.duration})
-                      </span>
-                    </div>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {upcomingSessions.map((session) => (
+                <div 
+                  key={session.id}
+                  className="p-5 rounded-2xl bg-secondary border border-border hover:shadow-lg transition-all flex flex-col"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <h3 className="font-semibold text-foreground text-lg">{session.startup}</h3>
+                    <Badge className={getStatusColor(session.status)}>
+                      {session.status}
+                    </Badge>
                   </div>
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
+                  <div className="flex flex-col gap-2 text-sm text-muted-foreground mb-4 flex-1">
+                    <span className="flex items-center gap-1">
+                      <Building2 className="w-4 h-4" />
+                      {session.sector}
+                    </span>
+                    <Badge variant="outline" className="border-muted-foreground/30 w-fit">
+                      {session.stage}
+                    </Badge>
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-4 h-4" />
+                      {session.date}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-4 h-4" />
+                      {session.time} ({session.duration})
+                    </span>
+                  </div>
+                  <div className="flex gap-2 mt-auto">
+                    <Button variant="outline" size="sm" className="flex-1 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
                       <Eye className="w-4 h-4 mr-2" />
                       View Deck
                     </Button>
-                    <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
+                    <Button size="sm" className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
                       <Play className="w-4 h-4 mr-2" />
                       Join
                     </Button>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </CardContent>
         </Card>
 
