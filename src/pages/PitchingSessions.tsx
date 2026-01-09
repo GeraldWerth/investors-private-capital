@@ -207,10 +207,6 @@ const PilotProjects = () => {
                       <Clock className="w-4 h-4" />
                       Deadline: {session.deadline}
                     </span>
-                    <span className="flex items-center gap-2">
-                      <Users className="w-4 h-4" />
-                      {session.slots} Plätze verfügbar
-                    </span>
                   </div>
                   <Button 
                     onClick={() => toggleRegistration(session.id)}
