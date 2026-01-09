@@ -2,53 +2,53 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { 
-  Rocket, TrendingUp, Users, LogOut, 
+  Target, TrendingUp, Users, Briefcase, 
   ArrowRight, Bell, Settings, ChevronRight,
-  Building2, Calendar, Target, FileText, User, FolderOpen
+  Building2, Calendar, Search, FileText, User, Repeat
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const StartupDashboard = () => {
   const dashboardTiles = [
     {
-      icon: TrendingUp,
-      title: "Funding Rounds",
-      description: "Apply for current funding rounds",
-      stats: "2 open rounds",
-      items: ["Active Funding", "From Seed to Growth Stages", "Investor Matching"],
+      icon: Target,
+      title: "Investment Focus",
+      description: "Define and manage your investment criteria",
+      stats: "3 sectors",
+      items: ["Industry Preferences", "Investment Size", "Stage Focus"],
       link: "/funding-rounds"
     },
     {
-      icon: FolderOpen,
-      title: "Data Room",
-      description: "Upload documents for funding & exit",
-      stats: "2 files",
-      items: ["Foundation & Governance", "Product & Market Logic", "Execution & Validation"],
-      link: "/data-room"
+      icon: Users,
+      title: "Pitching Sessions",
+      description: "Review startup pitches and presentations",
+      stats: "5 upcoming",
+      items: ["Scheduled Pitches", "Past Sessions", "Invite Startups"],
+      link: "/pilot-projects"
     },
     {
-      icon: LogOut,
-      title: "Exit & Preparation",
-      description: "Plan your successful exit",
-      stats: "Roadmap created",
-      items: ["Exit Strategy", "Valuation", "M&A"],
+      icon: Repeat,
+      title: "Secondaries",
+      description: "Explore secondary market opportunities",
+      stats: "12 available",
+      items: ["Available Shares", "Active Negotiations", "Portfolio Exits"],
       link: "/exit-preparation"
     },
     {
-      icon: Users,
-      title: "Pilot Projects",
-      description: "Offer your solutions to partners",
-      stats: "3 active offers",
-      items: ["Your Services", "New Application", "Application Status"],
-      link: "/pilot-projects"
+      icon: Search,
+      title: "Investment Requests",
+      description: "Search and request private capital investments",
+      stats: "8 matches",
+      items: ["Browse Opportunities", "Submit Request", "Saved Searches"],
+      link: "/data-room"
     }
   ];
 
   const quickActions = [
-    { icon: FileText, label: "Upload Pitch Deck" },
-    { icon: Calendar, label: "Schedule Meeting" },
-    { icon: Target, label: "Set Milestone" },
-    { icon: Building2, label: "Find Partner" }
+    { icon: FileText, label: "Review Deal Flow" },
+    { icon: Calendar, label: "Schedule Pitch" },
+    { icon: Briefcase, label: "Portfolio Overview" },
+    { icon: Building2, label: "Find Startups" }
   ];
 
   return (
@@ -59,11 +59,11 @@ const StartupDashboard = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center shadow-lg">
-                <Rocket className="w-5 h-5 text-accent-foreground" />
+                <TrendingUp className="w-5 h-5 text-accent-foreground" />
               </div>
               <div>
                 <h1 className="text-lg font-bold text-foreground">EIN Energy</h1>
-                <p className="text-xs text-primary font-medium">Startups & Scaleups</p>
+                <p className="text-xs text-primary font-medium">Investor Portal</p>
               </div>
             </div>
 
@@ -77,12 +77,12 @@ const StartupDashboard = () => {
               <Link to="/personal-data" className="flex items-center gap-3 pl-4 border-l border-border hover:bg-secondary rounded-lg p-2 -m-2 transition-colors">
                 <Avatar className="w-9 h-9 border-2 border-primary/30">
                   <AvatarFallback className="bg-primary text-primary-foreground text-sm font-semibold">
-                    TS
+                    MK
                   </AvatarFallback>
                 </Avatar>
                 <div className="hidden sm:block">
-                  <p className="text-sm font-medium text-foreground">TechStartup Inc.</p>
-                  <p className="text-xs text-muted-foreground">John Smith</p>
+                  <p className="text-sm font-medium text-foreground">Capital Partners AG</p>
+                  <p className="text-xs text-muted-foreground">Michael Klein</p>
                 </div>
                 <User className="w-4 h-4 text-muted-foreground hidden sm:block" />
               </Link>
@@ -96,10 +96,10 @@ const StartupDashboard = () => {
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-            Welcome back, John! 👋
+            Welcome back, Michael! 👋
           </h2>
           <p className="text-muted-foreground">
-            Here is your current overview in the EIN Energy ecosystem.
+            Discover investment opportunities in the EIN Energy ecosystem.
           </p>
         </div>
 
@@ -120,7 +120,7 @@ const StartupDashboard = () => {
         </div>
 
         {/* Dashboard Tiles */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {dashboardTiles.map((tile, index) => (
             <Link key={index} to={tile.link} className="block">
               <Card 
