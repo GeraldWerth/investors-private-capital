@@ -43,38 +43,6 @@ const PilotProjects = () => {
     setRegistrations(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const pastSessions = [
-    {
-      id: 1,
-      title: "Fundingrunde Renewables",
-      sector: "Renewables",
-      date: "5. Januar 2026",
-      startups: 4,
-      attended: true
-    },
-    {
-      id: 2,
-      title: "Fundingrunde CleanTech",
-      sector: "CleanTech",
-      date: "20. Dezember 2025",
-      startups: 5,
-      attended: true
-    },
-    {
-      id: 3,
-      title: "Fundingrunde Smart Grid",
-      sector: "Smart Grid",
-      date: "15. Dezember 2025",
-      startups: 3,
-      attended: false
-    }
-  ];
-
-  const getStatusColor = (registered: boolean) => {
-    return registered 
-      ? "bg-primary/20 text-primary" 
-      : "bg-muted text-muted-foreground";
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -220,41 +188,6 @@ const PilotProjects = () => {
           </CardContent>
         </Card>
 
-        {/* Past Sessions */}
-        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <Video className="w-5 h-5 text-accent" />
-              Vergangene Sessions
-            </CardTitle>
-            <CardDescription>Ihre bisherigen Teilnahmen an Fundingrunden</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {pastSessions.map((session) => (
-              <div 
-                key={session.id}
-                className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border hover:bg-primary/5 transition-colors"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Building2 className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">{session.title}</p>
-                    <p className="text-sm text-muted-foreground">{session.sector} · {session.date} · {session.startups} Startups</p>
-                  </div>
-                </div>
-                <Badge className={getStatusColor(session.attended)}>
-                  {session.attended ? 'Teilgenommen' : 'Nicht teilgenommen'}
-                </Badge>
-              </div>
-            ))}
-            <Button variant="outline" className="w-full mt-4 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-              Alle Sessions anzeigen
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </CardContent>
-        </Card>
       </main>
     </div>
   );
