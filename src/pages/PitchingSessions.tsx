@@ -276,7 +276,7 @@ const PilotProjects = () => {
               Wir stellen jeden Monat die besten Startups- und Scaleups passenden Investoren vor. Eine Anmeldung ist nur möglich, wenn Du bereits im Vorfeld alle Unterlagen eingereicht hast.
             </p>
             <p>
-              Die Unterlagen kannst du im Bereich <span className="font-semibold text-foreground">Data Room</span> einreichen. Vor jeder Zulassung prüfen wir die eingereichten Unterlagen und setzen uns dann mit Dir in Verbindung.
+              Die Unterlagen kannst du im Bereich <Link to="/investment-requests" className="font-semibold text-primary hover:underline">Data Room</Link> einreichen. Vor jeder Zulassung prüfen wir die eingereichten Unterlagen und setzen uns dann mit Dir in Verbindung.
             </p>
           </DialogDescription>
           <div className="flex gap-3 mt-4">
