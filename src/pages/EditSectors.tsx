@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, Target, Save, Leaf, Zap, Globe, Factory, Shield, Cpu, Heart, Car, Building, Wallet } from "lucide-react";
+import { ArrowLeft, Target, Save, Leaf, Zap, Globe, Factory, Shield, Car, Building } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 
@@ -10,14 +10,14 @@ const availableSectors = [
   { id: "cleantech", name: "CleanTech", icon: Leaf, description: "Clean energy and sustainable technologies" },
   { id: "energy-storage", name: "Energy Storage", icon: Zap, description: "Batteries, hydrogen storage, and grid solutions" },
   { id: "smart-grid", name: "Smart Grid", icon: Globe, description: "Intelligent power distribution and management" },
-  { id: "industrial-tech", name: "Industrial Tech", icon: Factory, description: "Manufacturing and industrial automation" },
-  { id: "carbon-capture", name: "Carbon Capture", icon: Shield, description: "Carbon reduction and capture technologies" },
   { id: "renewables", name: "Renewables", icon: Leaf, description: "Solar, wind, and other renewable energy sources" },
-  { id: "ai-ml", name: "AI & Machine Learning", icon: Cpu, description: "Artificial intelligence and machine learning applications" },
-  { id: "healthtech", name: "HealthTech", icon: Heart, description: "Healthcare technology and digital health" },
-  { id: "mobility", name: "Mobility & Transport", icon: Car, description: "Electric vehicles, autonomous driving, logistics" },
-  { id: "proptech", name: "PropTech", icon: Building, description: "Real estate technology and smart buildings" },
-  { id: "fintech", name: "FinTech", icon: Wallet, description: "Financial technology and digital payments" },
+  { id: "carbon-capture", name: "Carbon Capture", icon: Shield, description: "Carbon reduction and capture technologies" },
+  { id: "hydrogen", name: "Hydrogen & Fuel Cells", icon: Zap, description: "Green hydrogen production and fuel cell technology" },
+  { id: "energy-efficiency", name: "Energy Efficiency", icon: Factory, description: "Technologies to reduce energy consumption" },
+  { id: "offshore-wind", name: "Offshore Wind", icon: Globe, description: "Offshore wind farms and related infrastructure" },
+  { id: "solar-tech", name: "Solar Technology", icon: Leaf, description: "Photovoltaic systems and solar thermal" },
+  { id: "grid-infrastructure", name: "Grid Infrastructure", icon: Building, description: "Power transmission and distribution networks" },
+  { id: "ev-charging", name: "EV Charging", icon: Car, description: "Electric vehicle charging infrastructure" },
 ];
 
 const EditSectors = () => {
