@@ -48,7 +48,7 @@ const StartupDashboard = () => {
     { icon: FileText, label: "Review Deal Flow", link: "" },
     { icon: Calendar, label: "Schedule Pitch", link: "" },
     { icon: Briefcase, label: "Portfolio Overview", link: "" },
-    { icon: Building2, label: "Find Startups", link: "/find-startups" }
+    { icon: Building2, label: "Find Investments", link: "/find-startups" }
   ];
 
   return (

@@ -72,7 +72,7 @@ const FindStartups = () => {
             </div>
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                Startups finden
+                Find Investments
               </h2>
               <p className="text-muted-foreground">
                 Wählen Sie Ihre bevorzugte Investment-Methode
