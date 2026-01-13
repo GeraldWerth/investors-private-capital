@@ -192,19 +192,12 @@ const ExitPreparation = () => {
 
             {/* Available Secondaries */}
             <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <div>
-                  <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                    <Repeat className="w-5 h-5 text-primary" />
-                    Available Secondary Shares
-                  </CardTitle>
-                  <CardDescription>Explore secondary market opportunities from our network</CardDescription>
-                </div>
-                <Link to="/edit-available-secondaries">
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
-                    <Settings className="w-4 h-4" />
-                  </Button>
-                </Link>
+              <CardHeader>
+                <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                  <Repeat className="w-5 h-5 text-primary" />
+                  Available Secondary Shares
+                </CardTitle>
+                <CardDescription>Explore secondary market opportunities from our network</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {availableSecondaries.map((secondary) => (
@@ -255,9 +248,11 @@ const ExitPreparation = () => {
                         <Button variant="outline" className="flex-1 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
                           View Details
                         </Button>
-                        <Button variant="outline" className="flex-1 border-accent/30 text-accent hover:bg-accent/10 rounded-xl">
-                          Angebot platzieren
-                        </Button>
+                        <Link to="/edit-available-secondaries" className="flex-1">
+                          <Button variant="outline" className="w-full border-accent/30 text-accent hover:bg-accent/10 rounded-xl">
+                            Angebot platzieren
+                          </Button>
+                        </Link>
                         <Button 
                           onClick={() => handleExpressInterest(secondary)}
                           className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
