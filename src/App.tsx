@@ -19,6 +19,7 @@ import InvestmentRequests from "./pages/InvestmentRequests";
 import EditAvailableSecondaries from "./pages/EditAvailableSecondaries";
 import FindStartups from "./pages/FindStartups";
 import Partners from "./pages/Partners";
+import PartnerProfile from "./pages/PartnerProfile";
 import EditNegotiations from "./pages/EditNegotiations";
 import EditExits from "./pages/EditExits";
 import NotFound from "./pages/NotFound";
@@ -47,6 +48,7 @@ const App = () => (
           <Route path="/edit-available-secondaries" element={<EditAvailableSecondaries />} />
           <Route path="/find-startups" element={<FindStartups />} />
           <Route path="/partners" element={<Partners />} />
+          <Route path="/partners/:partnerId" element={<PartnerProfile />} />
           <Route path="/edit-negotiations" element={<EditNegotiations />} />
           <Route path="/edit-exits" element={<EditExits />} />
           <Route path="/investment-requests" element={<InvestmentRequests />} />
