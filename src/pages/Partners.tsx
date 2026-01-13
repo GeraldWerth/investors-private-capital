@@ -314,30 +314,6 @@ const Partners = () => {
             </TabsContent>
           ))}
         </Tabs>
-
-        {/* Contact Section */}
-        <Card className="mt-8 bg-muted/50">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                <Users className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-1">
-                  Partner werden
-                </h4>
-                <p className="text-sm text-muted-foreground">
-                  Sind Sie ein Dienstleister im Bereich Energy & CleanTech und möchten Teil unseres 
-                  Partner-Netzwerks werden? Kontaktieren Sie uns für eine Zusammenarbeit.
-                </p>
-                <Button variant="link" className="p-0 h-auto mt-2 text-primary">
-                  Partnerschaft anfragen
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </main>
     </div>
   );
