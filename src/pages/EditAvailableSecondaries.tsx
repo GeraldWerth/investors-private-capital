@@ -178,10 +178,19 @@ const EditAvailableSecondaries = () => {
                 className="rounded-xl md:col-span-2"
               />
             </div>
-            <Button onClick={handleAddItem} className="bg-primary hover:bg-primary/90 rounded-xl">
-              <Plus className="w-4 h-4 mr-2" />
-              Hinzufügen
-            </Button>
+            <div className="flex gap-3">
+              <Button onClick={handleAddItem} className="bg-primary hover:bg-primary/90 rounded-xl">
+                <Plus className="w-4 h-4 mr-2" />
+                Hinzufügen
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => navigate("/secondaries")}
+                className="rounded-xl"
+              >
+                Abbrechen
+              </Button>
+            </div>
           </CardContent>
         </Card>
 
