@@ -96,7 +96,7 @@ const StartupDashboard = () => {
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-            Welcome back, Michael! 👋
+            Welcome back, Michael!
           </h2>
           <p className="text-muted-foreground">
             Discover investment opportunities in the EIN Energy ecosystem.
