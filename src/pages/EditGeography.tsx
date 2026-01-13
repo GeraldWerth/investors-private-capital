@@ -6,6 +6,7 @@ import { ArrowLeft, Save, Globe, ChevronDown, ChevronRight } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { useInvestmentCriteria } from "@/hooks/useInvestmentCriteria";
 
 interface Country {
   id: string;
@@ -214,9 +215,8 @@ const geographyData: Continent[] = [
 
 const EditGeography = () => {
   const navigate = useNavigate();
-  const [selectedCountries, setSelectedCountries] = useState<string[]>([
-    "de", "at", "ch", "se", "no", "dk", "fi", "nl", "be", "lu"
-  ]);
+  const { countries, saveCountries } = useInvestmentCriteria();
+  const [selectedCountries, setSelectedCountries] = useState<string[]>(countries);
   const [openContinents, setOpenContinents] = useState<string[]>(["europe"]);
   const [openRegions, setOpenRegions] = useState<string[]>(["western-europe", "northern-europe"]);
 
@@ -287,6 +287,7 @@ const EditGeography = () => {
   };
 
   const handleSave = () => {
+    saveCountries(selectedCountries);
     toast({
       title: "Geographic Focus Saved",
       description: `${selectedCountries.length} countries have been selected.`,
