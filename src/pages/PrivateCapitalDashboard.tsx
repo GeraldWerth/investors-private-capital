@@ -45,10 +45,10 @@ const StartupDashboard = () => {
   ];
 
   const quickActions = [
-    { icon: FileText, label: "Review Deal Flow" },
-    { icon: Calendar, label: "Schedule Pitch" },
-    { icon: Briefcase, label: "Portfolio Overview" },
-    { icon: Building2, label: "Find Startups" }
+    { icon: FileText, label: "Review Deal Flow", link: "" },
+    { icon: Calendar, label: "Schedule Pitch", link: "" },
+    { icon: Briefcase, label: "Portfolio Overview", link: "" },
+    { icon: Building2, label: "Find Startups", link: "/find-startups" }
   ];
 
   return (
@@ -105,18 +105,27 @@ const StartupDashboard = () => {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-          {quickActions.map((action, index) => (
-            <Button
-              key={index}
-              variant="outline"
-              className="h-auto py-4 flex flex-col items-center gap-2 border-border hover:bg-secondary hover:border-primary/30 transition-all duration-300 group"
-            >
-              <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                <action.icon className="w-5 h-5 text-primary" />
-              </div>
-              <span className="text-xs font-medium text-foreground">{action.label}</span>
-            </Button>
-          ))}
+          {quickActions.map((action, index) => {
+            const ButtonContent = (
+              <Button
+                variant="outline"
+                className="h-auto py-4 flex flex-col items-center gap-2 border-border hover:bg-secondary hover:border-primary/30 transition-all duration-300 group w-full"
+              >
+                <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                  <action.icon className="w-5 h-5 text-primary" />
+                </div>
+                <span className="text-xs font-medium text-foreground">{action.label}</span>
+              </Button>
+            );
+
+            return action.link ? (
+              <Link key={index} to={action.link}>
+                {ButtonContent}
+              </Link>
+            ) : (
+              <div key={index}>{ButtonContent}</div>
+            );
+          })}
         </div>
 
         {/* Dashboard Tiles */}
