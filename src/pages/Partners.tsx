@@ -398,9 +398,9 @@ const Partners = () => {
                             Kontakt aufnehmen
                           </Button>
                           <Link to={`/partners/${partner.id}`}>
-                            <Button size="sm" variant="outline" className="border-primary/30 text-primary hover:bg-primary/10">
+                            <Button size="sm" variant="outline" className="border-teal-500 text-teal-600 hover:bg-teal-50 dark:hover:bg-teal-950">
                               <Users className="w-4 h-4 mr-2" />
-                              Profil
+                              Profil ansehen
                             </Button>
                           </Link>
                         </div>
