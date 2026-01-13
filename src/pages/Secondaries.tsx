@@ -25,9 +25,12 @@ const ExitPreparation = () => {
   const [showEditOfferDialog, setShowEditOfferDialog] = useState(false);
   const [selectedOffer, setSelectedOffer] = useState<MyOffer | null>(null);
   const [editOfferData, setEditOfferData] = useState({
+    company: "",
+    sector: "",
     sharesOffered: "",
     askingPrice: "",
-    valuation: ""
+    valuation: "",
+    status: "" as "Active" | "Pending Review" | "Sold"
   });
   const { availableSecondaries, myOffers, negotiations, exits } = useSecondariesData();
   const { userProfile, companyProfile } = useUserProfile();
@@ -468,9 +471,12 @@ const ExitPreparation = () => {
                           onClick={() => {
                             setSelectedOffer(offer);
                             setEditOfferData({
+                              company: offer.company,
+                              sector: offer.sector,
                               sharesOffered: offer.sharesOffered,
                               askingPrice: offer.askingPrice,
-                              valuation: offer.valuation
+                              valuation: offer.valuation,
+                              status: offer.status
                             });
                             setShowEditOfferDialog(true);
                           }}
@@ -598,6 +604,26 @@ const ExitPreparation = () => {
           
           <div className="space-y-4 py-4">
             <div className="space-y-2">
+              <Label htmlFor="company">Unternehmen</Label>
+              <Input
+                id="company"
+                value={editOfferData.company}
+                onChange={(e) => setEditOfferData({ ...editOfferData, company: e.target.value })}
+                placeholder="z.B. SolarFlow GmbH"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="sector">Sektor</Label>
+              <Input
+                id="sector"
+                value={editOfferData.sector}
+                onChange={(e) => setEditOfferData({ ...editOfferData, sector: e.target.value })}
+                placeholder="z.B. CleanTech"
+              />
+            </div>
+
+            <div className="space-y-2">
               <Label htmlFor="sharesOffered">Angebotene Anteile</Label>
               <Input
                 id="sharesOffered"
@@ -625,6 +651,20 @@ const ExitPreparation = () => {
                 onChange={(e) => setEditOfferData({ ...editOfferData, valuation: e.target.value })}
                 placeholder="z.B. €3M"
               />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="status">Status</Label>
+              <select
+                id="status"
+                value={editOfferData.status}
+                onChange={(e) => setEditOfferData({ ...editOfferData, status: e.target.value as "Active" | "Pending Review" | "Sold" })}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <option value="Active">Aktiv</option>
+                <option value="Pending Review">In Prüfung</option>
+                <option value="Sold">Verkauft</option>
+              </select>
             </div>
           </div>
           
