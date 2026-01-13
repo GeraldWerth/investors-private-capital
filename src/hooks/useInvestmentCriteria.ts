@@ -59,7 +59,7 @@ export const allCountries: Record<string, string> = {
 const DEFAULT_SECTORS = ["cleantech", "energy-storage", "smart-grid", "renewables"];
 const DEFAULT_STAGES = ["seed", "series-a", "series-b"];
 const DEFAULT_COUNTRIES = ["de", "at", "ch", "se", "no", "dk", "fi", "nl", "be", "lu"];
-const DEFAULT_TICKET_SIZE = { min: 500, max: 5000 }; // in thousands (€K)
+const DEFAULT_TICKET_SIZE = { min: 20, max: 5000 }; // in thousands (€K)
 
 // Storage keys
 const STORAGE_KEYS = {

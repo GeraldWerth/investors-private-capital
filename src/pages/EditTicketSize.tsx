@@ -132,7 +132,7 @@ const EditTicketSize = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="min-ticket" className="text-foreground font-semibold">
-                  Minimum
+                  Minimum (in €K)
                 </Label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">€</span>
@@ -150,7 +150,7 @@ const EditTicketSize = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="max-ticket" className="text-foreground font-semibold">
-                  Maximum
+                  Maximum (in €K)
                 </Label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">€</span>
