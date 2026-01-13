@@ -14,12 +14,12 @@ import { useInvestmentCriteria } from "@/hooks/useInvestmentCriteria";
 
 const FundingRounds = () => {
   const [investmentFrequency, setInvestmentFrequency] = useState("");
-  const { getSectorNames, getStageNames, getGeographyDisplay } = useInvestmentCriteria();
+  const { getSectorNames, getStageNames, getGeographyDisplay, getTicketSizeDisplay } = useInvestmentCriteria();
   
   const investmentCriteria = {
     sectors: getSectorNames(),
     stages: getStageNames(),
-    ticketSize: { min: "500K", max: "5M" },
+    ticketSize: getTicketSizeDisplay(),
     geography: getGeographyDisplay()
   };
 
@@ -156,12 +156,15 @@ const FundingRounds = () => {
                   ))}
                 </div>
               </Link>
-              <div className="p-4 rounded-xl bg-secondary border border-border">
-                <h4 className="font-semibold text-foreground mb-3">Your Ticket Size</h4>
+              <Link to="/edit-ticket-size" className="p-4 rounded-xl bg-secondary border border-border hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer block">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="font-semibold text-foreground">Your Ticket Size</h4>
+                  <span className="text-xs text-primary">Edit →</span>
+                </div>
                 <p className="text-lg font-bold text-primary">
                   €{investmentCriteria.ticketSize.min} - €{investmentCriteria.ticketSize.max}
                 </p>
-              </div>
+              </Link>
               <Link to="/edit-geography" className="p-4 rounded-xl bg-secondary border border-border hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer block">
                 <div className="flex items-center justify-between mb-3">
                   <h4 className="font-semibold text-foreground">Your Geographic Focus</h4>

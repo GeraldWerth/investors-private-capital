@@ -59,12 +59,14 @@ export const allCountries: Record<string, string> = {
 const DEFAULT_SECTORS = ["cleantech", "energy-storage", "smart-grid", "renewables"];
 const DEFAULT_STAGES = ["seed", "series-a", "series-b"];
 const DEFAULT_COUNTRIES = ["de", "at", "ch", "se", "no", "dk", "fi", "nl", "be", "lu"];
+const DEFAULT_TICKET_SIZE = { min: 500, max: 5000 }; // in thousands (€K)
 
 // Storage keys
 const STORAGE_KEYS = {
   sectors: "investment_sectors",
   stages: "investment_stages",
   countries: "investment_countries",
+  ticketSize: "investment_ticket_size",
 };
 
 export function useInvestmentCriteria() {
@@ -83,6 +85,11 @@ export function useInvestmentCriteria() {
     return stored ? JSON.parse(stored) : DEFAULT_COUNTRIES;
   });
 
+  const [ticketSize, setTicketSize] = useState<{ min: number; max: number }>(() => {
+    const stored = localStorage.getItem(STORAGE_KEYS.ticketSize);
+    return stored ? JSON.parse(stored) : DEFAULT_TICKET_SIZE;
+  });
+
   const saveSectors = (newSectors: string[]) => {
     setSectors(newSectors);
     localStorage.setItem(STORAGE_KEYS.sectors, JSON.stringify(newSectors));
@@ -96,6 +103,25 @@ export function useInvestmentCriteria() {
   const saveCountries = (newCountries: string[]) => {
     setCountries(newCountries);
     localStorage.setItem(STORAGE_KEYS.countries, JSON.stringify(newCountries));
+  };
+
+  const saveTicketSize = (newTicketSize: { min: number; max: number }) => {
+    setTicketSize(newTicketSize);
+    localStorage.setItem(STORAGE_KEYS.ticketSize, JSON.stringify(newTicketSize));
+  };
+
+  // Format ticket size for display
+  const getTicketSizeDisplay = () => {
+    const formatValue = (value: number): string => {
+      if (value >= 1000) {
+        return `${(value / 1000).toFixed(value % 1000 === 0 ? 0 : 1)}M`;
+      }
+      return `${value}K`;
+    };
+    return {
+      min: formatValue(ticketSize.min),
+      max: formatValue(ticketSize.max),
+    };
   };
 
   // Get display names
@@ -163,12 +189,15 @@ export function useInvestmentCriteria() {
     sectors,
     stages,
     countries,
+    ticketSize,
     saveSectors,
     saveStages,
     saveCountries,
+    saveTicketSize,
     getSectorNames,
     getStageNames,
     getCountryNames,
     getGeographyDisplay,
+    getTicketSizeDisplay,
   };
 }

@@ -11,6 +11,7 @@ import InvestmentFocus from "./pages/InvestmentFocus";
 import EditSectors from "./pages/EditSectors";
 import EditStages from "./pages/EditStages";
 import EditGeography from "./pages/EditGeography";
+import EditTicketSize from "./pages/EditTicketSize";
 import PitchingSessions from "./pages/PitchingSessions";
 import Secondaries from "./pages/Secondaries";
 import InvestmentRequests from "./pages/InvestmentRequests";
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/edit-sectors" element={<EditSectors />} />
           <Route path="/edit-stages" element={<EditStages />} />
           <Route path="/edit-geography" element={<EditGeography />} />
+          <Route path="/edit-ticket-size" element={<EditTicketSize />} />
           <Route path="/pitching-sessions" element={<PitchingSessions />} />
           <Route path="/secondaries" element={<Secondaries />} />
           <Route path="/investment-requests" element={<InvestmentRequests />} />
