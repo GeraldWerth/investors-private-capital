@@ -387,9 +387,9 @@ const PartnerProfile = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Card className="p-8 text-center">
-          <h2 className="text-xl font-semibold text-foreground mb-4">Partner nicht gefunden</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-4">Partner not found</h2>
           <Link to="/partners">
-            <Button>Zurück zur Übersicht</Button>
+            <Button>Back to Overview</Button>
           </Link>
         </Card>
       </div>
@@ -425,7 +425,7 @@ const PartnerProfile = () => {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Zurück zu Partners</span>
+          <span>Back to Partners</span>
         </Link>
 
         {/* Partner Header */}
@@ -485,14 +485,14 @@ const PartnerProfile = () => {
           {/* Contact Information */}
           <Card>
             <CardContent className="p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-4">Kontakt</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-4">Contact</h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                     <Users className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Ansprechpartner</p>
+                    <p className="text-sm text-muted-foreground">Contact Person</p>
                     <p className="font-medium text-foreground">{partner.contact}</p>
                   </div>
                 </div>
@@ -501,7 +501,7 @@ const PartnerProfile = () => {
                     <Mail className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">E-Mail</p>
+                    <p className="text-sm text-muted-foreground">Email</p>
                     <p className="font-medium text-foreground">{partner.email}</p>
                   </div>
                 </div>
@@ -510,14 +510,14 @@ const PartnerProfile = () => {
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Telefon</p>
+                    <p className="text-sm text-muted-foreground">Phone</p>
                     <p className="font-medium text-foreground">{partner.phone}</p>
                   </div>
                 </div>
               </div>
               <Button className="w-full mt-6 bg-teal-500 hover:bg-teal-600 text-white">
                 <Mail className="w-4 h-4 mr-2" />
-                Kontakt aufnehmen
+                Contact
               </Button>
             </CardContent>
           </Card>

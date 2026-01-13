@@ -24,8 +24,8 @@ const EditNegotiations = () => {
   const handleAddItem = () => {
     if (!newItem.company || !newItem.shares) {
       toast({
-        title: "Fehlende Daten",
-        description: "Bitte füllen Sie alle Pflichtfelder aus.",
+        title: "Missing Data",
+        description: "Please fill in all required fields.",
         variant: "destructive"
       });
       return;
@@ -55,8 +55,8 @@ const EditNegotiations = () => {
   const handleSave = () => {
     saveNegotiations(items);
     toast({
-      title: "Gespeichert",
-      description: "Verhandlungen wurden aktualisiert."
+      title: "Saved",
+      description: "Negotiations have been updated."
     });
     navigate("/secondaries");
   };
@@ -79,7 +79,7 @@ const EditNegotiations = () => {
             <div className="flex items-center gap-4">
               <Link to="/secondaries" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                 <ArrowLeft className="w-5 h-5" />
-                <span className="hidden sm:inline font-medium">Zurück</span>
+                <span className="hidden sm:inline font-medium">Back</span>
               </Link>
               <div className="h-6 w-px bg-border" />
               <div className="flex items-center gap-3">
@@ -87,14 +87,14 @@ const EditNegotiations = () => {
                   <Clock className="w-5 h-5 text-accent-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-foreground">Aktive Verhandlungen</h1>
-                  <p className="text-xs text-muted-foreground">Laufende Deals verwalten</p>
+                  <h1 className="text-lg font-bold text-foreground">Active Negotiations</h1>
+                  <p className="text-xs text-muted-foreground">Manage ongoing deals</p>
                 </div>
               </div>
             </div>
             <Button onClick={handleSave} className="bg-primary hover:bg-primary/90 rounded-xl">
               <Save className="w-4 h-4 mr-2" />
-              Speichern
+              Save
             </Button>
           </div>
         </div>

@@ -15,12 +15,12 @@ import { Link } from "react-router-dom";
 import { z } from "zod";
 
 const contactSchema = z.object({
-  name: z.string().trim().min(1, "Name ist erforderlich").max(100, "Name darf maximal 100 Zeichen haben"),
-  email: z.string().trim().email("Ungültige E-Mail-Adresse").max(255, "E-Mail darf maximal 255 Zeichen haben"),
-  company: z.string().trim().max(100, "Unternehmen darf maximal 100 Zeichen haben").optional(),
-  phone: z.string().trim().max(30, "Telefonnummer darf maximal 30 Zeichen haben").optional(),
-  subject: z.string().trim().min(1, "Betreff ist erforderlich").max(200, "Betreff darf maximal 200 Zeichen haben"),
-  message: z.string().trim().min(1, "Nachricht ist erforderlich").max(2000, "Nachricht darf maximal 2000 Zeichen haben")
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  company: z.string().trim().max(100, "Company must be less than 100 characters").optional(),
+  phone: z.string().trim().max(30, "Phone must be less than 30 characters").optional(),
+  subject: z.string().trim().min(1, "Subject is required").max(200, "Subject must be less than 200 characters"),
+  message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters")
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -75,8 +75,8 @@ const Partners = () => {
       setIsSubmitting(false);
       setShowContactDialog(false);
       toast({
-        title: "Nachricht gesendet",
-        description: `Ihre Anfrage wurde erfolgreich an ${selectedPartnerForContact?.name} gesendet.`,
+        title: "Message Sent",
+        description: `Your inquiry has been successfully sent to ${selectedPartnerForContact?.name}.`,
       });
     }, 1000);
   };
@@ -283,7 +283,7 @@ const Partners = () => {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Zurück zum Dashboard</span>
+          <span>Back to Dashboard</span>
         </Link>
 
         {/* Page Title */}
@@ -297,7 +297,7 @@ const Partners = () => {
                 Partners
               </h2>
               <p className="text-muted-foreground">
-                Strategische und operative Partner für Ihr Investment
+                Strategic and operational partners for your investment
               </p>
             </div>
           </div>
@@ -441,14 +441,14 @@ const Partners = () => {
                       setContactForm({ ...contactForm, name: e.target.value });
                       if (formErrors.name) setFormErrors({ ...formErrors, name: undefined });
                     }}
-                    placeholder="Ihr Name"
+                    placeholder="Your name"
                     className={formErrors.name ? "border-destructive" : ""}
                   />
                   {formErrors.name && <p className="text-xs text-destructive">{formErrors.name}</p>}
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="contact-email">E-Mail *</Label>
+                  <Label htmlFor="contact-email">Email *</Label>
                   <Input
                     id="contact-email"
                     type="email"
@@ -457,7 +457,7 @@ const Partners = () => {
                       setContactForm({ ...contactForm, email: e.target.value });
                       if (formErrors.email) setFormErrors({ ...formErrors, email: undefined });
                     }}
-                    placeholder="ihre@email.de"
+                    placeholder="your@email.com"
                     className={formErrors.email ? "border-destructive" : ""}
                   />
                   {formErrors.email && <p className="text-xs text-destructive">{formErrors.email}</p>}
@@ -466,17 +466,17 @@ const Partners = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="contact-company">Unternehmen</Label>
+                  <Label htmlFor="contact-company">Company</Label>
                   <Input
                     id="contact-company"
                     value={contactForm.company}
                     onChange={(e) => setContactForm({ ...contactForm, company: e.target.value })}
-                    placeholder="Ihr Unternehmen"
+                    placeholder="Your company"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="contact-phone">Telefon</Label>
+                  <Label htmlFor="contact-phone">Phone</Label>
                   <Input
                     id="contact-phone"
                     type="tel"
@@ -488,7 +488,7 @@ const Partners = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="contact-subject">Betreff *</Label>
+                <Label htmlFor="contact-subject">Subject *</Label>
                 <Input
                   id="contact-subject"
                   value={contactForm.subject}
@@ -496,14 +496,14 @@ const Partners = () => {
                     setContactForm({ ...contactForm, subject: e.target.value });
                     if (formErrors.subject) setFormErrors({ ...formErrors, subject: undefined });
                   }}
-                  placeholder="Betreff Ihrer Anfrage"
+                  placeholder="Subject of your inquiry"
                   className={formErrors.subject ? "border-destructive" : ""}
                 />
                 {formErrors.subject && <p className="text-xs text-destructive">{formErrors.subject}</p>}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="contact-message">Nachricht *</Label>
+                <Label htmlFor="contact-message">Message *</Label>
                 <Textarea
                   id="contact-message"
                   value={contactForm.message}
@@ -511,20 +511,20 @@ const Partners = () => {
                     setContactForm({ ...contactForm, message: e.target.value });
                     if (formErrors.message) setFormErrors({ ...formErrors, message: undefined });
                   }}
-                  placeholder="Ihre Nachricht..."
+                  placeholder="Your message..."
                   rows={4}
                   className={formErrors.message ? "border-destructive" : ""}
                 />
                 {formErrors.message && <p className="text-xs text-destructive">{formErrors.message}</p>}
                 <p className="text-xs text-muted-foreground text-right">
-                  {contactForm.message.length} / 2000 Zeichen
+                  {contactForm.message.length} / 2000 characters
                 </p>
               </div>
             </div>
 
             <div className="flex justify-end gap-3">
               <Button variant="outline" onClick={() => setShowContactDialog(false)}>
-                Abbrechen
+                Cancel
               </Button>
               <Button 
                 onClick={handleContactSubmit}
@@ -532,11 +532,11 @@ const Partners = () => {
                 className="bg-primary hover:bg-primary/90 text-primary-foreground"
               >
                 {isSubmitting ? (
-                  "Wird gesendet..."
+                  "Sending..."
                 ) : (
                   <>
                     <Send className="w-4 h-4 mr-2" />
-                    Nachricht senden
+                    Send Message
                   </>
                 )}
               </Button>

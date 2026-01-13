@@ -43,8 +43,8 @@ const ExitPreparation = () => {
   const confirmInterest = () => {
     if (selectedSecondary) {
       toast({
-        title: "Interesse bekundet",
-        description: `Ihr Kaufinteresse für ${selectedSecondary.company} wurde übermittelt.`,
+        title: "Interest Submitted",
+        description: `Your purchase interest for ${selectedSecondary.company} has been submitted.`,
       });
     }
     setShowInterestDialog(false);
@@ -255,7 +255,7 @@ const ExitPreparation = () => {
                         </Button>
                         <Link to="/edit-available-secondaries" className="flex-1">
                           <Button variant="outline" className="w-full border-accent/30 text-accent hover:bg-accent/10 rounded-xl">
-                            Angebot platzieren
+                            Place Offer
                           </Button>
                         </Link>
                         <Button 
@@ -505,10 +505,10 @@ const ExitPreparation = () => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-xl">
               <CheckCircle2 className="w-5 h-5 text-primary" />
-              Kaufinteresse bekunden
+              Express Purchase Interest
             </DialogTitle>
             <DialogDescription className="text-muted-foreground pt-2">
-              Mit dieser Anfrage bekunden Sie Ihr Kaufinteresse für das folgende Angebot. Ihre Kontaktdaten werden dem Verkäufer übermittelt.
+              With this request, you express your purchase interest for the following offer. Your contact details will be shared with the seller.
             </DialogDescription>
           </DialogHeader>
           
@@ -520,7 +520,7 @@ const ExitPreparation = () => {
                 <div className="flex flex-wrap gap-2 mt-2 text-sm text-muted-foreground">
                   <span>{selectedSecondary.sector}</span>
                   <span>•</span>
-                  <span>{selectedSecondary.sharesAvailable} Anteile</span>
+                  <span>{selectedSecondary.sharesAvailable} Shares</span>
                   <span>•</span>
                   <span className="font-semibold text-primary">{selectedSecondary.askingPrice}</span>
                 </div>
@@ -530,7 +530,7 @@ const ExitPreparation = () => {
               <div className="p-4 rounded-xl bg-secondary border border-border space-y-3">
                 <h4 className="font-medium text-foreground text-sm flex items-center gap-2">
                   <User className="w-4 h-4 text-muted-foreground" />
-                  Ihre Kontaktdaten
+                  Your Contact Details
                 </h4>
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div>
@@ -556,11 +556,11 @@ const ExitPreparation = () => {
               <div className="p-4 rounded-xl bg-secondary border border-border space-y-3">
                 <h4 className="font-medium text-foreground text-sm flex items-center gap-2">
                   <Building2 className="w-4 h-4 text-muted-foreground" />
-                  Unternehmensdaten
+                  Company Details
                 </h4>
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div className="col-span-2">
-                    <p className="text-muted-foreground text-xs">Unternehmen</p>
+                    <p className="text-muted-foreground text-xs">Company</p>
                     <p className="font-medium text-foreground">{companyProfile.name}</p>
                   </div>
                   <div className="col-span-2 flex items-start gap-2">
@@ -577,14 +577,14 @@ const ExitPreparation = () => {
                   onClick={() => setShowInterestDialog(false)}
                   className="flex-1 rounded-xl"
                 >
-                  Abbrechen
+                  Cancel
                 </Button>
                 <Button 
                   onClick={confirmInterest}
                   className="flex-1 bg-primary hover:bg-primary/90 rounded-xl"
                 >
                   <CheckCircle2 className="w-4 h-4 mr-2" />
-                  Interesse bestätigen
+                  Confirm Interest
                 </Button>
               </div>
             </div>
@@ -596,60 +596,60 @@ const ExitPreparation = () => {
       <Dialog open={showEditOfferDialog} onOpenChange={setShowEditOfferDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>Angebot bearbeiten</DialogTitle>
+            <DialogTitle>Edit Offer</DialogTitle>
             <DialogDescription>
-              Bearbeiten Sie Ihr Angebot für {selectedOffer?.company}
+              Edit your offer for {selectedOffer?.company}
             </DialogDescription>
           </DialogHeader>
           
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="company">Unternehmen</Label>
+              <Label htmlFor="company">Company</Label>
               <Input
                 id="company"
                 value={editOfferData.company}
                 onChange={(e) => setEditOfferData({ ...editOfferData, company: e.target.value })}
-                placeholder="z.B. SolarFlow GmbH"
+                placeholder="e.g. SolarFlow GmbH"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="sector">Sektor</Label>
+              <Label htmlFor="sector">Sector</Label>
               <Input
                 id="sector"
                 value={editOfferData.sector}
                 onChange={(e) => setEditOfferData({ ...editOfferData, sector: e.target.value })}
-                placeholder="z.B. CleanTech"
+                placeholder="e.g. CleanTech"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="sharesOffered">Angebotene Anteile</Label>
+              <Label htmlFor="sharesOffered">Shares Offered</Label>
               <Input
                 id="sharesOffered"
                 value={editOfferData.sharesOffered}
                 onChange={(e) => setEditOfferData({ ...editOfferData, sharesOffered: e.target.value })}
-                placeholder="z.B. 5%"
+                placeholder="e.g. 5%"
               />
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="askingPrice">Angebotspreis</Label>
+              <Label htmlFor="askingPrice">Asking Price</Label>
               <Input
                 id="askingPrice"
                 value={editOfferData.askingPrice}
                 onChange={(e) => setEditOfferData({ ...editOfferData, askingPrice: e.target.value })}
-                placeholder="z.B. €150,000"
+                placeholder="e.g. €150,000"
               />
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="valuation">Bewertung</Label>
+              <Label htmlFor="valuation">Valuation</Label>
               <Input
                 id="valuation"
                 value={editOfferData.valuation}
                 onChange={(e) => setEditOfferData({ ...editOfferData, valuation: e.target.value })}
-                placeholder="z.B. €3M"
+                placeholder="e.g. €3M"
               />
             </div>
 
@@ -661,9 +661,9 @@ const ExitPreparation = () => {
                 onChange={(e) => setEditOfferData({ ...editOfferData, status: e.target.value as "Active" | "Pending Review" | "Sold" })}
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
-                <option value="Active">Aktiv</option>
-                <option value="Pending Review">In Prüfung</option>
-                <option value="Sold">Verkauft</option>
+                <option value="Active">Active</option>
+                <option value="Pending Review">Pending Review</option>
+                <option value="Sold">Sold</option>
               </select>
             </div>
           </div>
@@ -674,20 +674,20 @@ const ExitPreparation = () => {
               onClick={() => setShowEditOfferDialog(false)}
               className="flex-1 rounded-xl"
             >
-              Abbrechen
+              Cancel
             </Button>
             <Button 
               onClick={() => {
                 toast({
-                  title: "Angebot aktualisiert",
-                  description: `Ihr Angebot für ${selectedOffer?.company} wurde erfolgreich aktualisiert.`,
+                  title: "Offer Updated",
+                  description: `Your offer for ${selectedOffer?.company} has been successfully updated.`,
                 });
                 setShowEditOfferDialog(false);
                 setSelectedOffer(null);
               }}
               className="flex-1 bg-primary hover:bg-primary/90 rounded-xl"
             >
-              Speichern
+              Save
             </Button>
           </DialogFooter>
         </DialogContent>

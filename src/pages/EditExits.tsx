@@ -24,8 +24,8 @@ const EditExits = () => {
   const handleAddItem = () => {
     if (!newItem.company || !newItem.multiple) {
       toast({
-        title: "Fehlende Daten",
-        description: "Bitte füllen Sie alle Pflichtfelder aus.",
+        title: "Missing Data",
+        description: "Please fill in all required fields.",
         variant: "destructive"
       });
       return;
@@ -55,8 +55,8 @@ const EditExits = () => {
   const handleSave = () => {
     saveExits(items);
     toast({
-      title: "Gespeichert",
-      description: "Portfolio-Exits wurden aktualisiert."
+      title: "Saved",
+      description: "Portfolio exits have been updated."
     });
     navigate("/secondaries");
   };
@@ -79,7 +79,7 @@ const EditExits = () => {
             <div className="flex items-center gap-4">
               <Link to="/secondaries" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                 <ArrowLeft className="w-5 h-5" />
-                <span className="hidden sm:inline font-medium">Zurück</span>
+                <span className="hidden sm:inline font-medium">Back</span>
               </Link>
               <div className="h-6 w-px bg-border" />
               <div className="flex items-center gap-3">
@@ -87,14 +87,14 @@ const EditExits = () => {
                   <TrendingUp className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-foreground">Portfolio-Exits</h1>
-                  <p className="text-xs text-muted-foreground">Abgeschlossene Exits verwalten</p>
+                  <h1 className="text-lg font-bold text-foreground">Portfolio Exits</h1>
+                  <p className="text-xs text-muted-foreground">Manage completed exits</p>
                 </div>
               </div>
             </div>
             <Button onClick={handleSave} className="bg-primary hover:bg-primary/90 rounded-xl">
               <Save className="w-4 h-4 mr-2" />
-              Speichern
+              Save
             </Button>
           </div>
         </div>

@@ -140,9 +140,9 @@ const PilotProjects = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <Calendar className="w-5 h-5 text-primary" />
-              Anmeldung zu Pitchings
+              Pitching Registration
             </CardTitle>
-            <CardDescription>Entdecken Sie interessante Investitionsmöglichkeiten in neue Technologien. Melden Sie sich hierfür bitte zu unseren monatlichen Pitchings an.</CardDescription>
+            <CardDescription>Discover interesting investment opportunities in new technologies. Please register for our monthly pitchings.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -166,7 +166,7 @@ const PilotProjects = () => {
                   
                   {session.statusType === 'current' && (
                     <Badge className="bg-primary/20 text-primary w-fit mb-3">
-                      Bewerbungen offen
+                      Applications Open
                     </Badge>
                   )}
                   
@@ -184,7 +184,7 @@ const PilotProjects = () => {
                       : 'bg-primary hover:bg-primary/90 text-primary-foreground'}`}
                   >
                     <CheckCircle2 className="w-4 h-4 mr-2" />
-                    {registrations[session.id] ? 'Angemeldet' : 'Anmelden'}
+                    {registrations[session.id] ? 'Registered' : 'Register'}
                   </Button>
                 </div>
               ))}
@@ -197,9 +197,9 @@ const PilotProjects = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <Bell className="w-5 h-5 text-primary" />
-              Automatische Teilnahme
+              Automatic Participation
             </CardTitle>
-            <CardDescription>Aktivieren Sie diese Option, um automatisch für alle zukünftigen Pitching Sessions angemeldet zu werden.</CardDescription>
+            <CardDescription>Enable this option to automatically register for all future pitching sessions.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border">

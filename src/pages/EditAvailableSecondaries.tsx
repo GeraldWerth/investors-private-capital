@@ -29,8 +29,8 @@ const EditAvailableSecondaries = () => {
   const handleAddItem = () => {
     if (!newItem.company || !newItem.sector || !newItem.askingPrice) {
       toast({
-        title: "Fehlende Daten",
-        description: "Bitte füllen Sie alle Pflichtfelder aus.",
+        title: "Missing Data",
+        description: "Please fill in all required fields.",
         variant: "destructive"
       });
       return;
@@ -69,8 +69,8 @@ const EditAvailableSecondaries = () => {
   const handleSave = () => {
     saveAvailableSecondaries(items);
     toast({
-      title: "Gespeichert",
-      description: "Verfügbare Secondaries wurden aktualisiert."
+      title: "Saved",
+      description: "Available secondaries have been updated."
     });
     navigate("/secondaries");
   };
@@ -92,7 +92,7 @@ const EditAvailableSecondaries = () => {
             <div className="flex items-center gap-4">
               <Link to="/secondaries" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                 <ArrowLeft className="w-5 h-5" />
-                <span className="hidden sm:inline font-medium">Zurück</span>
+                <span className="hidden sm:inline font-medium">Back</span>
               </Link>
               <div className="h-6 w-px bg-border" />
               <div className="flex items-center gap-3">
@@ -100,14 +100,14 @@ const EditAvailableSecondaries = () => {
                   <Repeat className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-foreground">Verfügbare Secondaries</h1>
-                  <p className="text-xs text-muted-foreground">Kaufangebote verwalten</p>
+                  <h1 className="text-lg font-bold text-foreground">Available Secondaries</h1>
+                  <p className="text-xs text-muted-foreground">Manage purchase offers</p>
                 </div>
               </div>
             </div>
             <Button onClick={handleSave} className="bg-primary hover:bg-primary/90 rounded-xl">
               <Save className="w-4 h-4 mr-2" />
-              Speichern
+              Save
             </Button>
           </div>
         </div>
@@ -117,43 +117,43 @@ const EditAvailableSecondaries = () => {
         {/* Add New Form */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm border-l-4 border-l-primary">
           <CardHeader>
-            <CardTitle className="text-xl font-bold">Neues Angebot hinzufügen</CardTitle>
-            <CardDescription>Fügen Sie ein neues Secondary-Kaufangebot hinzu</CardDescription>
+            <CardTitle className="text-xl font-bold">Add New Offer</CardTitle>
+            <CardDescription>Add a new secondary purchase offer</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Input
-                placeholder="Unternehmen *"
+                placeholder="Company *"
                 value={newItem.company}
                 onChange={(e) => setNewItem({ ...newItem, company: e.target.value })}
                 className="rounded-xl"
               />
               <Input
-                placeholder="Sektor *"
+                placeholder="Sector *"
                 value={newItem.sector}
                 onChange={(e) => setNewItem({ ...newItem, sector: e.target.value })}
                 className="rounded-xl"
               />
               <Input
-                placeholder="Anteile (z.B. 8%)"
+                placeholder="Shares (e.g. 8%)"
                 value={newItem.sharesAvailable}
                 onChange={(e) => setNewItem({ ...newItem, sharesAvailable: e.target.value })}
                 className="rounded-xl"
               />
               <Input
-                placeholder="Bewertung (z.B. €45M)"
+                placeholder="Valuation (e.g. €45M)"
                 value={newItem.valuation}
                 onChange={(e) => setNewItem({ ...newItem, valuation: e.target.value })}
                 className="rounded-xl"
               />
               <Input
-                placeholder="Kaufpreis * (z.B. €3.6M)"
+                placeholder="Asking Price * (e.g. €3.6M)"
                 value={newItem.askingPrice}
                 onChange={(e) => setNewItem({ ...newItem, askingPrice: e.target.value })}
                 className="rounded-xl"
               />
               <Input
-                placeholder="Verkäufer"
+                placeholder="Seller"
                 value={newItem.seller}
                 onChange={(e) => setNewItem({ ...newItem, seller: e.target.value })}
                 className="rounded-xl"
@@ -163,7 +163,7 @@ const EditAvailableSecondaries = () => {
                 onValueChange={(value) => setNewItem({ ...newItem, urgency: value as "High" | "Medium" | "Low" })}
               >
                 <SelectTrigger className="rounded-xl">
-                  <SelectValue placeholder="Priorität" />
+                  <SelectValue placeholder="Priority" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="High">High Priority</SelectItem>
@@ -172,7 +172,7 @@ const EditAvailableSecondaries = () => {
                 </SelectContent>
               </Select>
               <Input
-                placeholder="Highlights (kommagetrennt)"
+                placeholder="Highlights (comma separated)"
                 value={highlightsInput}
                 onChange={(e) => setHighlightsInput(e.target.value)}
                 className="rounded-xl md:col-span-2"
@@ -184,11 +184,11 @@ const EditAvailableSecondaries = () => {
                 onClick={() => navigate("/secondaries")}
                 className="rounded-xl"
               >
-                Abbrechen
+                Cancel
               </Button>
               <Button onClick={handleAddItem} className="bg-primary hover:bg-primary/90 rounded-xl">
                 <Plus className="w-4 h-4 mr-2" />
-                Hinzufügen
+                Add
               </Button>
             </div>
           </CardContent>
