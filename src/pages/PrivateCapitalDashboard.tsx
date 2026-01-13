@@ -46,7 +46,7 @@ const StartupDashboard = () => {
 
   const quickActions = [
     { icon: FileText, label: "Review Deal Flow", link: "/edit-investments" },
-    { icon: Calendar, label: "Schedule Pitch", link: "" },
+    { icon: Calendar, label: "Partners", link: "/partners" },
     { icon: Briefcase, label: "Offer Secondaries", link: "/secondaries" },
     { icon: Building2, label: "Find Investments", link: "/find-startups" }
   ];
