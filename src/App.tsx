@@ -18,7 +18,7 @@ import PitchingSessions from "./pages/PitchingSessions";
 import Secondaries from "./pages/Secondaries";
 import InvestmentRequests from "./pages/InvestmentRequests";
 import EditAvailableSecondaries from "./pages/EditAvailableSecondaries";
-import FindStartups from "./pages/FindStartups";
+import FindInvestments from "./pages/FindInvestments";
 import Partners from "./pages/Partners";
 import PartnerProfile from "./pages/PartnerProfile";
 import EditNegotiations from "./pages/EditNegotiations";
@@ -48,7 +48,7 @@ const App = () => (
           <Route path="/pitching-sessions" element={<PitchingSessions />} />
           <Route path="/secondaries" element={<Secondaries />} />
           <Route path="/edit-available-secondaries" element={<EditAvailableSecondaries />} />
-          <Route path="/find-startups" element={<FindStartups />} />
+          <Route path="/find-investments" element={<FindInvestments />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/partners/:partnerId" element={<PartnerProfile />} />
           <Route path="/edit-negotiations" element={<EditNegotiations />} />
