@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import {
   Dialog,
   DialogContent,
@@ -15,7 +14,7 @@ import {
 import { 
   TrendingUp, Users, ArrowLeft,
   Calendar, Video, CheckCircle2,
-  Clock, Bell, Info, Mail, Phone, Building2, User
+  Clock, Bell, Info
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -23,18 +22,7 @@ const PilotProjects = () => {
   const [registrations, setRegistrations] = useState<{ [key: number]: boolean }>({});
   const [autoRegister, setAutoRegister] = useState(false);
   const [showRegistrationDialog, setShowRegistrationDialog] = useState(false);
-  const [showFormDialog, setShowFormDialog] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState<number | null>(null);
-
-  // Vorausgefüllte Anmeldedaten aus der allgemeinen Anmeldung
-  const [formData, setFormData] = useState({
-    firstName: "John",
-    lastName: "Smith",
-    email: "john@techstartup.com",
-    phone: "+1 555 123 4567",
-    company: "TechStartup Inc.",
-    position: "CEO & Founder"
-  });
 
   const handleRegisterClick = (id: number, isRegistered: boolean) => {
     if (isRegistered) {
@@ -47,21 +35,11 @@ const PilotProjects = () => {
     }
   };
 
-  const handleProceedToForm = () => {
-    setShowRegistrationDialog(false);
-    setShowFormDialog(true);
-  };
-
   const confirmRegistration = () => {
     if (selectedSessionId !== null) {
       setRegistrations(prev => ({ ...prev, [selectedSessionId]: true }));
     }
-    setShowFormDialog(false);
-    setSelectedSessionId(null);
-  };
-
-  const handleCancelForm = () => {
-    setShowFormDialog(false);
+    setShowRegistrationDialog(false);
     setSelectedSessionId(null);
   };
 
@@ -290,15 +268,15 @@ const PilotProjects = () => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-xl">
               <Info className="w-5 h-5 text-primary" />
-              Anmeldung zu Pitchings
+              Anmeldung zu unseren monatlichen Pitchings
             </DialogTitle>
           </DialogHeader>
           <DialogDescription className="text-muted-foreground space-y-4 pt-2">
             <p>
-              Wir stellen jeden Monat die besten Startups- und Scaleups passenden Investoren vor. Eine Anmeldung ist nur möglich, wenn Du bereits im Vorfeld alle Unterlagen eingereicht hast.
+              Wir stellen jeden Monat die besten Startups- und Scaleups passenden Investoren vor. Eine Anmeldung ist nur möglich, wenn im Vorfeld alle Unterlagen eingereicht wurden.
             </p>
             <p>
-              Die Unterlagen kannst du im Bereich <Link to="/investment-requests" className="font-semibold text-primary hover:underline">Data Room</Link> einreichen. Vor jeder Zulassung prüfen wir die eingereichten Unterlagen und setzen uns dann mit Dir in Verbindung.
+              Die Unterlagen können Sie im Bereich <span className="font-semibold text-foreground">Data Room</span> einreichen. Vor jeder Zulassung werden die eingereichten Unterlagen geprüft und wir werden uns dann mit Ihnen in Verbindung setzen.
             </p>
           </DialogDescription>
           <div className="flex gap-3 mt-4">
@@ -310,123 +288,11 @@ const PilotProjects = () => {
               Abbrechen
             </Button>
             <Button 
-              onClick={handleProceedToForm}
-              className="flex-1"
-            >
-              <CheckCircle2 className="w-4 h-4 mr-2" />
-              Verstanden & Anmelden
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* Registration Form Dialog */}
-      <Dialog open={showFormDialog} onOpenChange={setShowFormDialog}>
-        <DialogContent className="sm:max-w-lg">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-xl">
-              <User className="w-5 h-5 text-primary" />
-              Anmeldedaten bestätigen
-            </DialogTitle>
-            <DialogDescription>
-              Bitte überprüfe deine Anmeldedaten für die Pitching Session.
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="space-y-4 pt-2">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="firstName" className="text-foreground font-medium flex items-center gap-2">
-                  <User className="w-4 h-4 text-muted-foreground" />
-                  Vorname
-                </Label>
-                <Input
-                  id="firstName"
-                  value={formData.firstName}
-                  onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-                  className="h-10 border-border focus:border-primary focus:ring-primary rounded-xl"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="lastName" className="text-foreground font-medium">
-                  Nachname
-                </Label>
-                <Input
-                  id="lastName"
-                  value={formData.lastName}
-                  onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-                  className="h-10 border-border focus:border-primary focus:ring-primary rounded-xl"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-foreground font-medium flex items-center gap-2">
-                <Mail className="w-4 h-4 text-muted-foreground" />
-                E-Mail
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="h-10 border-border focus:border-primary focus:ring-primary rounded-xl"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="phone" className="text-foreground font-medium flex items-center gap-2">
-                <Phone className="w-4 h-4 text-muted-foreground" />
-                Telefon
-              </Label>
-              <Input
-                id="phone"
-                value={formData.phone}
-                onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                className="h-10 border-border focus:border-primary focus:ring-primary rounded-xl"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="company" className="text-foreground font-medium flex items-center gap-2">
-                <Building2 className="w-4 h-4 text-muted-foreground" />
-                Unternehmen
-              </Label>
-              <Input
-                id="company"
-                value={formData.company}
-                onChange={(e) => setFormData({...formData, company: e.target.value})}
-                className="h-10 border-border focus:border-primary focus:ring-primary rounded-xl"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="position" className="text-foreground font-medium">
-                Position
-              </Label>
-              <Input
-                id="position"
-                value={formData.position}
-                onChange={(e) => setFormData({...formData, position: e.target.value})}
-                className="h-10 border-border focus:border-primary focus:ring-primary rounded-xl"
-              />
-            </div>
-          </div>
-
-          <div className="flex gap-3 mt-4">
-            <Button 
-              variant="outline" 
-              onClick={handleCancelForm}
-              className="flex-1"
-            >
-              Abbrechen
-            </Button>
-            <Button 
               onClick={confirmRegistration}
               className="flex-1"
             >
               <CheckCircle2 className="w-4 h-4 mr-2" />
-              Anmeldung absenden
+              Verstanden & Anmelden
             </Button>
           </div>
         </DialogContent>
