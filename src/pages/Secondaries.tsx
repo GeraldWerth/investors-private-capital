@@ -255,6 +255,9 @@ const ExitPreparation = () => {
                         <Button variant="outline" className="flex-1 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
                           View Details
                         </Button>
+                        <Button variant="outline" className="flex-1 border-accent/30 text-accent hover:bg-accent/10 rounded-xl">
+                          Angebot platzieren
+                        </Button>
                         <Button 
                           onClick={() => handleExpressInterest(secondary)}
                           className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
