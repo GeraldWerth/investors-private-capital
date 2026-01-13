@@ -14,13 +14,13 @@ import { useInvestmentCriteria } from "@/hooks/useInvestmentCriteria";
 
 const FundingRounds = () => {
   const [investmentFrequency, setInvestmentFrequency] = useState("");
-  const { getSectorNames, getStageNames, getRegionSummary } = useInvestmentCriteria();
+  const { getSectorNames, getStageNames, getGeographyDisplay } = useInvestmentCriteria();
   
   const investmentCriteria = {
     sectors: getSectorNames(),
     stages: getStageNames(),
     ticketSize: { min: "500K", max: "5M" },
-    geography: getRegionSummary()
+    geography: getGeographyDisplay()
   };
 
   const sectorFocus = [

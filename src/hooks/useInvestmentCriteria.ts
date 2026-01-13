@@ -111,29 +111,52 @@ export function useInvestmentCriteria() {
     return countries.map(id => allCountries[id] || id);
   };
 
-  // Get region summary for display
-  const getRegionSummary = () => {
+  // Get region summary for display - shows countries grouped by region
+  const getGeographyDisplay = () => {
+    // If 6 or fewer countries, show individual names
+    if (countries.length <= 6) {
+      return countries.map(id => allCountries[id] || id);
+    }
+    
+    // Otherwise, show a smart summary with regions + remaining countries
     const dachCountries = ["de", "at", "ch"];
     const nordicCountries = ["se", "no", "dk", "fi", "is"];
     const beneluxCountries = ["nl", "be", "lu"];
     
-    const regions: string[] = [];
+    const result: string[] = [];
+    const coveredCountries: string[] = [];
     
+    // Check for complete regions
     if (dachCountries.every(c => countries.includes(c))) {
-      regions.push("DACH");
+      result.push("DACH");
+      coveredCountries.push(...dachCountries);
     }
-    if (nordicCountries.filter(c => countries.includes(c)).length >= 3) {
-      regions.push("Nordics");
+    if (nordicCountries.filter(c => countries.includes(c)).length >= 4) {
+      result.push("Nordics");
+      coveredCountries.push(...nordicCountries.filter(c => countries.includes(c)));
     }
     if (beneluxCountries.every(c => countries.includes(c))) {
-      regions.push("Benelux");
+      result.push("Benelux");
+      coveredCountries.push(...beneluxCountries);
     }
     
-    // If we have regions, show them, otherwise show country count
-    if (regions.length > 0) {
-      return regions;
+    // Count remaining countries not covered by regions
+    const remainingCountries = countries.filter(c => !coveredCountries.includes(c));
+    
+    if (remainingCountries.length > 0 && remainingCountries.length <= 3) {
+      // Show individual remaining countries
+      result.push(...remainingCountries.map(id => allCountries[id] || id));
+    } else if (remainingCountries.length > 3) {
+      // Show count for remaining
+      result.push(`+${remainingCountries.length} more`);
     }
-    return [`${countries.length} Countries`];
+    
+    // Fallback: if no regions matched, just show country count
+    if (result.length === 0) {
+      return [`${countries.length} Countries`];
+    }
+    
+    return result;
   };
 
   return {
@@ -146,6 +169,6 @@ export function useInvestmentCriteria() {
     getSectorNames,
     getStageNames,
     getCountryNames,
-    getRegionSummary,
+    getGeographyDisplay,
   };
 }
