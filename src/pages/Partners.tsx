@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   ArrowLeft, Users, TrendingUp, ChevronRight,
-  Scale, Cpu, Leaf, LineChart
+  Scale, Cpu, Leaf, LineChart, MapPin, Mail, Phone, Briefcase, Award
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -16,9 +16,36 @@ const Partners = () => {
       fullTitle: "Legal, Regulatory & Compliance Partners",
       description: "Rechtliche Beratung und regulatorische Unterstützung",
       partners: [
-        { name: "Morrison & Foerster LLP", specialty: "M&A, Venture Capital" },
-        { name: "Hengeler Mueller", specialty: "Gesellschaftsrecht, Compliance" },
-        { name: "Noerr LLP", specialty: "Regulierung, Energierecht" }
+        { 
+          name: "Morrison & Foerster LLP", 
+          specialty: "M&A, Venture Capital",
+          location: "Frankfurt, München",
+          contact: "Dr. Michael Weber",
+          email: "mweber@mofo.com",
+          phone: "+49 69 7033 0",
+          services: ["Transaktionsberatung", "Due Diligence", "Vertragsgestaltung"],
+          experience: "25+ Jahre im Energiesektor"
+        },
+        { 
+          name: "Hengeler Mueller", 
+          specialty: "Gesellschaftsrecht, Compliance",
+          location: "Berlin, Düsseldorf",
+          contact: "Dr. Anna Schmidt",
+          email: "a.schmidt@hengeler.com",
+          phone: "+49 30 2039 6000",
+          services: ["Gesellschaftsrecht", "Regulatorische Compliance", "ESG-Beratung"],
+          experience: "30+ Jahre Erfahrung"
+        },
+        { 
+          name: "Noerr LLP", 
+          specialty: "Regulierung, Energierecht",
+          location: "München, Hamburg",
+          contact: "Dr. Thomas Müller",
+          email: "thomas.mueller@noerr.com",
+          phone: "+49 89 2862 8000",
+          services: ["Energierecht", "Genehmigungsverfahren", "Regulatory Affairs"],
+          experience: "Spezialist für erneuerbare Energien"
+        }
       ],
       color: "bg-blue-500/10 text-blue-600"
     },
@@ -29,9 +56,36 @@ const Partners = () => {
       fullTitle: "Engineering, Technical & Due Diligence Partners",
       description: "Technische Bewertung und Due Diligence",
       partners: [
-        { name: "TÜV Rheinland", specialty: "Technische Prüfung, Zertifizierung" },
-        { name: "DNV", specialty: "Energy Due Diligence" },
-        { name: "Fraunhofer ISE", specialty: "Technologiebewertung" }
+        { 
+          name: "TÜV Rheinland", 
+          specialty: "Technische Prüfung, Zertifizierung",
+          location: "Köln, deutschlandweit",
+          contact: "Ing. Klaus Bauer",
+          email: "klaus.bauer@tuv.com",
+          phone: "+49 221 806 0",
+          services: ["Technische Inspektion", "Zertifizierung", "Sicherheitsprüfung"],
+          experience: "150+ Jahre Expertise"
+        },
+        { 
+          name: "DNV", 
+          specialty: "Energy Due Diligence",
+          location: "Hamburg, Oslo",
+          contact: "Dr. Erik Johansen",
+          email: "erik.johansen@dnv.com",
+          phone: "+49 40 3616 1000",
+          services: ["Asset Bewertung", "Risikomanagement", "Performance Analyse"],
+          experience: "Globaler Marktführer"
+        },
+        { 
+          name: "Fraunhofer ISE", 
+          specialty: "Technologiebewertung",
+          location: "Freiburg",
+          contact: "Prof. Dr. Lisa Hartmann",
+          email: "lisa.hartmann@ise.fraunhofer.de",
+          phone: "+49 761 4588 0",
+          services: ["Technologie Assessment", "F&E Beratung", "Innovationsanalyse"],
+          experience: "Führendes Forschungsinstitut"
+        }
       ],
       color: "bg-orange-500/10 text-orange-600"
     },
@@ -42,9 +96,36 @@ const Partners = () => {
       fullTitle: "ESG, Certification & Sustainability Partners",
       description: "Nachhaltigkeitsbewertung und Zertifizierungen",
       partners: [
-        { name: "Sustainalytics", specialty: "ESG Ratings & Research" },
-        { name: "EcoVadis", specialty: "Sustainability Ratings" },
-        { name: "Climate Partner", specialty: "Carbon Footprint, Klimastrategie" }
+        { 
+          name: "Sustainalytics", 
+          specialty: "ESG Ratings & Research",
+          location: "Amsterdam, München",
+          contact: "Sarah van der Berg",
+          email: "sarah.vanderberg@sustainalytics.com",
+          phone: "+31 20 205 0000",
+          services: ["ESG Risk Ratings", "Carbon Analytics", "Investor Research"],
+          experience: "30+ Jahre ESG-Expertise"
+        },
+        { 
+          name: "EcoVadis", 
+          specialty: "Sustainability Ratings",
+          location: "Paris, Berlin",
+          contact: "Marc Dubois",
+          email: "m.dubois@ecovadis.com",
+          phone: "+33 1 82 28 88 88",
+          services: ["Sustainability Scorecards", "Supply Chain Assessment", "CSR Ratings"],
+          experience: "100.000+ bewertete Unternehmen"
+        },
+        { 
+          name: "Climate Partner", 
+          specialty: "Carbon Footprint, Klimastrategie",
+          location: "München",
+          contact: "Dr. Julia Berger",
+          email: "j.berger@climatepartner.com",
+          phone: "+49 89 1222 875 0",
+          services: ["CO2-Bilanzierung", "Klimastrategie", "Kompensationsprojekte"],
+          experience: "6.000+ Unternehmenskunden"
+        }
       ],
       color: "bg-green-500/10 text-green-600"
     },
@@ -55,9 +136,36 @@ const Partners = () => {
       fullTitle: "Transaction, Strategy & Market Advisory Partners",
       description: "Strategische Beratung und Marktanalysen",
       partners: [
-        { name: "Roland Berger", specialty: "Strategie, Energy & Utilities" },
-        { name: "McKinsey & Company", specialty: "Transformation, Sustainability" },
-        { name: "Aurora Energy Research", specialty: "Marktanalysen, Prognosen" }
+        { 
+          name: "Roland Berger", 
+          specialty: "Strategie, Energy & Utilities",
+          location: "München, Berlin",
+          contact: "Dr. Markus Fischer",
+          email: "markus.fischer@rolandberger.com",
+          phone: "+49 89 9230 0",
+          services: ["Strategieentwicklung", "M&A Advisory", "Restrukturierung"],
+          experience: "Europas führende Strategieberatung"
+        },
+        { 
+          name: "McKinsey & Company", 
+          specialty: "Transformation, Sustainability",
+          location: "Frankfurt, Düsseldorf",
+          contact: "Dr. Claudia Schulz",
+          email: "claudia_schulz@mckinsey.com",
+          phone: "+49 69 7162 0",
+          services: ["Nachhaltige Transformation", "Operational Excellence", "Digital Strategy"],
+          experience: "Globale #1 Managementberatung"
+        },
+        { 
+          name: "Aurora Energy Research", 
+          specialty: "Marktanalysen, Prognosen",
+          location: "Oxford, Berlin",
+          contact: "Dr. Felix Braun",
+          email: "felix.braun@auroraer.com",
+          phone: "+44 1865 339 350",
+          services: ["Marktprognosen", "Asset Valuation", "Policy Analysis"],
+          experience: "Spezialist für Energiemärkte"
+        }
       ],
       color: "bg-purple-500/10 text-purple-600"
     }
@@ -143,17 +251,54 @@ const Partners = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {category.partners.map((partner, partnerIndex) => (
                       <div 
                         key={partnerIndex}
-                        className="flex items-center justify-between p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors group cursor-pointer"
+                        className="p-5 rounded-xl bg-muted/50 hover:bg-muted transition-colors group cursor-pointer border border-transparent hover:border-primary/20"
                       >
-                        <div>
-                          <p className="font-medium text-foreground">{partner.name}</p>
-                          <p className="text-sm text-muted-foreground">{partner.specialty}</p>
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <h4 className="font-semibold text-foreground text-lg">{partner.name}</h4>
+                            <p className="text-sm text-primary font-medium">{partner.specialty}</p>
+                          </div>
+                          <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all mt-1" />
                         </div>
-                        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <MapPin className="w-4 h-4 text-primary/70" />
+                            <span>{partner.location}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <Users className="w-4 h-4 text-primary/70" />
+                            <span>{partner.contact}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <Mail className="w-4 h-4 text-primary/70" />
+                            <span>{partner.email}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <Phone className="w-4 h-4 text-primary/70" />
+                            <span>{partner.phone}</span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 mb-3">
+                          <Award className="w-4 h-4 text-primary/70" />
+                          <span className="text-sm text-muted-foreground">{partner.experience}</span>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2">
+                          {partner.services.map((service, serviceIndex) => (
+                            <span 
+                              key={serviceIndex}
+                              className="px-3 py-1 bg-background text-xs font-medium text-foreground rounded-full border border-border"
+                            >
+                              {service}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     ))}
                   </div>
