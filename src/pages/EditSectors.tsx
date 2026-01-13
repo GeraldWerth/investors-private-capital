@@ -2,22 +2,31 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, Target, Save, Leaf, Zap, Globe, Factory, Shield, Car, Building } from "lucide-react";
+import { ArrowLeft, Target, Save, Leaf, Zap, Globe, Factory, Shield, Car, Building, Wind, Sun, Droplets, Flame, Atom, Battery, Cable, Gauge, CircuitBoard, Waves } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 
 const availableSectors = [
   { id: "cleantech", name: "CleanTech", icon: Leaf, description: "Clean energy and sustainable technologies" },
-  { id: "energy-storage", name: "Energy Storage", icon: Zap, description: "Batteries, hydrogen storage, and grid solutions" },
-  { id: "smart-grid", name: "Smart Grid", icon: Globe, description: "Intelligent power distribution and management" },
-  { id: "renewables", name: "Renewables", icon: Leaf, description: "Solar, wind, and other renewable energy sources" },
+  { id: "energy-storage", name: "Energy Storage", icon: Battery, description: "Batteries, hydrogen storage, and grid solutions" },
+  { id: "smart-grid", name: "Smart Grid", icon: CircuitBoard, description: "Intelligent power distribution and management" },
+  { id: "renewables", name: "Renewables", icon: Leaf, description: "Diverse renewable energy sources and systems" },
   { id: "carbon-capture", name: "Carbon Capture", icon: Shield, description: "Carbon reduction and capture technologies" },
-  { id: "hydrogen", name: "Hydrogen & Fuel Cells", icon: Zap, description: "Green hydrogen production and fuel cell technology" },
-  { id: "energy-efficiency", name: "Energy Efficiency", icon: Factory, description: "Technologies to reduce energy consumption" },
-  { id: "offshore-wind", name: "Offshore Wind", icon: Globe, description: "Offshore wind farms and related infrastructure" },
-  { id: "solar-tech", name: "Solar Technology", icon: Leaf, description: "Photovoltaic systems and solar thermal" },
-  { id: "grid-infrastructure", name: "Grid Infrastructure", icon: Building, description: "Power transmission and distribution networks" },
+  { id: "hydrogen", name: "Hydrogen & Fuel Cells", icon: Droplets, description: "Green hydrogen production and fuel cell technology" },
+  { id: "energy-efficiency", name: "Energy Efficiency", icon: Gauge, description: "Technologies to reduce energy consumption" },
+  { id: "offshore-wind", name: "Offshore Wind", icon: Wind, description: "Offshore wind farms and related infrastructure" },
+  { id: "onshore-wind", name: "Onshore Wind", icon: Wind, description: "Land-based wind turbines and wind parks" },
+  { id: "solar-tech", name: "Solar Technology", icon: Sun, description: "Photovoltaic systems and solar thermal" },
+  { id: "grid-infrastructure", name: "Grid Infrastructure", icon: Cable, description: "Power transmission and distribution networks" },
   { id: "ev-charging", name: "EV Charging", icon: Car, description: "Electric vehicle charging infrastructure" },
+  { id: "geothermal", name: "Geothermal Energy", icon: Flame, description: "Geothermal power and heating systems" },
+  { id: "biogas", name: "Biogas & Biomass", icon: Leaf, description: "Organic waste to energy conversion" },
+  { id: "nuclear", name: "Nuclear Energy", icon: Atom, description: "Nuclear fission and fusion technologies" },
+  { id: "hydropower", name: "Hydropower", icon: Waves, description: "Hydroelectric dams and run-of-river systems" },
+  { id: "heat-pumps", name: "Heat Pumps", icon: Zap, description: "Efficient heating and cooling systems" },
+  { id: "power-electronics", name: "Power Electronics", icon: CircuitBoard, description: "Inverters, converters, and power management" },
+  { id: "energy-trading", name: "Energy Trading", icon: Globe, description: "Energy markets and trading platforms" },
+  { id: "building-energy", name: "Building Energy", icon: Building, description: "Smart buildings and energy management systems" },
 ];
 
 const EditSectors = () => {
