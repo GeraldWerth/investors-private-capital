@@ -411,19 +411,12 @@ const ExitPreparation = () => {
 
             {/* My Offers */}
             <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <div>
-                  <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                    <Send className="w-5 h-5 text-primary" />
-                    My Offers
-                  </CardTitle>
-                  <CardDescription>Your secondary shares listed for sale</CardDescription>
-                </div>
-                <Link to="/edit-my-offers">
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
-                    <Settings className="w-4 h-4" />
-                  </Button>
-                </Link>
+              <CardHeader>
+                <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                  <Send className="w-5 h-5 text-primary" />
+                  My Offers
+                </CardTitle>
+                <CardDescription>Your secondary shares listed for sale</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {myOffers.map((offer) => (
