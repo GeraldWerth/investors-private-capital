@@ -14,7 +14,7 @@ import { useInvestmentCriteria } from "@/hooks/useInvestmentCriteria";
 
 const FundingRounds = () => {
   const [investmentFrequency, setInvestmentFrequency] = useState("");
-  const { getSectorNames, getStageNames, getGeographyDisplay, getTicketSizeDisplay } = useInvestmentCriteria();
+  const { getSectorNames, getStageNames, getGeographyDisplay, getTicketSizeDisplay, investments } = useInvestmentCriteria();
   
   const investmentCriteria = {
     sectors: getSectorNames(),
@@ -31,11 +31,8 @@ const FundingRounds = () => {
     { name: "Carbon Capture", icon: Shield, allocation: 8, deals: 2, color: "text-teal-500" }
   ];
 
-  const recentDeals = [
-    { company: "SolarFlow GmbH", stage: "Series A", amount: "€2.5M", sector: "CleanTech", status: "Closed" },
-    { company: "GridOptimize", stage: "Seed", amount: "€800K", sector: "Smart Grid", status: "Closed" },
-    { company: "BatteryNext", stage: "Series B", amount: "€4.2M", sector: "Energy Storage", status: "In Progress" }
-  ];
+  // Get recent deals from stored investments
+  const recentDeals = investments.slice(0, 5);
 
   return (
     <div className="min-h-screen bg-background">
@@ -232,39 +229,62 @@ const FundingRounds = () => {
         {/* Recent Deals */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-primary" />
-              Recent Investments
-            </CardTitle>
-            <CardDescription>Your latest deals</CardDescription>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5 text-primary" />
+                  Recent Investments
+                </CardTitle>
+                <CardDescription>Your latest deals</CardDescription>
+              </div>
+              <Link to="/edit-investments">
+                <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
+                  Manage
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            </div>
           </CardHeader>
           <CardContent className="space-y-3">
-            {recentDeals.map((deal, index) => (
-              <div 
-                key={index}
-                className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border hover:bg-primary/5 transition-colors"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Building2 className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">{deal.company}</p>
-                    <p className="text-sm text-muted-foreground">{deal.sector} · {deal.stage}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="font-bold text-primary">{deal.amount}</span>
-                  <Badge className={deal.status === "Closed" ? "bg-primary/20 text-primary" : "bg-accent/20 text-accent"}>
-                    {deal.status}
-                  </Badge>
-                </div>
+            {recentDeals.length === 0 ? (
+              <div className="text-center py-8 text-muted-foreground">
+                <p>No investments yet.</p>
+                <Link to="/edit-investments">
+                  <Button variant="link" className="text-primary">Add your first investment</Button>
+                </Link>
               </div>
-            ))}
-            <Button variant="outline" className="w-full mt-4 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-              View All Investments
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            ) : (
+              recentDeals.map((deal) => (
+                <div 
+                  key={deal.id}
+                  className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border hover:bg-primary/5 transition-colors"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Building2 className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground">{deal.company}</p>
+                      <p className="text-sm text-muted-foreground">{deal.sector} · {deal.stage}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="font-bold text-primary">{deal.amount}</span>
+                    <Badge className={deal.status === "Closed" ? "bg-primary/20 text-primary" : "bg-accent/20 text-accent"}>
+                      {deal.status}
+                    </Badge>
+                  </div>
+                </div>
+              ))
+            )}
+            {recentDeals.length > 0 && (
+              <Link to="/edit-investments" className="block">
+                <Button variant="outline" className="w-full mt-4 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
+                  View All Investments ({investments.length})
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            )}
           </CardContent>
         </Card>
       </main>

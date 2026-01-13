@@ -55,11 +55,27 @@ export const allCountries: Record<string, string> = {
   eg: "Egypt", ma: "Morocco", za: "South Africa", ng: "Nigeria", ke: "Kenya",
 };
 
+// Investment type
+export interface Investment {
+  id: string;
+  company: string;
+  sector: string;
+  stage: string;
+  amount: string;
+  status: "Closed" | "In Progress" | "Due Diligence" | "Term Sheet";
+  date?: string;
+}
+
 // Default selections
 const DEFAULT_SECTORS = ["cleantech", "energy-storage", "smart-grid", "renewables"];
 const DEFAULT_STAGES = ["seed", "series-a", "series-b"];
 const DEFAULT_COUNTRIES = ["de", "at", "ch", "se", "no", "dk", "fi", "nl", "be", "lu"];
 const DEFAULT_TICKET_SIZE = { min: 20, max: 5000 }; // in thousands (€K)
+const DEFAULT_INVESTMENTS: Investment[] = [
+  { id: "1", company: "SolarFlow GmbH", stage: "Series A", amount: "€2.5M", sector: "CleanTech", status: "Closed" },
+  { id: "2", company: "GridOptimize", stage: "Seed", amount: "€800K", sector: "Smart Grid", status: "Closed" },
+  { id: "3", company: "BatteryNext", stage: "Series B", amount: "€4.2M", sector: "Energy Storage", status: "In Progress" }
+];
 
 // Storage keys
 const STORAGE_KEYS = {
@@ -67,6 +83,7 @@ const STORAGE_KEYS = {
   stages: "investment_stages",
   countries: "investment_countries",
   ticketSize: "investment_ticket_size",
+  investments: "investment_deals",
 };
 
 export function useInvestmentCriteria() {
@@ -90,6 +107,11 @@ export function useInvestmentCriteria() {
     return stored ? JSON.parse(stored) : DEFAULT_TICKET_SIZE;
   });
 
+  const [investments, setInvestments] = useState<Investment[]>(() => {
+    const stored = localStorage.getItem(STORAGE_KEYS.investments);
+    return stored ? JSON.parse(stored) : DEFAULT_INVESTMENTS;
+  });
+
   const saveSectors = (newSectors: string[]) => {
     setSectors(newSectors);
     localStorage.setItem(STORAGE_KEYS.sectors, JSON.stringify(newSectors));
@@ -108,6 +130,11 @@ export function useInvestmentCriteria() {
   const saveTicketSize = (newTicketSize: { min: number; max: number }) => {
     setTicketSize(newTicketSize);
     localStorage.setItem(STORAGE_KEYS.ticketSize, JSON.stringify(newTicketSize));
+  };
+
+  const saveInvestments = (newInvestments: Investment[]) => {
+    setInvestments(newInvestments);
+    localStorage.setItem(STORAGE_KEYS.investments, JSON.stringify(newInvestments));
   };
 
   // Format ticket size for display
@@ -190,10 +217,12 @@ export function useInvestmentCriteria() {
     stages,
     countries,
     ticketSize,
+    investments,
     saveSectors,
     saveStages,
     saveCountries,
     saveTicketSize,
+    saveInvestments,
     getSectorNames,
     getStageNames,
     getCountryNames,
