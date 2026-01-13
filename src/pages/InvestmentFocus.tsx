@@ -177,9 +177,11 @@ const FundingRounds = () => {
                 </Select>
               </div>
             </div>
-            <Button className="w-full mt-6 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
-              Edit Investment Criteria
-            </Button>
+            <Link to="/edit-sectors" className="block w-full mt-6">
+              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
+                Edit Investment Criteria
+              </Button>
+            </Link>
           </CardContent>
         </Card>
 

@@ -8,6 +8,7 @@ import StartupLogin from "./pages/StartupLogin";
 import PrivateCapitalDashboard from "./pages/PrivateCapitalDashboard";
 import PersonalData from "./pages/PersonalData";
 import InvestmentFocus from "./pages/InvestmentFocus";
+import EditSectors from "./pages/EditSectors";
 import PitchingSessions from "./pages/PitchingSessions";
 import Secondaries from "./pages/Secondaries";
 import InvestmentRequests from "./pages/InvestmentRequests";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/private-capital-dashboard" element={<PrivateCapitalDashboard />} />
           <Route path="/personal-data" element={<PersonalData />} />
           <Route path="/investment-focus" element={<InvestmentFocus />} />
+          <Route path="/edit-sectors" element={<EditSectors />} />
           <Route path="/pitching-sessions" element={<PitchingSessions />} />
           <Route path="/secondaries" element={<Secondaries />} />
           <Route path="/investment-requests" element={<InvestmentRequests />} />
