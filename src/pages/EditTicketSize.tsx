@@ -115,15 +115,15 @@ const EditTicketSize = () => {
                 <Slider
                   value={[minTicket, maxTicket]}
                   onValueChange={handleSliderChange}
-                  min={50}
-                  max={50000}
-                  step={50}
+                  min={20}
+                  max={100000}
+                  step={10}
                   className="w-full"
                 />
               </div>
               <div className="flex justify-between text-xs text-muted-foreground">
-                <span>€50K</span>
-                <span>€50M</span>
+                <span>€20K</span>
+                <span>€100M</span>
               </div>
             </div>
 
