@@ -138,12 +138,12 @@ const ExitPreparation = () => {
 
         {/* Tabs for Offers and Requests */}
         <Tabs defaultValue="requests" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 rounded-xl bg-muted p-1">
-            <TabsTrigger value="requests" className="rounded-lg data-[state=active]:bg-background">
+          <TabsList className="grid w-full grid-cols-2 rounded-xl bg-card p-1 border border-border">
+            <TabsTrigger value="requests" className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               <Search className="w-4 h-4 mr-2" />
               Requests (Buy)
             </TabsTrigger>
-            <TabsTrigger value="offers" className="rounded-lg data-[state=active]:bg-background">
+            <TabsTrigger value="offers" className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               <Send className="w-4 h-4 mr-2" />
               Offers (Sell)
             </TabsTrigger>
