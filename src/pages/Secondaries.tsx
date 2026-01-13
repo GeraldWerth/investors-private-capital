@@ -7,85 +7,16 @@ import { Input } from "@/components/ui/input";
 import { 
   TrendingUp, ArrowLeft, Plus,
   Euro, Building2, Search,
-  BarChart3, Clock, Repeat, Filter, Send
+  BarChart3, Clock, Repeat, Filter, Send, Settings
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { useSecondariesData } from "@/hooks/useSecondariesData";
 
 const ExitPreparation = () => {
   const { toast } = useToast();
   const [showOfferForm, setShowOfferForm] = useState(false);
-
-  const availableSecondaries = [
-    {
-      id: 1,
-      company: "SolarFlow GmbH",
-      sector: "CleanTech",
-      sharesAvailable: "8%",
-      valuation: "€45M",
-      askingPrice: "€3.6M",
-      seller: "Early Investor",
-      urgency: "High",
-      highlights: ["Profitable", "Strong Growth", "Strategic Buyer Interest"]
-    },
-    {
-      id: 2,
-      company: "GridOptimize",
-      sector: "Smart Grid",
-      sharesAvailable: "5%",
-      valuation: "€28M",
-      askingPrice: "€1.4M",
-      seller: "Founder",
-      urgency: "Medium",
-      highlights: ["Series B Upcoming", "Key Partnerships"]
-    },
-    {
-      id: 3,
-      company: "BatteryNext",
-      sector: "Energy Storage",
-      sharesAvailable: "12%",
-      valuation: "€62M",
-      askingPrice: "€7.4M",
-      seller: "VC Fund",
-      urgency: "Low",
-      highlights: ["Market Leader", "Patent Portfolio"]
-    }
-  ];
-
-  const myOffers = [
-    {
-      id: 1,
-      company: "WindTech Solutions",
-      sector: "Wind Energy",
-      sharesOffered: "10%",
-      valuation: "€32M",
-      askingPrice: "€3.2M",
-      status: "Active",
-      inquiries: 4,
-      createdAt: "Jan 5, 2026"
-    },
-    {
-      id: 2,
-      company: "SmartCharge Inc",
-      sector: "EV Charging",
-      sharesOffered: "6%",
-      valuation: "€18M",
-      askingPrice: "€1.1M",
-      status: "Pending Review",
-      inquiries: 0,
-      createdAt: "Jan 8, 2026"
-    }
-  ];
-
-  const activeNegotiations = [
-    { company: "EnergyAI Platform", shares: "6%", stage: "Due Diligence", lastUpdate: "2 days ago" },
-    { company: "WindTech Pro", shares: "4%", stage: "Term Sheet", lastUpdate: "1 week ago" }
-  ];
-
-  const portfolioExits = [
-    { company: "CleanEnergy Co", exitType: "Trade Sale", multiple: "4.2x", date: "Dec 2025" },
-    { company: "SmartMeter GmbH", exitType: "Secondary", multiple: "2.8x", date: "Oct 2025" }
-  ];
+  const { availableSecondaries, myOffers, negotiations, exits } = useSecondariesData();
 
   const getUrgencyColor = (urgency: string) => {
     switch (urgency) {
@@ -233,12 +164,19 @@ const ExitPreparation = () => {
 
             {/* Available Secondaries */}
             <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                  <Repeat className="w-5 h-5 text-primary" />
-                  Available Secondary Shares
-                </CardTitle>
-                <CardDescription>Explore secondary market opportunities from our network</CardDescription>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                    <Repeat className="w-5 h-5 text-primary" />
+                    Available Secondary Shares
+                  </CardTitle>
+                  <CardDescription>Explore secondary market opportunities from our network</CardDescription>
+                </div>
+                <Link to="/edit-available-secondaries">
+                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                    <Settings className="w-4 h-4" />
+                  </Button>
+                </Link>
               </CardHeader>
               <CardContent className="space-y-4">
                 {availableSecondaries.map((secondary) => (
@@ -302,17 +240,24 @@ const ExitPreparation = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Active Negotiations */}
               <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-accent" />
-                    Active Negotiations
-                  </CardTitle>
-                  <CardDescription>Your ongoing secondary deals</CardDescription>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <div>
+                    <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                      <Clock className="w-5 h-5 text-accent" />
+                      Active Negotiations
+                    </CardTitle>
+                    <CardDescription>Your ongoing secondary deals</CardDescription>
+                  </div>
+                  <Link to="/edit-negotiations">
+                    <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                      <Settings className="w-4 h-4" />
+                    </Button>
+                  </Link>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  {activeNegotiations.map((deal, index) => (
+                  {negotiations.map((deal) => (
                     <div 
-                      key={index}
+                      key={deal.id}
                       className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border"
                     >
                       <div>
@@ -327,17 +272,24 @@ const ExitPreparation = () => {
 
               {/* Portfolio Exits */}
               <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-primary" />
-                    Recent Exits
-                  </CardTitle>
-                  <CardDescription>Your successful portfolio exits</CardDescription>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <div>
+                    <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                      <TrendingUp className="w-5 h-5 text-primary" />
+                      Recent Exits
+                    </CardTitle>
+                    <CardDescription>Your successful portfolio exits</CardDescription>
+                  </div>
+                  <Link to="/edit-exits">
+                    <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                      <Settings className="w-4 h-4" />
+                    </Button>
+                  </Link>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  {portfolioExits.map((exit, index) => (
+                  {exits.map((exit) => (
                     <div 
-                      key={index}
+                      key={exit.id}
                       className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border"
                     >
                       <div className="flex items-center gap-3">
@@ -430,12 +382,19 @@ const ExitPreparation = () => {
 
             {/* My Offers */}
             <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                  <Send className="w-5 h-5 text-primary" />
-                  My Offers
-                </CardTitle>
-                <CardDescription>Your secondary shares listed for sale</CardDescription>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                    <Send className="w-5 h-5 text-primary" />
+                    My Offers
+                  </CardTitle>
+                  <CardDescription>Your secondary shares listed for sale</CardDescription>
+                </div>
+                <Link to="/edit-my-offers">
+                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                    <Settings className="w-4 h-4" />
+                  </Button>
+                </Link>
               </CardHeader>
               <CardContent className="space-y-4">
                 {myOffers.map((offer) => (

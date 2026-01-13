@@ -16,6 +16,10 @@ import EditInvestments from "./pages/EditInvestments";
 import PitchingSessions from "./pages/PitchingSessions";
 import Secondaries from "./pages/Secondaries";
 import InvestmentRequests from "./pages/InvestmentRequests";
+import EditAvailableSecondaries from "./pages/EditAvailableSecondaries";
+import EditMyOffers from "./pages/EditMyOffers";
+import EditNegotiations from "./pages/EditNegotiations";
+import EditExits from "./pages/EditExits";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +43,10 @@ const App = () => (
           <Route path="/edit-investments" element={<EditInvestments />} />
           <Route path="/pitching-sessions" element={<PitchingSessions />} />
           <Route path="/secondaries" element={<Secondaries />} />
+          <Route path="/edit-available-secondaries" element={<EditAvailableSecondaries />} />
+          <Route path="/edit-my-offers" element={<EditMyOffers />} />
+          <Route path="/edit-negotiations" element={<EditNegotiations />} />
+          <Route path="/edit-exits" element={<EditExits />} />
           <Route path="/investment-requests" element={<InvestmentRequests />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
