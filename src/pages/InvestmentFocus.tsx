@@ -10,14 +10,17 @@ import {
   Factory, Zap, Leaf, Globe, Shield
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useInvestmentCriteria } from "@/hooks/useInvestmentCriteria";
 
 const FundingRounds = () => {
   const [investmentFrequency, setInvestmentFrequency] = useState("");
+  const { getSectorNames, getStageNames, getRegionSummary } = useInvestmentCriteria();
+  
   const investmentCriteria = {
-    sectors: ["CleanTech", "Energy Storage", "Smart Grid", "Renewables"],
-    stages: ["Seed", "Series A", "Series B"],
+    sectors: getSectorNames(),
+    stages: getStageNames(),
     ticketSize: { min: "500K", max: "5M" },
-    geography: ["DACH", "Nordics", "Benelux"]
+    geography: getRegionSummary()
   };
 
   const sectorFocus = [

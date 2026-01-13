@@ -5,8 +5,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowLeft, Target, Save, Sprout, Rocket, TrendingUp, Building2, Crown, Briefcase } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
+import { useInvestmentCriteria } from "@/hooks/useInvestmentCriteria";
 
-const availableStages = [
+const stageDetails = [
   { id: "pre-seed", name: "Pre-Seed", icon: Sprout, description: "Very early stage, idea validation and initial development" },
   { id: "seed", name: "Seed", icon: Sprout, description: "Early product development and market validation" },
   { id: "series-a", name: "Series A", icon: Rocket, description: "Product-market fit and initial scaling" },
@@ -19,9 +20,8 @@ const availableStages = [
 
 const EditStages = () => {
   const navigate = useNavigate();
-  const [selectedStages, setSelectedStages] = useState<string[]>([
-    "seed", "series-a", "series-b"
-  ]);
+  const { stages, saveStages } = useInvestmentCriteria();
+  const [selectedStages, setSelectedStages] = useState<string[]>(stages);
 
   const handleStageToggle = (stageId: string) => {
     setSelectedStages(prev => 
@@ -32,6 +32,7 @@ const EditStages = () => {
   };
 
   const handleSave = () => {
+    saveStages(selectedStages);
     toast({
       title: "Investment Stages Saved",
       description: `${selectedStages.length} investment stages have been updated.`,
@@ -83,7 +84,7 @@ const EditStages = () => {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {availableStages.map((stage) => {
+              {stageDetails.map((stage) => {
                 const isSelected = selectedStages.includes(stage.id);
                 return (
                   <div

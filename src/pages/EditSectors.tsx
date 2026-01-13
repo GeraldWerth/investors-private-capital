@@ -5,8 +5,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowLeft, Target, Save, Leaf, Zap, Globe, Factory, Shield, Car, Building, Wind, Sun, Droplets, Flame, Atom, Battery, Cable, Gauge, CircuitBoard, Waves } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
+import { useInvestmentCriteria } from "@/hooks/useInvestmentCriteria";
 
-const availableSectors = [
+const sectorDetails = [
   { id: "cleantech", name: "CleanTech", icon: Leaf, description: "Clean energy and sustainable technologies" },
   { id: "energy-storage", name: "Energy Storage", icon: Battery, description: "Batteries, hydrogen storage, and grid solutions" },
   { id: "smart-grid", name: "Smart Grid", icon: CircuitBoard, description: "Intelligent power distribution and management" },
@@ -31,9 +32,8 @@ const availableSectors = [
 
 const EditSectors = () => {
   const navigate = useNavigate();
-  const [selectedSectors, setSelectedSectors] = useState<string[]>([
-    "cleantech", "energy-storage", "smart-grid", "renewables"
-  ]);
+  const { sectors, saveSectors } = useInvestmentCriteria();
+  const [selectedSectors, setSelectedSectors] = useState<string[]>(sectors);
 
   const handleSectorToggle = (sectorId: string) => {
     setSelectedSectors(prev => 
@@ -44,6 +44,7 @@ const EditSectors = () => {
   };
 
   const handleSave = () => {
+    saveSectors(selectedSectors);
     toast({
       title: "Sectors Saved",
       description: `${selectedSectors.length} target sectors have been updated.`,
@@ -95,7 +96,7 @@ const EditSectors = () => {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {availableSectors.map((sector) => {
+              {sectorDetails.map((sector) => {
                 const isSelected = selectedSectors.includes(sector.id);
                 return (
                   <div
