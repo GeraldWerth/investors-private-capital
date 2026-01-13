@@ -17,6 +17,7 @@ const Partners = () => {
       description: "Rechtliche Beratung und regulatorische Unterstützung",
       partners: [
         { 
+          id: "morrison-foerster",
           name: "Morrison & Foerster LLP", 
           specialty: "M&A, Venture Capital",
           location: "Frankfurt, München",
@@ -27,6 +28,7 @@ const Partners = () => {
           experience: "25+ Jahre im Energiesektor"
         },
         { 
+          id: "hengeler-mueller",
           name: "Hengeler Mueller", 
           specialty: "Gesellschaftsrecht, Compliance",
           location: "Berlin, Düsseldorf",
@@ -37,6 +39,7 @@ const Partners = () => {
           experience: "30+ Jahre Erfahrung"
         },
         { 
+          id: "noerr",
           name: "Noerr LLP", 
           specialty: "Regulierung, Energierecht",
           location: "München, Hamburg",
@@ -57,6 +60,7 @@ const Partners = () => {
       description: "Technische Bewertung und Due Diligence",
       partners: [
         { 
+          id: "tuv-rheinland",
           name: "TÜV Rheinland", 
           specialty: "Technische Prüfung, Zertifizierung",
           location: "Köln, deutschlandweit",
@@ -67,6 +71,7 @@ const Partners = () => {
           experience: "150+ Jahre Expertise"
         },
         { 
+          id: "dnv",
           name: "DNV", 
           specialty: "Energy Due Diligence",
           location: "Hamburg, Oslo",
@@ -77,6 +82,7 @@ const Partners = () => {
           experience: "Globaler Marktführer"
         },
         { 
+          id: "fraunhofer-ise",
           name: "Fraunhofer ISE", 
           specialty: "Technologiebewertung",
           location: "Freiburg",
@@ -97,6 +103,7 @@ const Partners = () => {
       description: "Nachhaltigkeitsbewertung und Zertifizierungen",
       partners: [
         { 
+          id: "sustainalytics",
           name: "Sustainalytics", 
           specialty: "ESG Ratings & Research",
           location: "Amsterdam, München",
@@ -107,6 +114,7 @@ const Partners = () => {
           experience: "30+ Jahre ESG-Expertise"
         },
         { 
+          id: "ecovadis",
           name: "EcoVadis", 
           specialty: "Sustainability Ratings",
           location: "Paris, Berlin",
@@ -117,6 +125,7 @@ const Partners = () => {
           experience: "100.000+ bewertete Unternehmen"
         },
         { 
+          id: "climate-partner",
           name: "Climate Partner", 
           specialty: "Carbon Footprint, Klimastrategie",
           location: "München",
@@ -137,6 +146,7 @@ const Partners = () => {
       description: "Strategische Beratung und Marktanalysen",
       partners: [
         { 
+          id: "roland-berger",
           name: "Roland Berger", 
           specialty: "Strategie, Energy & Utilities",
           location: "München, Berlin",
@@ -147,6 +157,7 @@ const Partners = () => {
           experience: "Europas führende Strategieberatung"
         },
         { 
+          id: "mckinsey",
           name: "McKinsey & Company", 
           specialty: "Transformation, Sustainability",
           location: "Frankfurt, Düsseldorf",
@@ -157,6 +168,7 @@ const Partners = () => {
           experience: "Globale #1 Managementberatung"
         },
         { 
+          id: "aurora-energy",
           name: "Aurora Energy Research", 
           specialty: "Marktanalysen, Prognosen",
           location: "Oxford, Berlin",
@@ -305,10 +317,12 @@ const Partners = () => {
                             <Mail className="w-4 h-4 mr-2" />
                             Kontakt aufnehmen
                           </Button>
-                          <Button size="sm" variant="outline" className="border-primary/30 text-primary hover:bg-primary/10">
-                            <Users className="w-4 h-4 mr-2" />
-                            Profil
-                          </Button>
+                          <Link to={`/partners/${partner.id}`}>
+                            <Button size="sm" variant="outline" className="border-primary/30 text-primary hover:bg-primary/10">
+                              <Users className="w-4 h-4 mr-2" />
+                              Profil
+                            </Button>
+                          </Link>
                         </div>
                       </div>
                     ))}
