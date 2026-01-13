@@ -1,13 +1,86 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
 import { 
   ArrowLeft, Users, TrendingUp, ChevronRight,
-  Scale, Cpu, Leaf, LineChart, MapPin, Mail, Phone, Briefcase, Award
+  Scale, Cpu, Leaf, LineChart, MapPin, Mail, Phone, Briefcase, Award, Send
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name ist erforderlich").max(100, "Name darf maximal 100 Zeichen haben"),
+  email: z.string().trim().email("Ungültige E-Mail-Adresse").max(255, "E-Mail darf maximal 255 Zeichen haben"),
+  company: z.string().trim().max(100, "Unternehmen darf maximal 100 Zeichen haben").optional(),
+  phone: z.string().trim().max(30, "Telefonnummer darf maximal 30 Zeichen haben").optional(),
+  subject: z.string().trim().min(1, "Betreff ist erforderlich").max(200, "Betreff darf maximal 200 Zeichen haben"),
+  message: z.string().trim().min(1, "Nachricht ist erforderlich").max(2000, "Nachricht darf maximal 2000 Zeichen haben")
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 const Partners = () => {
+  const { toast } = useToast();
+  const [showContactDialog, setShowContactDialog] = useState(false);
+  const [selectedPartnerForContact, setSelectedPartnerForContact] = useState<{ name: string; email: string } | null>(null);
+  const [contactForm, setContactForm] = useState<ContactFormData>({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    subject: "",
+    message: ""
+  });
+  const [formErrors, setFormErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleOpenContactDialog = (partnerName: string, partnerEmail: string) => {
+    setSelectedPartnerForContact({ name: partnerName, email: partnerEmail });
+    setContactForm({
+      name: "",
+      email: "",
+      company: "",
+      phone: "",
+      subject: `Anfrage über EIN Energy Portal`,
+      message: ""
+    });
+    setFormErrors({});
+    setShowContactDialog(true);
+  };
+
+  const handleContactSubmit = () => {
+    const result = contactSchema.safeParse(contactForm);
+    
+    if (!result.success) {
+      const errors: Partial<Record<keyof ContactFormData, string>> = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          errors[err.path[0] as keyof ContactFormData] = err.message;
+        }
+      });
+      setFormErrors(errors);
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    // Simulate sending
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setShowContactDialog(false);
+      toast({
+        title: "Nachricht gesendet",
+        description: `Ihre Anfrage wurde erfolgreich an ${selectedPartnerForContact?.name} gesendet.`,
+      });
+    }, 1000);
+  };
+
   const partnerCategories = [
     {
       id: "legal",
@@ -313,7 +386,14 @@ const Partners = () => {
                         </div>
 
                         <div className="flex gap-3 pt-3 border-t border-border">
-                          <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                          <Button 
+                            size="sm" 
+                            className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleOpenContactDialog(partner.name, partner.email);
+                            }}
+                          >
                             <Mail className="w-4 h-4 mr-2" />
                             Kontakt aufnehmen
                           </Button>
@@ -339,6 +419,130 @@ const Partners = () => {
             </TabsContent>
           ))}
         </Tabs>
+
+        {/* Contact Dialog */}
+        <Dialog open={showContactDialog} onOpenChange={setShowContactDialog}>
+          <DialogContent className="sm:max-w-lg">
+            <DialogHeader>
+              <DialogTitle>Kontakt aufnehmen</DialogTitle>
+              <DialogDescription>
+                Senden Sie eine Nachricht an {selectedPartnerForContact?.name}
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="space-y-4 py-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="contact-name">Name *</Label>
+                  <Input
+                    id="contact-name"
+                    value={contactForm.name}
+                    onChange={(e) => {
+                      setContactForm({ ...contactForm, name: e.target.value });
+                      if (formErrors.name) setFormErrors({ ...formErrors, name: undefined });
+                    }}
+                    placeholder="Ihr Name"
+                    className={formErrors.name ? "border-destructive" : ""}
+                  />
+                  {formErrors.name && <p className="text-xs text-destructive">{formErrors.name}</p>}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="contact-email">E-Mail *</Label>
+                  <Input
+                    id="contact-email"
+                    type="email"
+                    value={contactForm.email}
+                    onChange={(e) => {
+                      setContactForm({ ...contactForm, email: e.target.value });
+                      if (formErrors.email) setFormErrors({ ...formErrors, email: undefined });
+                    }}
+                    placeholder="ihre@email.de"
+                    className={formErrors.email ? "border-destructive" : ""}
+                  />
+                  {formErrors.email && <p className="text-xs text-destructive">{formErrors.email}</p>}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="contact-company">Unternehmen</Label>
+                  <Input
+                    id="contact-company"
+                    value={contactForm.company}
+                    onChange={(e) => setContactForm({ ...contactForm, company: e.target.value })}
+                    placeholder="Ihr Unternehmen"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="contact-phone">Telefon</Label>
+                  <Input
+                    id="contact-phone"
+                    type="tel"
+                    value={contactForm.phone}
+                    onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                    placeholder="+49 123 456789"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="contact-subject">Betreff *</Label>
+                <Input
+                  id="contact-subject"
+                  value={contactForm.subject}
+                  onChange={(e) => {
+                    setContactForm({ ...contactForm, subject: e.target.value });
+                    if (formErrors.subject) setFormErrors({ ...formErrors, subject: undefined });
+                  }}
+                  placeholder="Betreff Ihrer Anfrage"
+                  className={formErrors.subject ? "border-destructive" : ""}
+                />
+                {formErrors.subject && <p className="text-xs text-destructive">{formErrors.subject}</p>}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="contact-message">Nachricht *</Label>
+                <Textarea
+                  id="contact-message"
+                  value={contactForm.message}
+                  onChange={(e) => {
+                    setContactForm({ ...contactForm, message: e.target.value });
+                    if (formErrors.message) setFormErrors({ ...formErrors, message: undefined });
+                  }}
+                  placeholder="Ihre Nachricht..."
+                  rows={4}
+                  className={formErrors.message ? "border-destructive" : ""}
+                />
+                {formErrors.message && <p className="text-xs text-destructive">{formErrors.message}</p>}
+                <p className="text-xs text-muted-foreground text-right">
+                  {contactForm.message.length} / 2000 Zeichen
+                </p>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-3">
+              <Button variant="outline" onClick={() => setShowContactDialog(false)}>
+                Abbrechen
+              </Button>
+              <Button 
+                onClick={handleContactSubmit}
+                disabled={isSubmitting}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              >
+                {isSubmitting ? (
+                  "Wird gesendet..."
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    Nachricht senden
+                  </>
+                )}
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </main>
     </div>
   );
