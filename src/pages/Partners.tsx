@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   ArrowLeft, Users, TrendingUp, ChevronRight,
   Scale, Cpu, Leaf, LineChart
@@ -9,8 +10,10 @@ import { Link } from "react-router-dom";
 const Partners = () => {
   const partnerCategories = [
     {
+      id: "legal",
       icon: Scale,
-      title: "Legal, Regulatory & Compliance Partners",
+      title: "Legal & Compliance",
+      fullTitle: "Legal, Regulatory & Compliance Partners",
       description: "Rechtliche Beratung und regulatorische Unterstützung",
       partners: [
         { name: "Morrison & Foerster LLP", specialty: "M&A, Venture Capital" },
@@ -20,8 +23,10 @@ const Partners = () => {
       color: "bg-blue-500/10 text-blue-600"
     },
     {
+      id: "engineering",
       icon: Cpu,
-      title: "Engineering, Technical & Due Diligence Partners",
+      title: "Engineering & Due Diligence",
+      fullTitle: "Engineering, Technical & Due Diligence Partners",
       description: "Technische Bewertung und Due Diligence",
       partners: [
         { name: "TÜV Rheinland", specialty: "Technische Prüfung, Zertifizierung" },
@@ -31,8 +36,10 @@ const Partners = () => {
       color: "bg-orange-500/10 text-orange-600"
     },
     {
+      id: "esg",
       icon: Leaf,
-      title: "ESG, Certification & Sustainability Partners",
+      title: "ESG & Sustainability",
+      fullTitle: "ESG, Certification & Sustainability Partners",
       description: "Nachhaltigkeitsbewertung und Zertifizierungen",
       partners: [
         { name: "Sustainalytics", specialty: "ESG Ratings & Research" },
@@ -42,8 +49,10 @@ const Partners = () => {
       color: "bg-green-500/10 text-green-600"
     },
     {
+      id: "transaction",
       icon: LineChart,
-      title: "Transaction, Strategy & Market Advisory Partners",
+      title: "Transaction & Strategy",
+      fullTitle: "Transaction, Strategy & Market Advisory Partners",
       description: "Strategische Beratung und Marktanalysen",
       partners: [
         { name: "Roland Berger", specialty: "Strategie, Energy & Utilities" },
@@ -101,50 +110,65 @@ const Partners = () => {
           </div>
         </div>
 
-        {/* Partner Categories */}
-        <div className="grid gap-6">
-          {partnerCategories.map((category, index) => (
-            <Card key={index} className="overflow-hidden">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${category.color}`}>
-                    <category.icon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground">
-                      {category.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {category.description}
-                    </p>
-                  </div>
-                </div>
+        {/* Tabs */}
+        <Tabs defaultValue="legal" className="w-full">
+          <TabsList className="w-full grid grid-cols-2 md:grid-cols-4 h-auto gap-2 bg-transparent p-0 mb-6">
+            {partnerCategories.map((category) => (
+              <TabsTrigger 
+                key={category.id}
+                value={category.id}
+                className="flex flex-col items-center gap-2 p-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground bg-muted rounded-xl border border-border data-[state=active]:border-primary transition-all"
+              >
+                <category.icon className="w-5 h-5" />
+                <span className="text-xs font-medium text-center leading-tight">{category.title}</span>
+              </TabsTrigger>
+            ))}
+          </TabsList>
 
-                <div className="space-y-3 ml-16">
-                  {category.partners.map((partner, partnerIndex) => (
-                    <div 
-                      key={partnerIndex}
-                      className="flex items-center justify-between p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors group cursor-pointer"
-                    >
-                      <div>
-                        <p className="font-medium text-foreground">{partner.name}</p>
-                        <p className="text-sm text-muted-foreground">{partner.specialty}</p>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+          {partnerCategories.map((category) => (
+            <TabsContent key={category.id} value={category.id}>
+              <Card className="overflow-hidden">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${category.color}`}>
+                      <category.icon className="w-6 h-6" />
                     </div>
-                  ))}
-                </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground">
+                        {category.fullTitle}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {category.description}
+                      </p>
+                    </div>
+                  </div>
 
-                <div className="mt-4 ml-16">
-                  <Button variant="outline" size="sm" className="text-primary border-primary/30 hover:bg-primary/10">
-                    Alle Partner anzeigen
-                    <ChevronRight className="w-4 h-4 ml-1" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="space-y-3">
+                    {category.partners.map((partner, partnerIndex) => (
+                      <div 
+                        key={partnerIndex}
+                        className="flex items-center justify-between p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors group cursor-pointer"
+                      >
+                        <div>
+                          <p className="font-medium text-foreground">{partner.name}</p>
+                          <p className="text-sm text-muted-foreground">{partner.specialty}</p>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-6">
+                    <Button variant="outline" className="text-primary border-primary/30 hover:bg-primary/10">
+                      Alle Partner anzeigen
+                      <ChevronRight className="w-4 h-4 ml-1" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
           ))}
-        </div>
+        </Tabs>
 
         {/* Contact Section */}
         <Card className="mt-8 bg-muted/50">
