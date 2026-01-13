@@ -178,7 +178,7 @@ const EditAvailableSecondaries = () => {
                 className="rounded-xl md:col-span-2"
               />
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-3 justify-end">
               <Button 
                 variant="outline" 
                 onClick={() => navigate("/secondaries")}
