@@ -4,43 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { 
   TrendingUp, Users, ArrowLeft,
   Calendar, Video, CheckCircle2,
-  Clock, Bell, Info
+  Clock, Bell
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const PilotProjects = () => {
   const [registrations, setRegistrations] = useState<{ [key: number]: boolean }>({});
   const [autoRegister, setAutoRegister] = useState(false);
-  const [showRegistrationDialog, setShowRegistrationDialog] = useState(false);
-  const [selectedSessionId, setSelectedSessionId] = useState<number | null>(null);
 
-  const handleRegisterClick = (id: number, isRegistered: boolean) => {
-    if (isRegistered) {
-      // Wenn bereits angemeldet, direkt abmelden
-      setRegistrations(prev => ({ ...prev, [id]: false }));
-    } else {
-      // Wenn nicht angemeldet, Dialog anzeigen
-      setSelectedSessionId(id);
-      setShowRegistrationDialog(true);
-    }
-  };
-
-  const confirmRegistration = () => {
-    if (selectedSessionId !== null) {
-      setRegistrations(prev => ({ ...prev, [selectedSessionId]: true }));
-    }
-    setShowRegistrationDialog(false);
-    setSelectedSessionId(null);
+  const toggleRegistration = (id: number) => {
+    setRegistrations(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
   const upcomingSessions = [
@@ -70,9 +46,6 @@ const PilotProjects = () => {
     }
   ];
 
-  const toggleRegistration = (id: number) => {
-    setRegistrations(prev => ({ ...prev, [id]: !prev[id] }));
-  };
 
 
   return (
@@ -205,7 +178,7 @@ const PilotProjects = () => {
                     </span>
                   </div>
                   <Button 
-                    onClick={() => handleRegisterClick(session.id, registrations[session.id])}
+                    onClick={() => toggleRegistration(session.id)}
                     className={`w-full rounded-xl ${registrations[session.id] 
                       ? 'bg-primary/20 text-primary hover:bg-primary/30 border border-primary/30' 
                       : 'bg-primary hover:bg-primary/90 text-primary-foreground'}`}
@@ -262,41 +235,6 @@ const PilotProjects = () => {
 
       </main>
 
-      {/* Registration Dialog */}
-      <Dialog open={showRegistrationDialog} onOpenChange={setShowRegistrationDialog}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-xl">
-              <Info className="w-5 h-5 text-primary" />
-              Anmeldung zu unseren monatlichen Pitchings
-            </DialogTitle>
-          </DialogHeader>
-          <DialogDescription className="text-muted-foreground space-y-4 pt-2">
-            <p>
-              Wir stellen jeden Monat die besten Startups- und Scaleups passenden Investoren vor. Eine Anmeldung ist nur möglich, wenn im Vorfeld alle Unterlagen eingereicht wurden.
-            </p>
-            <p>
-              Die Unterlagen können Sie im Bereich <span className="font-semibold text-foreground">Data Room</span> einreichen. Vor jeder Zulassung werden die eingereichten Unterlagen geprüft und wir werden uns dann mit Ihnen in Verbindung setzen.
-            </p>
-          </DialogDescription>
-          <div className="flex gap-3 mt-4">
-            <Button 
-              variant="outline" 
-              onClick={() => setShowRegistrationDialog(false)}
-              className="flex-1"
-            >
-              Abbrechen
-            </Button>
-            <Button 
-              onClick={confirmRegistration}
-              className="flex-1"
-            >
-              <CheckCircle2 className="w-4 h-4 mr-2" />
-              Verstanden & Anmelden
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
