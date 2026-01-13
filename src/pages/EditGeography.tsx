@@ -2,46 +2,294 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, Target, Save, Globe, MapPin } from "lucide-react";
+import { ArrowLeft, Save, Globe, ChevronDown, ChevronRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
-const availableRegions = [
-  { id: "dach", name: "DACH", icon: MapPin, description: "Germany, Austria, Switzerland" },
-  { id: "nordics", name: "Nordics", icon: MapPin, description: "Sweden, Norway, Denmark, Finland, Iceland" },
-  { id: "benelux", name: "Benelux", icon: MapPin, description: "Belgium, Netherlands, Luxembourg" },
-  { id: "uk-ireland", name: "UK & Ireland", icon: MapPin, description: "United Kingdom and Ireland" },
-  { id: "france", name: "France", icon: MapPin, description: "France and Monaco" },
-  { id: "iberia", name: "Iberia", icon: MapPin, description: "Spain and Portugal" },
-  { id: "italy", name: "Italy", icon: MapPin, description: "Italy and San Marino" },
-  { id: "cee", name: "Central & Eastern Europe", icon: MapPin, description: "Poland, Czech Republic, Hungary, Romania, etc." },
-  { id: "baltics", name: "Baltics", icon: MapPin, description: "Estonia, Latvia, Lithuania" },
-  { id: "southeast-europe", name: "Southeast Europe", icon: MapPin, description: "Greece, Bulgaria, Croatia, Slovenia, etc." },
-  { id: "north-america", name: "North America", icon: Globe, description: "USA and Canada" },
-  { id: "israel", name: "Israel", icon: MapPin, description: "Israel and Middle East tech hub" },
-  { id: "asia-pacific", name: "Asia Pacific", icon: Globe, description: "Japan, South Korea, Singapore, Australia" },
-  { id: "india", name: "India", icon: Globe, description: "Indian subcontinent" },
-  { id: "latam", name: "Latin America", icon: Globe, description: "Brazil, Mexico, Argentina, Chile, etc." },
+interface Country {
+  id: string;
+  name: string;
+}
+
+interface Region {
+  id: string;
+  name: string;
+  countries: Country[];
+}
+
+interface Continent {
+  id: string;
+  name: string;
+  regions: Region[];
+}
+
+const geographyData: Continent[] = [
+  {
+    id: "europe",
+    name: "Europe",
+    regions: [
+      {
+        id: "western-europe",
+        name: "Western Europe",
+        countries: [
+          { id: "de", name: "Germany" },
+          { id: "fr", name: "France" },
+          { id: "nl", name: "Netherlands" },
+          { id: "be", name: "Belgium" },
+          { id: "lu", name: "Luxembourg" },
+          { id: "at", name: "Austria" },
+          { id: "ch", name: "Switzerland" },
+        ]
+      },
+      {
+        id: "northern-europe",
+        name: "Northern Europe",
+        countries: [
+          { id: "uk", name: "United Kingdom" },
+          { id: "ie", name: "Ireland" },
+          { id: "se", name: "Sweden" },
+          { id: "no", name: "Norway" },
+          { id: "dk", name: "Denmark" },
+          { id: "fi", name: "Finland" },
+          { id: "is", name: "Iceland" },
+        ]
+      },
+      {
+        id: "southern-europe",
+        name: "Southern Europe",
+        countries: [
+          { id: "es", name: "Spain" },
+          { id: "pt", name: "Portugal" },
+          { id: "it", name: "Italy" },
+          { id: "gr", name: "Greece" },
+          { id: "mt", name: "Malta" },
+        ]
+      },
+      {
+        id: "central-europe",
+        name: "Central Europe",
+        countries: [
+          { id: "pl", name: "Poland" },
+          { id: "cz", name: "Czech Republic" },
+          { id: "sk", name: "Slovakia" },
+          { id: "hu", name: "Hungary" },
+          { id: "si", name: "Slovenia" },
+        ]
+      },
+      {
+        id: "eastern-europe",
+        name: "Eastern Europe",
+        countries: [
+          { id: "ro", name: "Romania" },
+          { id: "bg", name: "Bulgaria" },
+          { id: "ua", name: "Ukraine" },
+          { id: "hr", name: "Croatia" },
+          { id: "rs", name: "Serbia" },
+        ]
+      },
+      {
+        id: "baltic-states",
+        name: "Baltic States",
+        countries: [
+          { id: "ee", name: "Estonia" },
+          { id: "lv", name: "Latvia" },
+          { id: "lt", name: "Lithuania" },
+        ]
+      },
+    ]
+  },
+  {
+    id: "north-america",
+    name: "North America",
+    regions: [
+      {
+        id: "north-america-main",
+        name: "North America",
+        countries: [
+          { id: "us", name: "United States" },
+          { id: "ca", name: "Canada" },
+          { id: "mx", name: "Mexico" },
+        ]
+      },
+    ]
+  },
+  {
+    id: "asia",
+    name: "Asia",
+    regions: [
+      {
+        id: "east-asia",
+        name: "East Asia",
+        countries: [
+          { id: "jp", name: "Japan" },
+          { id: "kr", name: "South Korea" },
+          { id: "cn", name: "China" },
+          { id: "tw", name: "Taiwan" },
+          { id: "hk", name: "Hong Kong" },
+        ]
+      },
+      {
+        id: "southeast-asia",
+        name: "Southeast Asia",
+        countries: [
+          { id: "sg", name: "Singapore" },
+          { id: "my", name: "Malaysia" },
+          { id: "th", name: "Thailand" },
+          { id: "id", name: "Indonesia" },
+          { id: "vn", name: "Vietnam" },
+          { id: "ph", name: "Philippines" },
+        ]
+      },
+      {
+        id: "south-asia",
+        name: "South Asia",
+        countries: [
+          { id: "in", name: "India" },
+          { id: "pk", name: "Pakistan" },
+          { id: "bd", name: "Bangladesh" },
+        ]
+      },
+      {
+        id: "middle-east",
+        name: "Middle East",
+        countries: [
+          { id: "il", name: "Israel" },
+          { id: "ae", name: "United Arab Emirates" },
+          { id: "sa", name: "Saudi Arabia" },
+          { id: "qa", name: "Qatar" },
+        ]
+      },
+    ]
+  },
+  {
+    id: "oceania",
+    name: "Oceania",
+    regions: [
+      {
+        id: "oceania-main",
+        name: "Australia & New Zealand",
+        countries: [
+          { id: "au", name: "Australia" },
+          { id: "nz", name: "New Zealand" },
+        ]
+      },
+    ]
+  },
+  {
+    id: "south-america",
+    name: "South America",
+    regions: [
+      {
+        id: "south-america-main",
+        name: "South America",
+        countries: [
+          { id: "br", name: "Brazil" },
+          { id: "ar", name: "Argentina" },
+          { id: "cl", name: "Chile" },
+          { id: "co", name: "Colombia" },
+          { id: "pe", name: "Peru" },
+        ]
+      },
+    ]
+  },
+  {
+    id: "africa",
+    name: "Africa",
+    regions: [
+      {
+        id: "north-africa",
+        name: "North Africa",
+        countries: [
+          { id: "eg", name: "Egypt" },
+          { id: "ma", name: "Morocco" },
+          { id: "za", name: "South Africa" },
+          { id: "ng", name: "Nigeria" },
+          { id: "ke", name: "Kenya" },
+        ]
+      },
+    ]
+  },
 ];
 
 const EditGeography = () => {
   const navigate = useNavigate();
-  const [selectedRegions, setSelectedRegions] = useState<string[]>([
-    "dach", "nordics", "benelux"
+  const [selectedCountries, setSelectedCountries] = useState<string[]>([
+    "de", "at", "ch", "se", "no", "dk", "fi", "nl", "be", "lu"
   ]);
+  const [openContinents, setOpenContinents] = useState<string[]>(["europe"]);
+  const [openRegions, setOpenRegions] = useState<string[]>(["western-europe", "northern-europe"]);
 
-  const handleRegionToggle = (regionId: string) => {
-    setSelectedRegions(prev => 
-      prev.includes(regionId) 
+  const toggleContinent = (continentId: string) => {
+    setOpenContinents(prev =>
+      prev.includes(continentId)
+        ? prev.filter(id => id !== continentId)
+        : [...prev, continentId]
+    );
+  };
+
+  const toggleRegion = (regionId: string) => {
+    setOpenRegions(prev =>
+      prev.includes(regionId)
         ? prev.filter(id => id !== regionId)
         : [...prev, regionId]
     );
   };
 
+  const handleCountryToggle = (countryId: string) => {
+    setSelectedCountries(prev =>
+      prev.includes(countryId)
+        ? prev.filter(id => id !== countryId)
+        : [...prev, countryId]
+    );
+  };
+
+  const handleRegionToggle = (region: Region) => {
+    const regionCountryIds = region.countries.map(c => c.id);
+    const allSelected = regionCountryIds.every(id => selectedCountries.includes(id));
+    
+    if (allSelected) {
+      setSelectedCountries(prev => prev.filter(id => !regionCountryIds.includes(id)));
+    } else {
+      setSelectedCountries(prev => [...new Set([...prev, ...regionCountryIds])]);
+    }
+  };
+
+  const handleContinentToggle = (continent: Continent) => {
+    const continentCountryIds = continent.regions.flatMap(r => r.countries.map(c => c.id));
+    const allSelected = continentCountryIds.every(id => selectedCountries.includes(id));
+    
+    if (allSelected) {
+      setSelectedCountries(prev => prev.filter(id => !continentCountryIds.includes(id)));
+    } else {
+      setSelectedCountries(prev => [...new Set([...prev, ...continentCountryIds])]);
+    }
+  };
+
+  const isRegionFullySelected = (region: Region) => {
+    return region.countries.every(c => selectedCountries.includes(c.id));
+  };
+
+  const isRegionPartiallySelected = (region: Region) => {
+    const selected = region.countries.filter(c => selectedCountries.includes(c.id));
+    return selected.length > 0 && selected.length < region.countries.length;
+  };
+
+  const isContinentFullySelected = (continent: Continent) => {
+    return continent.regions.every(r => isRegionFullySelected(r));
+  };
+
+  const isContinentPartiallySelected = (continent: Continent) => {
+    const hasAnySelected = continent.regions.some(r => 
+      r.countries.some(c => selectedCountries.includes(c.id))
+    );
+    return hasAnySelected && !isContinentFullySelected(continent);
+  };
+
   const handleSave = () => {
     toast({
       title: "Geographic Focus Saved",
-      description: `${selectedRegions.length} regions have been updated.`,
+      description: `${selectedCountries.length} countries have been selected.`,
     });
     navigate("/investment-focus");
   };
@@ -53,7 +301,7 @@ const EditGeography = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
-              <Link 
+              <Link
                 to="/investment-focus"
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
@@ -67,7 +315,7 @@ const EditGeography = () => {
                 </div>
                 <div>
                   <h1 className="text-lg font-bold text-foreground">Edit Geographic Focus</h1>
-                  <p className="text-xs text-muted-foreground">Select your target regions</p>
+                  <p className="text-xs text-muted-foreground">Select your target regions and countries</p>
                 </div>
               </div>
             </div>
@@ -84,70 +332,129 @@ const EditGeography = () => {
               Select Your Target Regions
             </CardTitle>
             <CardDescription>
-              Choose the geographic regions you want to focus your investments on. 
-              These will be displayed in your Investment Focus overview.
+              Choose continents, regions, or individual countries for your investment focus.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {availableRegions.map((region) => {
-                const isSelected = selectedRegions.includes(region.id);
-                return (
-                  <div
-                    key={region.id}
-                    onClick={() => handleRegionToggle(region.id)}
-                    className={`
-                      p-4 rounded-xl border cursor-pointer transition-all duration-200
-                      ${isSelected 
-                        ? "bg-primary/10 border-primary shadow-md" 
-                        : "bg-secondary border-border hover:border-primary/50 hover:bg-primary/5"
-                      }
-                    `}
-                  >
-                    <div className="flex items-start gap-3">
-                      <Checkbox
-                        checked={isSelected}
-                        onCheckedChange={() => handleRegionToggle(region.id)}
-                        className="mt-1"
-                      />
-                      <div className="flex items-start gap-3 flex-1">
-                        <div className={`
-                          w-8 h-8 rounded-lg flex items-center justify-center shrink-0
-                          ${isSelected ? "bg-primary/20" : "bg-muted"}
-                        `}>
-                          <region.icon className={`w-4 h-4 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className={`font-semibold ${isSelected ? "text-primary" : "text-foreground"}`}>
-                            {region.name}
-                          </h4>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {region.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+          <CardContent className="space-y-4">
+            {geographyData.map((continent) => (
+              <Collapsible
+                key={continent.id}
+                open={openContinents.includes(continent.id)}
+                onOpenChange={() => toggleContinent(continent.id)}
+              >
+                <div className="rounded-xl border border-border overflow-hidden">
+                  {/* Continent Header */}
+                  <div className="flex items-center gap-3 p-4 bg-secondary">
+                    <Checkbox
+                      checked={isContinentFullySelected(continent)}
+                      ref={(el) => {
+                        if (el) {
+                          (el as HTMLButtonElement & { indeterminate: boolean }).indeterminate = isContinentPartiallySelected(continent);
+                        }
+                      }}
+                      onCheckedChange={() => handleContinentToggle(continent)}
+                      className="data-[state=indeterminate]:bg-primary/50"
+                    />
+                    <CollapsibleTrigger className="flex items-center gap-2 flex-1 text-left">
+                      {openContinents.includes(continent.id) ? (
+                        <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                      ) : (
+                        <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                      )}
+                      <span className="font-semibold text-foreground">{continent.name}</span>
+                      <span className="text-xs text-muted-foreground ml-2">
+                        ({continent.regions.flatMap(r => r.countries).filter(c => selectedCountries.includes(c.id)).length} selected)
+                      </span>
+                    </CollapsibleTrigger>
                   </div>
-                );
-              })}
-            </div>
+
+                  <CollapsibleContent>
+                    <div className="p-2 space-y-2">
+                      {continent.regions.map((region) => (
+                        <Collapsible
+                          key={region.id}
+                          open={openRegions.includes(region.id)}
+                          onOpenChange={() => toggleRegion(region.id)}
+                        >
+                          <div className="rounded-lg border border-border/50 overflow-hidden ml-4">
+                            {/* Region Header */}
+                            <div className="flex items-center gap-3 p-3 bg-muted/50">
+                              <Checkbox
+                                checked={isRegionFullySelected(region)}
+                                ref={(el) => {
+                                  if (el) {
+                                    (el as HTMLButtonElement & { indeterminate: boolean }).indeterminate = isRegionPartiallySelected(region);
+                                  }
+                                }}
+                                onCheckedChange={() => handleRegionToggle(region)}
+                                className="data-[state=indeterminate]:bg-primary/50"
+                              />
+                              <CollapsibleTrigger className="flex items-center gap-2 flex-1 text-left">
+                                {openRegions.includes(region.id) ? (
+                                  <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                                ) : (
+                                  <ChevronRight className="w-4 h-4 text-muted-foreground" />
+                                )}
+                                <span className="font-medium text-foreground text-sm">{region.name}</span>
+                                <span className="text-xs text-muted-foreground ml-2">
+                                  ({region.countries.filter(c => selectedCountries.includes(c.id)).length}/{region.countries.length})
+                                </span>
+                              </CollapsibleTrigger>
+                            </div>
+
+                            <CollapsibleContent>
+                              <div className="p-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 ml-4">
+                                {region.countries.map((country) => {
+                                  const isSelected = selectedCountries.includes(country.id);
+                                  return (
+                                    <div
+                                      key={country.id}
+                                      onClick={() => handleCountryToggle(country.id)}
+                                      className={`
+                                        flex items-center gap-2 p-2 rounded-lg cursor-pointer transition-all text-sm
+                                        ${isSelected
+                                          ? "bg-primary/10 border border-primary"
+                                          : "bg-background border border-border hover:border-primary/50"
+                                        }
+                                      `}
+                                    >
+                                      <Checkbox
+                                        checked={isSelected}
+                                        onCheckedChange={() => handleCountryToggle(country.id)}
+                                      />
+                                      <span className={isSelected ? "text-primary font-medium" : "text-foreground"}>
+                                        {country.name}
+                                      </span>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </CollapsibleContent>
+                          </div>
+                        </Collapsible>
+                      ))}
+                    </div>
+                  </CollapsibleContent>
+                </div>
+              </Collapsible>
+            ))}
 
             <div className="mt-8 p-4 rounded-xl bg-secondary border border-border">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-semibold text-foreground">
-                    {selectedRegions.length} Region{selectedRegions.length !== 1 ? "s" : ""} Selected
+                    {selectedCountries.length} {selectedCountries.length !== 1 ? "Countries" : "Country"} Selected
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    These regions will appear in your Investment Focus
+                    These countries will define your geographic investment focus
                   </p>
                 </div>
-                <Button 
+                <Button
                   onClick={handleSave}
                   className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
                 >
                   <Save className="w-4 h-4 mr-2" />
-                  Save Regions
+                  Save Selection
                 </Button>
               </div>
             </div>
