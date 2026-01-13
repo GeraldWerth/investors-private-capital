@@ -515,7 +515,7 @@ const PartnerProfile = () => {
                   </div>
                 </div>
               </div>
-              <Button className="w-full mt-6 bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Button className="w-full mt-6 bg-teal-500 hover:bg-teal-600 text-white">
                 <Mail className="w-4 h-4 mr-2" />
                 Kontakt aufnehmen
               </Button>
