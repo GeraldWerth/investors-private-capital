@@ -85,7 +85,7 @@ const StartupLogin = () => {
             </div>
             <CardTitle className="text-2xl font-bold text-foreground">Sign In</CardTitle>
             <CardDescription className="text-muted-foreground">
-              Sign in to your startup portal
+              Sign in to your energy portal
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 pt-4">
