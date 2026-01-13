@@ -142,7 +142,7 @@ const PilotProjects = () => {
               <Calendar className="w-5 h-5 text-primary" />
               Anmeldung zu Pitchings
             </CardTitle>
-            <CardDescription>Wir führen monatliche Fundingrunden durch. Melden Sie sich für die nächsten Finanzierungsrunden an.</CardDescription>
+            <CardDescription>Entdecken Sie interessante Investitionsmöglichkeiten in neue Technologien. Melden Sie sich hierfür bitte zu unseren monatlichen Pitchings an.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
