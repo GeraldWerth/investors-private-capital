@@ -268,15 +268,15 @@ const PilotProjects = () => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-xl">
               <Info className="w-5 h-5 text-primary" />
-              Anmeldung zu unseren monatlichen Pitchings
+              Anmeldung zu Pitchings
             </DialogTitle>
           </DialogHeader>
           <DialogDescription className="text-muted-foreground space-y-4 pt-2">
             <p>
-              Wir stellen jeden Monat die besten Startups- und Scaleups passenden Investoren vor. Eine Anmeldung ist nur möglich, wenn im Vorfeld alle Unterlagen eingereicht wurden.
+              Wir stellen jeden Monat die besten Startups- und Scaleups passenden Investoren vor. Eine Anmeldung ist nur möglich, wenn Du bereits im Vorfeld alle Unterlagen eingereicht hast.
             </p>
             <p>
-              Die Unterlagen können Sie im Bereich <span className="font-semibold text-foreground">Data Room</span> einreichen. Vor jeder Zulassung werden die eingereichten Unterlagen geprüft und wir werden uns dann mit Ihnen in Verbindung setzen.
+              Die Unterlagen kannst du im Bereich <span className="font-semibold text-foreground">Data Room</span> einreichen. Vor jeder Zulassung prüfen wir die eingereichten Unterlagen und setzen uns dann mit Dir in Verbindung.
             </p>
           </DialogDescription>
           <div className="flex gap-3 mt-4">
