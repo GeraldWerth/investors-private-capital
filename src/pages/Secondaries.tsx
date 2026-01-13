@@ -1,16 +1,11 @@
 import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import { 
   TrendingUp, ArrowLeft, Plus,
   Euro, Building2, Search,
@@ -19,7 +14,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { useSecondariesData, AvailableSecondary } from "@/hooks/useSecondariesData";
+import { useSecondariesData, AvailableSecondary, MyOffer } from "@/hooks/useSecondariesData";
 import { useUserProfile } from "@/hooks/useUserProfile";
 
 const ExitPreparation = () => {
@@ -27,6 +22,13 @@ const ExitPreparation = () => {
   const [showOfferForm, setShowOfferForm] = useState(false);
   const [showInterestDialog, setShowInterestDialog] = useState(false);
   const [selectedSecondary, setSelectedSecondary] = useState<AvailableSecondary | null>(null);
+  const [showEditOfferDialog, setShowEditOfferDialog] = useState(false);
+  const [selectedOffer, setSelectedOffer] = useState<MyOffer | null>(null);
+  const [editOfferData, setEditOfferData] = useState({
+    sharesOffered: "",
+    askingPrice: "",
+    valuation: ""
+  });
   const { availableSecondaries, myOffers, negotiations, exits } = useSecondariesData();
   const { userProfile, companyProfile } = useUserProfile();
 
@@ -460,7 +462,19 @@ const ExitPreparation = () => {
                       </div>
 
                       <div className="flex gap-2">
-                        <Button variant="outline" className="flex-1 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
+                        <Button 
+                          variant="outline" 
+                          className="flex-1 border-primary/30 text-primary hover:bg-primary/10 rounded-xl"
+                          onClick={() => {
+                            setSelectedOffer(offer);
+                            setEditOfferData({
+                              sharesOffered: offer.sharesOffered,
+                              askingPrice: offer.askingPrice,
+                              valuation: offer.valuation
+                            });
+                            setShowEditOfferDialog(true);
+                          }}
+                        >
                           Edit Offer
                         </Button>
                         <Button variant="outline" className="flex-1 rounded-xl text-destructive border-destructive/30 hover:bg-destructive/10">
@@ -569,6 +583,73 @@ const ExitPreparation = () => {
               </div>
             </div>
           )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit Offer Dialog */}
+      <Dialog open={showEditOfferDialog} onOpenChange={setShowEditOfferDialog}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Angebot bearbeiten</DialogTitle>
+            <DialogDescription>
+              Bearbeiten Sie Ihr Angebot für {selectedOffer?.company}
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="sharesOffered">Angebotene Anteile</Label>
+              <Input
+                id="sharesOffered"
+                value={editOfferData.sharesOffered}
+                onChange={(e) => setEditOfferData({ ...editOfferData, sharesOffered: e.target.value })}
+                placeholder="z.B. 5%"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="askingPrice">Angebotspreis</Label>
+              <Input
+                id="askingPrice"
+                value={editOfferData.askingPrice}
+                onChange={(e) => setEditOfferData({ ...editOfferData, askingPrice: e.target.value })}
+                placeholder="z.B. €150,000"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="valuation">Bewertung</Label>
+              <Input
+                id="valuation"
+                value={editOfferData.valuation}
+                onChange={(e) => setEditOfferData({ ...editOfferData, valuation: e.target.value })}
+                placeholder="z.B. €3M"
+              />
+            </div>
+          </div>
+          
+          <DialogFooter className="flex gap-3">
+            <Button 
+              variant="outline" 
+              onClick={() => setShowEditOfferDialog(false)}
+              className="flex-1 rounded-xl"
+            >
+              Abbrechen
+            </Button>
+            <Button 
+              onClick={() => {
+                toast({
+                  title: "Angebot aktualisiert",
+                  description: `Ihr Angebot für ${selectedOffer?.company} wurde erfolgreich aktualisiert.`,
+                });
+                setShowEditOfferDialog(false);
+                setSelectedOffer(null);
+              }}
+              className="flex-1 bg-primary hover:bg-primary/90 rounded-xl"
+            >
+              Speichern
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
