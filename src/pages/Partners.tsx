@@ -289,7 +289,7 @@ const Partners = () => {
                           <span className="text-sm text-muted-foreground">{partner.experience}</span>
                         </div>
 
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 mb-4">
                           {partner.services.map((service, serviceIndex) => (
                             <span 
                               key={serviceIndex}
@@ -298,6 +298,17 @@ const Partners = () => {
                               {service}
                             </span>
                           ))}
+                        </div>
+
+                        <div className="flex gap-3 pt-3 border-t border-border">
+                          <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                            <Mail className="w-4 h-4 mr-2" />
+                            Kontakt aufnehmen
+                          </Button>
+                          <Button size="sm" variant="outline" className="border-primary/30 text-primary hover:bg-primary/10">
+                            <Users className="w-4 h-4 mr-2" />
+                            Profil
+                          </Button>
                         </div>
                       </div>
                     ))}
