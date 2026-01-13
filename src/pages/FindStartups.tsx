@@ -10,25 +10,25 @@ const FindStartups = () => {
   const options = [
     {
       icon: Rocket,
-      title: "In Startups investieren",
-      description: "Entdecken Sie vielversprechende Startups für Direktinvestments",
-      details: ["Frühphasen-Investments", "Growth-Stage Deals", "Co-Investment Möglichkeiten"],
+      title: "Invest in Startups",
+      description: "Discover promising startups for direct investments",
+      details: ["Early-Stage Investments", "Growth-Stage Deals", "Co-Investment Opportunities"],
       link: "/pitching-sessions",
       color: "bg-primary/10 text-primary"
     },
     {
       icon: Repeat,
-      title: "In Secondaries investieren",
-      description: "Erwerben Sie Anteile von bestehenden Gesellschaftern",
-      details: ["Verfügbare Anteile", "Aktive Verhandlungen", "Portfolio-Käufe"],
+      title: "Invest in Secondaries",
+      description: "Acquire shares from existing shareholders",
+      details: ["Available Shares", "Active Negotiations", "Portfolio Acquisitions"],
       link: "/secondaries",
       color: "bg-accent/10 text-accent-foreground"
     },
     {
       icon: FileSearch,
-      title: "Suchauftrag erteilen",
-      description: "Lassen Sie uns passende Investments für Sie finden",
-      details: ["Individuelle Suchkriterien", "Automatische Benachrichtigungen", "Exklusive Deals"],
+      title: "Submit Search Request",
+      description: "Let us find suitable investments for you",
+      details: ["Custom Search Criteria", "Automatic Notifications", "Exclusive Deals"],
       link: "/investment-requests",
       color: "bg-secondary text-secondary-foreground"
     }
@@ -61,7 +61,7 @@ const FindStartups = () => {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Zurück zum Dashboard</span>
+          <span>Back to Dashboard</span>
         </Link>
 
         {/* Page Title */}
@@ -75,7 +75,7 @@ const FindStartups = () => {
                 Find Investments
               </h2>
               <p className="text-muted-foreground">
-                Wählen Sie Ihre bevorzugte Investment-Methode
+                Choose your preferred investment method
               </p>
             </div>
           </div>
