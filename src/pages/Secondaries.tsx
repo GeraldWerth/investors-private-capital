@@ -4,19 +4,47 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { 
   TrendingUp, ArrowLeft, Plus,
   Euro, Building2, Search,
-  BarChart3, Clock, Repeat, Filter, Send, Settings
+  BarChart3, Clock, Repeat, Filter, Send, Settings,
+  User, Mail, Phone, MapPin, CheckCircle2
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { useSecondariesData } from "@/hooks/useSecondariesData";
+import { useSecondariesData, AvailableSecondary } from "@/hooks/useSecondariesData";
+import { useUserProfile } from "@/hooks/useUserProfile";
 
 const ExitPreparation = () => {
   const { toast } = useToast();
   const [showOfferForm, setShowOfferForm] = useState(false);
+  const [showInterestDialog, setShowInterestDialog] = useState(false);
+  const [selectedSecondary, setSelectedSecondary] = useState<AvailableSecondary | null>(null);
   const { availableSecondaries, myOffers, negotiations, exits } = useSecondariesData();
+  const { userProfile, companyProfile } = useUserProfile();
+
+  const handleExpressInterest = (secondary: AvailableSecondary) => {
+    setSelectedSecondary(secondary);
+    setShowInterestDialog(true);
+  };
+
+  const confirmInterest = () => {
+    if (selectedSecondary) {
+      toast({
+        title: "Interesse bekundet",
+        description: `Ihr Kaufinteresse für ${selectedSecondary.company} wurde übermittelt.`,
+      });
+    }
+    setShowInterestDialog(false);
+    setSelectedSecondary(null);
+  };
 
   const getUrgencyColor = (urgency: string) => {
     switch (urgency) {
@@ -227,7 +255,10 @@ const ExitPreparation = () => {
                         <Button variant="outline" className="flex-1 border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
                           View Details
                         </Button>
-                        <Button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
+                        <Button 
+                          onClick={() => handleExpressInterest(secondary)}
+                          className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
+                        >
                           Express Interest
                         </Button>
                       </div>
@@ -456,6 +487,99 @@ const ExitPreparation = () => {
           </TabsContent>
         </Tabs>
       </main>
+
+      {/* Express Interest Dialog */}
+      <Dialog open={showInterestDialog} onOpenChange={setShowInterestDialog}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-xl">
+              <CheckCircle2 className="w-5 h-5 text-primary" />
+              Kaufinteresse bekunden
+            </DialogTitle>
+            <DialogDescription className="text-muted-foreground pt-2">
+              Mit dieser Anfrage bekunden Sie Ihr Kaufinteresse für das folgende Angebot. Ihre Kontaktdaten werden dem Verkäufer übermittelt.
+            </DialogDescription>
+          </DialogHeader>
+          
+          {selectedSecondary && (
+            <div className="space-y-4">
+              {/* Selected Offer Info */}
+              <div className="p-4 rounded-xl bg-primary/10 border border-primary/20">
+                <h4 className="font-semibold text-foreground">{selectedSecondary.company}</h4>
+                <div className="flex flex-wrap gap-2 mt-2 text-sm text-muted-foreground">
+                  <span>{selectedSecondary.sector}</span>
+                  <span>•</span>
+                  <span>{selectedSecondary.sharesAvailable} Anteile</span>
+                  <span>•</span>
+                  <span className="font-semibold text-primary">{selectedSecondary.askingPrice}</span>
+                </div>
+              </div>
+
+              {/* User Data */}
+              <div className="p-4 rounded-xl bg-secondary border border-border space-y-3">
+                <h4 className="font-medium text-foreground text-sm flex items-center gap-2">
+                  <User className="w-4 h-4 text-muted-foreground" />
+                  Ihre Kontaktdaten
+                </h4>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div>
+                    <p className="text-muted-foreground text-xs">Name</p>
+                    <p className="font-medium text-foreground">{userProfile.firstName} {userProfile.lastName}</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground text-xs">Position</p>
+                    <p className="font-medium text-foreground">{userProfile.position}</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-3 h-3 text-muted-foreground" />
+                    <p className="font-medium text-foreground">{userProfile.email}</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-3 h-3 text-muted-foreground" />
+                    <p className="font-medium text-foreground">{userProfile.phone}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Company Data */}
+              <div className="p-4 rounded-xl bg-secondary border border-border space-y-3">
+                <h4 className="font-medium text-foreground text-sm flex items-center gap-2">
+                  <Building2 className="w-4 h-4 text-muted-foreground" />
+                  Unternehmensdaten
+                </h4>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="col-span-2">
+                    <p className="text-muted-foreground text-xs">Unternehmen</p>
+                    <p className="font-medium text-foreground">{companyProfile.name}</p>
+                  </div>
+                  <div className="col-span-2 flex items-start gap-2">
+                    <MapPin className="w-3 h-3 text-muted-foreground mt-0.5" />
+                    <p className="font-medium text-foreground">{companyProfile.street}, {companyProfile.zip} {companyProfile.city}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-2">
+                <Button 
+                  variant="outline" 
+                  onClick={() => setShowInterestDialog(false)}
+                  className="flex-1 rounded-xl"
+                >
+                  Abbrechen
+                </Button>
+                <Button 
+                  onClick={confirmInterest}
+                  className="flex-1 bg-primary hover:bg-primary/90 rounded-xl"
+                >
+                  <CheckCircle2 className="w-4 h-4 mr-2" />
+                  Interesse bestätigen
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
