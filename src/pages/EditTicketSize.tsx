@@ -10,12 +10,13 @@ import { Label } from "@/components/ui/label";
 import { useInvestmentCriteria } from "@/hooks/useInvestmentCriteria";
 
 const ticketPresets = [
+  { label: "€20K - €100K", min: 20, max: 100 },
   { label: "€100K - €500K", min: 100, max: 500 },
-  { label: "€250K - €1M", min: 250, max: 1000 },
   { label: "€500K - €2M", min: 500, max: 2000 },
   { label: "€1M - €5M", min: 1000, max: 5000 },
-  { label: "€2M - €10M", min: 2000, max: 10000 },
   { label: "€5M - €20M", min: 5000, max: 20000 },
+  { label: "€10M - €50M", min: 10000, max: 50000 },
+  { label: "€20M - €100M", min: 20000, max: 100000 },
 ];
 
 const formatCurrency = (value: number): string => {
@@ -141,8 +142,8 @@ const EditTicketSize = () => {
                     value={minTicket}
                     onChange={(e) => setMinTicket(Number(e.target.value))}
                     className="pl-8"
-                    min={50}
-                    max={maxTicket - 50}
+                    min={20}
+                    max={maxTicket - 10}
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">K</span>
                 </div>
@@ -159,8 +160,8 @@ const EditTicketSize = () => {
                     value={maxTicket}
                     onChange={(e) => setMaxTicket(Number(e.target.value))}
                     className="pl-8"
-                    min={minTicket + 50}
-                    max={50000}
+                    min={minTicket + 10}
+                    max={100000}
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">K</span>
                 </div>
