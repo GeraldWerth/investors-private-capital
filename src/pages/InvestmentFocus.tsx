@@ -200,11 +200,21 @@ const FundingRounds = () => {
         {/* Sector Allocation */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <Briefcase className="w-5 h-5 text-primary" />
-              Sector Allocation
-            </CardTitle>
-            <CardDescription>Portfolio distribution by sector</CardDescription>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                  <Briefcase className="w-5 h-5 text-primary" />
+                  Sector Allocation
+                </CardTitle>
+                <CardDescription>Portfolio distribution by sector</CardDescription>
+              </div>
+              <Link to="/edit-sectors">
+                <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
+                  Edit Sectors
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
