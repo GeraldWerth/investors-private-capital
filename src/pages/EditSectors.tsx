@@ -114,6 +114,7 @@ const EditSectors = () => {
                       <Checkbox
                         checked={isSelected}
                         onCheckedChange={() => handleSectorToggle(sector.id)}
+                        onClick={(e) => e.stopPropagation()}
                         className="mt-1"
                       />
                       <div className="flex items-start gap-3 flex-1">
