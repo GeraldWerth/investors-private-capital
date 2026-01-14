@@ -47,7 +47,7 @@ const Partners = () => {
       email: "",
       company: "",
       phone: "",
-      subject: `Anfrage über EIN Energy Portal`,
+      subject: `Inquiry via EIN Energy Portal`,
       message: ""
     });
     setFormErrors({});
@@ -87,40 +87,40 @@ const Partners = () => {
       icon: Scale,
       title: "Legal & Compliance",
       fullTitle: "Legal, Regulatory & Compliance Partners",
-      description: "Rechtliche Beratung und regulatorische Unterstützung",
+      description: "Legal advisory and regulatory support",
       partners: [
         { 
           id: "morrison-foerster",
           name: "Morrison & Foerster LLP", 
           specialty: "M&A, Venture Capital",
-          location: "Frankfurt, München",
+          location: "Frankfurt, Munich",
           contact: "Dr. Michael Weber",
           email: "mweber@mofo.com",
           phone: "+49 69 7033 0",
-          services: ["Transaktionsberatung", "Due Diligence", "Vertragsgestaltung"],
-          experience: "25+ Jahre im Energiesektor"
+          services: ["Transaction Advisory", "Due Diligence", "Contract Drafting"],
+          experience: "25+ years in energy sector"
         },
         { 
           id: "hengeler-mueller",
           name: "Hengeler Mueller", 
-          specialty: "Gesellschaftsrecht, Compliance",
+          specialty: "Corporate Law, Compliance",
           location: "Berlin, Düsseldorf",
           contact: "Dr. Anna Schmidt",
           email: "a.schmidt@hengeler.com",
           phone: "+49 30 2039 6000",
-          services: ["Gesellschaftsrecht", "Regulatorische Compliance", "ESG-Beratung"],
-          experience: "30+ Jahre Erfahrung"
+          services: ["Corporate Law", "Regulatory Compliance", "ESG Advisory"],
+          experience: "30+ years of experience"
         },
         { 
           id: "noerr",
           name: "Noerr LLP", 
-          specialty: "Regulierung, Energierecht",
-          location: "München, Hamburg",
+          specialty: "Regulation, Energy Law",
+          location: "Munich, Hamburg",
           contact: "Dr. Thomas Müller",
           email: "thomas.mueller@noerr.com",
           phone: "+49 89 2862 8000",
-          services: ["Energierecht", "Genehmigungsverfahren", "Regulatory Affairs"],
-          experience: "Spezialist für erneuerbare Energien"
+          services: ["Energy Law", "Permit Procedures", "Regulatory Affairs"],
+          experience: "Renewable energy specialist"
         }
       ],
       color: "bg-blue-500/10 text-blue-600"
@@ -130,18 +130,18 @@ const Partners = () => {
       icon: Cpu,
       title: "Engineering & Due Diligence",
       fullTitle: "Engineering, Technical & Due Diligence Partners",
-      description: "Technische Bewertung und Due Diligence",
+      description: "Technical assessment and due diligence",
       partners: [
         { 
           id: "tuv-rheinland",
           name: "TÜV Rheinland", 
-          specialty: "Technische Prüfung, Zertifizierung",
-          location: "Köln, deutschlandweit",
+          specialty: "Technical Inspection, Certification",
+          location: "Cologne, Germany-wide",
           contact: "Ing. Klaus Bauer",
           email: "klaus.bauer@tuv.com",
           phone: "+49 221 806 0",
-          services: ["Technische Inspektion", "Zertifizierung", "Sicherheitsprüfung"],
-          experience: "150+ Jahre Expertise"
+          services: ["Technical Inspection", "Certification", "Safety Testing"],
+          experience: "150+ years of expertise"
         },
         { 
           id: "dnv",
@@ -151,19 +151,19 @@ const Partners = () => {
           contact: "Dr. Erik Johansen",
           email: "erik.johansen@dnv.com",
           phone: "+49 40 3616 1000",
-          services: ["Asset Bewertung", "Risikomanagement", "Performance Analyse"],
-          experience: "Globaler Marktführer"
+          services: ["Asset Valuation", "Risk Management", "Performance Analysis"],
+          experience: "Global market leader"
         },
         { 
           id: "fraunhofer-ise",
           name: "Fraunhofer ISE", 
-          specialty: "Technologiebewertung",
+          specialty: "Technology Assessment",
           location: "Freiburg",
           contact: "Prof. Dr. Lisa Hartmann",
           email: "lisa.hartmann@ise.fraunhofer.de",
           phone: "+49 761 4588 0",
-          services: ["Technologie Assessment", "F&E Beratung", "Innovationsanalyse"],
-          experience: "Führendes Forschungsinstitut"
+          services: ["Technology Assessment", "R&D Consulting", "Innovation Analysis"],
+          experience: "Leading research institute"
         }
       ],
       color: "bg-orange-500/10 text-orange-600"
@@ -173,18 +173,18 @@ const Partners = () => {
       icon: Leaf,
       title: "ESG & Sustainability",
       fullTitle: "ESG, Certification & Sustainability Partners",
-      description: "Nachhaltigkeitsbewertung und Zertifizierungen",
+      description: "Sustainability assessment and certifications",
       partners: [
         { 
           id: "sustainalytics",
           name: "Sustainalytics", 
           specialty: "ESG Ratings & Research",
-          location: "Amsterdam, München",
+          location: "Amsterdam, Munich",
           contact: "Sarah van der Berg",
           email: "sarah.vanderberg@sustainalytics.com",
           phone: "+31 20 205 0000",
           services: ["ESG Risk Ratings", "Carbon Analytics", "Investor Research"],
-          experience: "30+ Jahre ESG-Expertise"
+          experience: "30+ years of ESG expertise"
         },
         { 
           id: "ecovadis",
@@ -195,18 +195,18 @@ const Partners = () => {
           email: "m.dubois@ecovadis.com",
           phone: "+33 1 82 28 88 88",
           services: ["Sustainability Scorecards", "Supply Chain Assessment", "CSR Ratings"],
-          experience: "100.000+ bewertete Unternehmen"
+          experience: "100,000+ rated companies"
         },
         { 
           id: "climate-partner",
           name: "Climate Partner", 
-          specialty: "Carbon Footprint, Klimastrategie",
-          location: "München",
+          specialty: "Carbon Footprint, Climate Strategy",
+          location: "Munich",
           contact: "Dr. Julia Berger",
           email: "j.berger@climatepartner.com",
           phone: "+49 89 1222 875 0",
-          services: ["CO2-Bilanzierung", "Klimastrategie", "Kompensationsprojekte"],
-          experience: "6.000+ Unternehmenskunden"
+          services: ["Carbon Accounting", "Climate Strategy", "Offset Projects"],
+          experience: "6,000+ corporate clients"
         }
       ],
       color: "bg-green-500/10 text-green-600"
@@ -216,18 +216,18 @@ const Partners = () => {
       icon: LineChart,
       title: "Transaction & Strategy",
       fullTitle: "Transaction, Strategy & Market Advisory Partners",
-      description: "Strategische Beratung und Marktanalysen",
+      description: "Strategic consulting and market analysis",
       partners: [
         { 
           id: "roland-berger",
           name: "Roland Berger", 
-          specialty: "Strategie, Energy & Utilities",
-          location: "München, Berlin",
+          specialty: "Strategy, Energy & Utilities",
+          location: "Munich, Berlin",
           contact: "Dr. Markus Fischer",
           email: "markus.fischer@rolandberger.com",
           phone: "+49 89 9230 0",
-          services: ["Strategieentwicklung", "M&A Advisory", "Restrukturierung"],
-          experience: "Europas führende Strategieberatung"
+          services: ["Strategy Development", "M&A Advisory", "Restructuring"],
+          experience: "Europe's leading strategy consultancy"
         },
         { 
           id: "mckinsey",
@@ -237,19 +237,19 @@ const Partners = () => {
           contact: "Dr. Claudia Schulz",
           email: "claudia_schulz@mckinsey.com",
           phone: "+49 69 7162 0",
-          services: ["Nachhaltige Transformation", "Operational Excellence", "Digital Strategy"],
-          experience: "Globale #1 Managementberatung"
+          services: ["Sustainable Transformation", "Operational Excellence", "Digital Strategy"],
+          experience: "Global #1 management consultancy"
         },
         { 
           id: "aurora-energy",
           name: "Aurora Energy Research", 
-          specialty: "Marktanalysen, Prognosen",
+          specialty: "Market Analysis, Forecasting",
           location: "Oxford, Berlin",
           contact: "Dr. Felix Braun",
           email: "felix.braun@auroraer.com",
           phone: "+44 1865 339 350",
-          services: ["Marktprognosen", "Asset Valuation", "Policy Analysis"],
-          experience: "Spezialist für Energiemärkte"
+          services: ["Market Forecasting", "Asset Valuation", "Policy Analysis"],
+          experience: "Energy markets specialist"
         }
       ],
       color: "bg-purple-500/10 text-purple-600"
@@ -395,12 +395,12 @@ const Partners = () => {
                             }}
                           >
                             <Mail className="w-4 h-4 mr-2" />
-                            Kontakt aufnehmen
+                            Contact
                           </Button>
                           <Link to={`/partners/${partner.id}`}>
                             <Button size="sm" className="bg-teal-500 hover:bg-teal-600 text-white">
                               <Users className="w-4 h-4 mr-2" />
-                              Profil ansehen
+                              View Profile
                             </Button>
                           </Link>
                         </div>
@@ -410,7 +410,7 @@ const Partners = () => {
 
                   <div className="mt-6">
                     <Button variant="outline" className="text-primary border-primary/30 hover:bg-primary/10">
-                      Alle Partner anzeigen
+                      View All Partners
                       <ChevronRight className="w-4 h-4 ml-1" />
                     </Button>
                   </div>
@@ -424,9 +424,9 @@ const Partners = () => {
         <Dialog open={showContactDialog} onOpenChange={setShowContactDialog}>
           <DialogContent className="sm:max-w-lg">
             <DialogHeader>
-              <DialogTitle>Kontakt aufnehmen</DialogTitle>
+              <DialogTitle>Contact Partner</DialogTitle>
               <DialogDescription>
-                Senden Sie eine Nachricht an {selectedPartnerForContact?.name}
+                Send a message to {selectedPartnerForContact?.name}
               </DialogDescription>
             </DialogHeader>
             
@@ -517,7 +517,7 @@ const Partners = () => {
                 />
                 {formErrors.message && <p className="text-xs text-destructive">{formErrors.message}</p>}
                 <p className="text-xs text-muted-foreground text-right">
-                  {contactForm.message.length} / 2000 characters
+                  {contactForm.message.length} / 2,000 characters
                 </p>
               </div>
             </div>
