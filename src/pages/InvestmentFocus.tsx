@@ -23,6 +23,28 @@ const FundingRounds = () => {
     geography: getGeographyDisplay()
   };
 
+  // Calculate total invested amount from investments
+  const calculateTotalInvested = () => {
+    let total = 0;
+    investments.forEach(inv => {
+      const amountStr = inv.amount.replace(/[€,]/g, '');
+      if (amountStr.includes('M')) {
+        total += parseFloat(amountStr.replace('M', '')) * 1000000;
+      } else if (amountStr.includes('K')) {
+        total += parseFloat(amountStr.replace('K', '')) * 1000;
+      } else {
+        total += parseFloat(amountStr) || 0;
+      }
+    });
+    
+    if (total >= 1000000) {
+      return `€${(total / 1000000).toFixed(1)}M`;
+    } else if (total >= 1000) {
+      return `€${(total / 1000).toFixed(0)}K`;
+    }
+    return `€${total}`;
+  };
+
   const sectorFocus = [
     { name: "CleanTech", icon: Leaf, allocation: 35, deals: 8, color: "text-green-500" },
     { name: "Energy Storage", icon: Zap, allocation: 25, deals: 5, color: "text-yellow-500" },
@@ -80,7 +102,7 @@ const FundingRounds = () => {
                 <Briefcase className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">22</p>
+                <p className="text-2xl font-bold text-foreground">{investments.length}</p>
                 <p className="text-xs text-muted-foreground">Total Deals</p>
               </div>
             </div>
@@ -91,7 +113,7 @@ const FundingRounds = () => {
                 <Euro className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">€28M</p>
+                <p className="text-2xl font-bold text-foreground">{calculateTotalInvested()}</p>
                 <p className="text-xs text-muted-foreground">Invested</p>
               </div>
             </div>
