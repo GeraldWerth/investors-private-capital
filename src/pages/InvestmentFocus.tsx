@@ -102,7 +102,7 @@ const FundingRounds = () => {
                 <Target className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">5</p>
+                <p className="text-2xl font-bold text-foreground">{investmentCriteria.sectors.length}</p>
                 <p className="text-xs text-muted-foreground">Sectors</p>
               </div>
             </div>
@@ -113,7 +113,7 @@ const FundingRounds = () => {
                 <Building2 className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">3</p>
+                <p className="text-2xl font-bold text-foreground">{investmentCriteria.geography.length}</p>
                 <p className="text-xs text-muted-foreground">Regions</p>
               </div>
             </div>
