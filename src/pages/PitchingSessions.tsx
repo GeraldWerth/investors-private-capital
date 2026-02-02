@@ -68,8 +68,8 @@ const PilotProjects = () => {
                   <Users className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-foreground">Pitching Sessions</h1>
-                  <p className="text-xs text-muted-foreground">Register for Funding Rounds</p>
+                  <h1 className="text-lg font-bold text-foreground">Focused Founder Access</h1>
+                  <p className="text-xs text-muted-foreground">Strategic Founder Introductions</p>
                 </div>
               </div>
             </div>
@@ -95,7 +95,7 @@ const PilotProjects = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">3</p>
-                <p className="text-xs text-muted-foreground">Upcoming Sessions</p>
+                <p className="text-xs text-muted-foreground">Upcoming Introductions</p>
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@ const PilotProjects = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">15</p>
-                <p className="text-xs text-muted-foreground">Startups Seen</p>
+                <p className="text-xs text-muted-foreground">Founders Met</p>
               </div>
             </div>
           </div>
@@ -140,9 +140,9 @@ const PilotProjects = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <Calendar className="w-5 h-5 text-primary" />
-              Pitching Registration
+              Strategic Founder Introductions
             </CardTitle>
-            <CardDescription>Discover interesting investment opportunities in new technologies. Please register for our monthly pitchings.</CardDescription>
+            <CardDescription>No pitches. No noise. Just direct access to selected founders and high-potential startups, curated specifically for active investors. Each month, we introduce a small number of companies we believe are worth your time.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -197,9 +197,9 @@ const PilotProjects = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
               <Bell className="w-5 h-5 text-primary" />
-              Automatic Participation
+              Continuous Access
             </CardTitle>
-            <CardDescription>Enable this option to automatically register for all future pitching sessions.</CardDescription>
+            <CardDescription>Enable this option to receive all future founder introductions automatically.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border">
@@ -209,10 +209,10 @@ const PilotProjects = () => {
                 </div>
                 <div>
                 <Label htmlFor="auto-register" className="font-medium text-foreground cursor-pointer">
-                    Participate in all future pitchings
+                    Access all future introductions
                   </Label>
                   <p className="text-sm text-muted-foreground">
-                    You will be automatically registered for every new funding round.
+                    You will receive investor-ready briefings for every curated founder introduction.
                   </p>
                 </div>
               </div>
@@ -226,7 +226,7 @@ const PilotProjects = () => {
               <div className="mt-4 p-4 rounded-xl bg-primary/10 border border-primary/30">
               <p className="text-sm text-primary flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4" />
-                  You are registered for all future pitching sessions.
+                  You will receive all future founder introductions with clarity, confidentiality, and zero distractions.
                 </p>
               </div>
             )}
