@@ -22,27 +22,27 @@ const PilotProjects = () => {
   const upcomingSessions = [
     {
       id: 1,
-      month: "Februar 2026",
-      status: "Aktuell",
+      month: "February 2026",
+      status: "Current",
       statusType: "current",
-      stages: "Von Seed bis alle Growth Stages",
-      deadline: "12. Februar 2026"
+      stages: "From Seed to all Growth Stages",
+      deadline: "February 12, 2026"
     },
     {
       id: 2,
-      month: "März 2026",
-      status: "Demnächst",
+      month: "March 2026",
+      status: "Upcoming",
       statusType: "upcoming",
-      stages: "Von Seed bis alle Growth Stages",
-      deadline: "12. März 2026"
+      stages: "From Seed to all Growth Stages",
+      deadline: "March 12, 2026"
     },
     {
       id: 3,
       month: "April 2026",
-      status: "Demnächst",
+      status: "Upcoming",
       statusType: "upcoming",
-      stages: "Von Seed bis alle Growth Stages",
-      deadline: "12. April 2026"
+      stages: "From Seed to all Growth Stages",
+      deadline: "April 12, 2026"
     }
   ];
 
@@ -69,7 +69,7 @@ const PilotProjects = () => {
                 </div>
                 <div>
                   <h1 className="text-lg font-bold text-foreground">Pitching Sessions</h1>
-                  <p className="text-xs text-muted-foreground">Anmeldung zu Fundingrunden</p>
+                  <p className="text-xs text-muted-foreground">Register for Funding Rounds</p>
                 </div>
               </div>
             </div>
@@ -95,7 +95,7 @@ const PilotProjects = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">3</p>
-                <p className="text-xs text-muted-foreground">Kommende Sessions</p>
+                <p className="text-xs text-muted-foreground">Upcoming Sessions</p>
               </div>
             </div>
           </div>
@@ -106,7 +106,7 @@ const PilotProjects = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{Object.values(registrations).filter(Boolean).length}</p>
-                <p className="text-xs text-muted-foreground">Ihre Anmeldungen</p>
+                <p className="text-xs text-muted-foreground">Your Registrations</p>
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@ const PilotProjects = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">12</p>
-                <p className="text-xs text-muted-foreground">Teilgenommen</p>
+                <p className="text-xs text-muted-foreground">Attended</p>
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@ const PilotProjects = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">15</p>
-                <p className="text-xs text-muted-foreground">Startups gesehen</p>
+                <p className="text-xs text-muted-foreground">Startups Seen</p>
               </div>
             </div>
           </div>
@@ -208,11 +208,11 @@ const PilotProjects = () => {
                   <CheckCircle2 className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <Label htmlFor="auto-register" className="font-medium text-foreground cursor-pointer">
-                    An allen künftigen Pitchings teilnehmen
+                <Label htmlFor="auto-register" className="font-medium text-foreground cursor-pointer">
+                    Participate in all future pitchings
                   </Label>
                   <p className="text-sm text-muted-foreground">
-                    Sie werden automatisch für jede neue Fundingrunde angemeldet.
+                    You will be automatically registered for every new funding round.
                   </p>
                 </div>
               </div>
@@ -224,9 +224,9 @@ const PilotProjects = () => {
             </div>
             {autoRegister && (
               <div className="mt-4 p-4 rounded-xl bg-primary/10 border border-primary/30">
-                <p className="text-sm text-primary flex items-center gap-2">
+              <p className="text-sm text-primary flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4" />
-                  Sie sind für alle zukünftigen Pitching Sessions angemeldet.
+                  You are registered for all future pitching sessions.
                 </p>
               </div>
             )}
