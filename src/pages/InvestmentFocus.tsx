@@ -220,7 +220,7 @@ const FundingRounds = () => {
               <div>
                 <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-primary" />
-                  Recent Investments
+                  Your Recent Investments
                 </CardTitle>
                 <CardDescription>Your latest deals</CardDescription>
               </div>
