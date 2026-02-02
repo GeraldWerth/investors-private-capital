@@ -45,13 +45,6 @@ const FundingRounds = () => {
     return `€${total}`;
   };
 
-  const sectorFocus = [
-    { name: "CleanTech", icon: Leaf, allocation: 35, deals: 8, color: "text-green-500" },
-    { name: "Energy Storage", icon: Zap, allocation: 25, deals: 5, color: "text-yellow-500" },
-    { name: "Smart Grid", icon: Globe, allocation: 20, deals: 4, color: "text-blue-500" },
-    { name: "Industrial Tech", icon: Factory, allocation: 12, deals: 3, color: "text-purple-500" },
-    { name: "Carbon Capture", icon: Shield, allocation: 8, deals: 2, color: "text-teal-500" }
-  ];
 
   // Get recent deals from stored investments
   const recentDeals = investments.slice(0, 5);
@@ -219,44 +212,6 @@ const FundingRounds = () => {
           </CardContent>
         </Card>
 
-        {/* Sector Allocation */}
-        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                  <Briefcase className="w-5 h-5 text-primary" />
-                  Sector Allocation
-                </CardTitle>
-                <CardDescription>Portfolio distribution by sector</CardDescription>
-              </div>
-              <Link to="/edit-sectors">
-                <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-                  Edit Sectors
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {sectorFocus.map((sector) => (
-                <div key={sector.name} className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
-                    <sector.icon className={`w-5 h-5 ${sector.color}`} />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between text-sm mb-1">
-                      <span className="font-medium text-foreground">{sector.name}</span>
-                      <span className="text-muted-foreground">{sector.deals} deals · {sector.allocation}%</span>
-                    </div>
-                    <Progress value={sector.allocation} className="h-2" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Recent Deals */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
