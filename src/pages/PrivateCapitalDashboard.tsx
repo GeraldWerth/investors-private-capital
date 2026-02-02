@@ -20,7 +20,7 @@ const StartupDashboard = () => {
     },
     {
       icon: Users,
-      title: "Upcoming Pitchings",
+      title: "Focused Founder Access",
       description: "Register for upcoming pitching events",
       stats: "5 upcoming",
       items: ["Scheduled Pitches", "Past Sessions", "Invite Startups"],
