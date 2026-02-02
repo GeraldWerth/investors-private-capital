@@ -21,9 +21,9 @@ const StartupDashboard = () => {
     {
       icon: Users,
       title: "Focused Founder Access",
-      description: "Register for upcoming pitching events",
+      description: "Direct access to selected founders and high-potential startups, curated for active investors",
       stats: "5 upcoming",
-      items: ["Scheduled Pitches", "Past Sessions", "Invite Startups"],
+      items: ["Strategic Founder Introductions", "Investor-Ready Briefings", "Confidential Direct Engagement"],
       link: "/pitching-sessions"
     },
     {
