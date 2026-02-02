@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const PilotProjects = () => {
+const FounderAccess = () => {
   const [registrations, setRegistrations] = useState<{ [key: number]: boolean }>({});
   const [autoRegister, setAutoRegister] = useState(false);
 
@@ -239,4 +239,4 @@ const PilotProjects = () => {
   );
 };
 
-export default PilotProjects;
+export default FounderAccess;

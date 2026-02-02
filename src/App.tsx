@@ -14,7 +14,7 @@ import EditStages from "./pages/EditStages";
 import EditGeography from "./pages/EditGeography";
 import EditTicketSize from "./pages/EditTicketSize";
 import EditInvestments from "./pages/EditInvestments";
-import PitchingSessions from "./pages/PitchingSessions";
+import FounderAccess from "./pages/FounderAccess";
 import Secondaries from "./pages/Secondaries";
 import InvestmentRequests from "./pages/InvestmentRequests";
 import EditAvailableSecondaries from "./pages/EditAvailableSecondaries";
@@ -45,7 +45,7 @@ const App = () => (
           <Route path="/edit-geography" element={<EditGeography />} />
           <Route path="/edit-ticket-size" element={<EditTicketSize />} />
           <Route path="/edit-investments" element={<EditInvestments />} />
-          <Route path="/pitching-sessions" element={<PitchingSessions />} />
+          <Route path="/founder-access" element={<FounderAccess />} />
           <Route path="/secondaries" element={<Secondaries />} />
           <Route path="/edit-available-secondaries" element={<EditAvailableSecondaries />} />
           <Route path="/find-investments" element={<FindInvestments />} />

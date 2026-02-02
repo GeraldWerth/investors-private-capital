@@ -24,7 +24,7 @@ const StartupDashboard = () => {
       description: "Direct access to selected founders and high-potential startups, curated for active investors",
       stats: "5 upcoming",
       items: ["Strategic Founder Introductions", "Investor-Ready Briefings", "Confidential Direct Engagement"],
-      link: "/pitching-sessions"
+      link: "/founder-access"
     },
     {
       icon: Repeat,
