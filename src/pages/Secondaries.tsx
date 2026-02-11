@@ -28,9 +28,14 @@ const ExitPreparation = () => {
   const [editOfferData, setEditOfferData] = useState({
     company: "",
     sector: "",
-    sharesOffered: "",
-    askingPrice: "",
+    jurisdiction: "",
+    securityType: "" as "Common" | "Preferred" | "Convertible" | "LP Interest",
+    transactionType: "" as "Secondary" | "Tender" | "Structured",
+    sellerType: "" as "Founder" | "Employee" | "Investor" | "Fund" | "SPV",
     valuation: "",
+    pricePerShare: "",
+    minimumInvestment: "",
+    totalOfferedSize: "",
     status: "" as "Active" | "Pending Review" | "Sold"
   });
   const { availableSecondaries, myOffers, negotiations, exits } = useSecondariesData();
@@ -52,16 +57,14 @@ const ExitPreparation = () => {
     setSelectedSecondary(null);
   };
 
-  const getUrgencyColor = (urgency: string) => {
-    switch (urgency) {
-      case "High":
-        return "bg-red-500/20 text-red-600";
-      case "Medium":
-        return "bg-accent/20 text-accent";
-      case "Low":
-        return "bg-muted text-muted-foreground";
-      default:
-        return "bg-muted text-muted-foreground";
+  const getSellerTypeColor = (type: string) => {
+    switch (type) {
+      case "Founder": return "bg-blue-500/20 text-blue-600";
+      case "Employee": return "bg-green-500/20 text-green-600";
+      case "Investor": return "bg-accent/20 text-accent";
+      case "Fund": return "bg-purple-500/20 text-purple-600";
+      case "SPV": return "bg-orange-500/20 text-orange-600";
+      default: return "bg-muted text-muted-foreground";
     }
   };
 
@@ -216,18 +219,20 @@ const ExitPreparation = () => {
                         <div>
                           <div className="flex items-center gap-3 mb-2">
                             <h3 className="font-semibold text-foreground text-lg">{secondary.company}</h3>
-                            <Badge className={getUrgencyColor(secondary.urgency)}>
-                              {secondary.urgency} Priority
+                            <Badge className={getSellerTypeColor(secondary.sellerType)}>
+                              {secondary.sellerType}
                             </Badge>
                           </div>
                           <div className="flex flex-wrap gap-2 mb-3">
                             <Badge variant="outline" className="border-muted-foreground/30">{secondary.sector}</Badge>
-                            <Badge variant="outline" className="border-muted-foreground/30">Seller: {secondary.seller}</Badge>
+                            <Badge variant="outline" className="border-muted-foreground/30">{secondary.jurisdiction}</Badge>
+                            <Badge variant="outline" className="border-muted-foreground/30">{secondary.securityType}</Badge>
+                            <Badge variant="outline" className="border-muted-foreground/30">{secondary.transactionType}</Badge>
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-2xl font-bold text-primary">{secondary.askingPrice}</p>
-                          <p className="text-sm text-muted-foreground">for {secondary.sharesAvailable} shares</p>
+                          <p className="text-2xl font-bold text-primary">{secondary.totalOfferedSize}</p>
+                          <p className="text-sm text-muted-foreground">total offered</p>
                         </div>
                       </div>
                       
@@ -237,16 +242,16 @@ const ExitPreparation = () => {
                           <p className="font-semibold text-foreground">{secondary.valuation}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-muted-foreground">Shares</p>
-                          <p className="font-semibold text-foreground">{secondary.sharesAvailable}</p>
+                          <p className="text-xs text-muted-foreground">Price / Share</p>
+                          <p className="font-semibold text-foreground">{secondary.pricePerShare}</p>
                         </div>
-                        <div className="col-span-2">
-                          <p className="text-xs text-muted-foreground mb-1">Highlights</p>
-                          <div className="flex flex-wrap gap-1">
-                            {secondary.highlights.map((h) => (
-                              <Badge key={h} className="bg-primary/10 text-primary text-xs">{h}</Badge>
-                            ))}
-                          </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Min. Investment</p>
+                          <p className="font-semibold text-foreground">{secondary.minimumInvestment}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Total Size</p>
+                          <p className="font-semibold text-foreground">{secondary.totalOfferedSize}</p>
                         </div>
                       </div>
 
@@ -509,23 +514,35 @@ const ExitPreparation = () => {
                           </div>
                           <div className="flex flex-wrap gap-2">
                             <Badge variant="outline" className="border-muted-foreground/30">{offer.sector}</Badge>
+                            <Badge variant="outline" className="border-muted-foreground/30">{offer.jurisdiction}</Badge>
+                            <Badge variant="outline" className="border-muted-foreground/30">{offer.securityType}</Badge>
+                            <Badge variant="outline" className="border-muted-foreground/30">{offer.transactionType}</Badge>
+                            <Badge className={getSellerTypeColor(offer.sellerType)}>{offer.sellerType}</Badge>
                             <Badge variant="outline" className="border-muted-foreground/30">Created: {offer.createdAt}</Badge>
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-2xl font-bold text-primary">{offer.askingPrice}</p>
-                          <p className="text-sm text-muted-foreground">for {offer.sharesOffered} shares</p>
+                          <p className="text-2xl font-bold text-primary">{offer.totalOfferedSize}</p>
+                          <p className="text-sm text-muted-foreground">total offered</p>
                         </div>
                       </div>
                       
-                      <div className="grid grid-cols-3 gap-4 p-3 bg-background/50 rounded-xl">
+                      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 p-3 bg-background/50 rounded-xl">
                         <div>
                           <p className="text-xs text-muted-foreground">Valuation</p>
                           <p className="font-semibold text-foreground">{offer.valuation}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-muted-foreground">Shares</p>
-                          <p className="font-semibold text-foreground">{offer.sharesOffered}</p>
+                          <p className="text-xs text-muted-foreground">Price / Share</p>
+                          <p className="font-semibold text-foreground">{offer.pricePerShare}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Min. Investment</p>
+                          <p className="font-semibold text-foreground">{offer.minimumInvestment}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Total Size</p>
+                          <p className="font-semibold text-foreground">{offer.totalOfferedSize}</p>
                         </div>
                         <div>
                           <p className="text-xs text-muted-foreground">Inquiries</p>
@@ -542,9 +559,14 @@ const ExitPreparation = () => {
                             setEditOfferData({
                               company: offer.company,
                               sector: offer.sector,
-                              sharesOffered: offer.sharesOffered,
-                              askingPrice: offer.askingPrice,
+                              jurisdiction: offer.jurisdiction,
+                              securityType: offer.securityType,
+                              transactionType: offer.transactionType,
+                              sellerType: offer.sellerType,
                               valuation: offer.valuation,
+                              pricePerShare: offer.pricePerShare,
+                              minimumInvestment: offer.minimumInvestment,
+                              totalOfferedSize: offer.totalOfferedSize,
                               status: offer.status
                             });
                             setShowEditOfferDialog(true);
@@ -589,9 +611,11 @@ const ExitPreparation = () => {
                 <div className="flex flex-wrap gap-2 mt-2 text-sm text-muted-foreground">
                   <span>{selectedSecondary.sector}</span>
                   <span>•</span>
-                  <span>{selectedSecondary.sharesAvailable} Shares</span>
+                  <span>{selectedSecondary.jurisdiction}</span>
                   <span>•</span>
-                  <span className="font-semibold text-primary">{selectedSecondary.askingPrice}</span>
+                  <span>{selectedSecondary.securityType}</span>
+                  <span>•</span>
+                  <span className="font-semibold text-primary">{selectedSecondary.totalOfferedSize}</span>
                 </div>
               </div>
 
@@ -672,68 +696,48 @@ const ExitPreparation = () => {
           </DialogHeader>
           
           <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Label htmlFor="company">Company</Label>
-              <Input
-                id="company"
-                value={editOfferData.company}
-                onChange={(e) => setEditOfferData({ ...editOfferData, company: e.target.value })}
-                placeholder="e.g. SolarFlow GmbH"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="sector">Sector</Label>
-              <Input
-                id="sector"
-                value={editOfferData.sector}
-                onChange={(e) => setEditOfferData({ ...editOfferData, sector: e.target.value })}
-                placeholder="e.g. CleanTech"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="sharesOffered">Shares Offered</Label>
-              <Input
-                id="sharesOffered"
-                value={editOfferData.sharesOffered}
-                onChange={(e) => setEditOfferData({ ...editOfferData, sharesOffered: e.target.value })}
-                placeholder="e.g. 5%"
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="askingPrice">Asking Price</Label>
-              <Input
-                id="askingPrice"
-                value={editOfferData.askingPrice}
-                onChange={(e) => setEditOfferData({ ...editOfferData, askingPrice: e.target.value })}
-                placeholder="e.g. €150,000"
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="valuation">Valuation</Label>
-              <Input
-                id="valuation"
-                value={editOfferData.valuation}
-                onChange={(e) => setEditOfferData({ ...editOfferData, valuation: e.target.value })}
-                placeholder="e.g. €3M"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="status">Status</Label>
-              <select
-                id="status"
-                value={editOfferData.status}
-                onChange={(e) => setEditOfferData({ ...editOfferData, status: e.target.value as "Active" | "Pending Review" | "Sold" })}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              >
-                <option value="Active">Active</option>
-                <option value="Pending Review">Pending Review</option>
-                <option value="Sold">Sold</option>
-              </select>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="company">Company</Label>
+                <Input id="company" value={editOfferData.company} onChange={(e) => setEditOfferData({ ...editOfferData, company: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="sector">Sector</Label>
+                <Input id="sector" value={editOfferData.sector} onChange={(e) => setEditOfferData({ ...editOfferData, sector: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="jurisdiction">Jurisdiction</Label>
+                <Input id="jurisdiction" value={editOfferData.jurisdiction} onChange={(e) => setEditOfferData({ ...editOfferData, jurisdiction: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="valuation">Valuation</Label>
+                <Input id="valuation" value={editOfferData.valuation} onChange={(e) => setEditOfferData({ ...editOfferData, valuation: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="pricePerShare">Price per Share</Label>
+                <Input id="pricePerShare" value={editOfferData.pricePerShare} onChange={(e) => setEditOfferData({ ...editOfferData, pricePerShare: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="minimumInvestment">Min. Investment</Label>
+                <Input id="minimumInvestment" value={editOfferData.minimumInvestment} onChange={(e) => setEditOfferData({ ...editOfferData, minimumInvestment: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="totalOfferedSize">Total Offered Size</Label>
+                <Input id="totalOfferedSize" value={editOfferData.totalOfferedSize} onChange={(e) => setEditOfferData({ ...editOfferData, totalOfferedSize: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="status">Status</Label>
+                <select
+                  id="status"
+                  value={editOfferData.status}
+                  onChange={(e) => setEditOfferData({ ...editOfferData, status: e.target.value as "Active" | "Pending Review" | "Sold" })}
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                >
+                  <option value="Active">Active</option>
+                  <option value="Pending Review">Pending Review</option>
+                  <option value="Sold">Sold</option>
+                </select>
+              </div>
             </div>
           </div>
           

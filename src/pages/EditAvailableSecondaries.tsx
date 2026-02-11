@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, Plus, Trash2, Repeat, Save } from "lucide-react";
@@ -17,17 +18,18 @@ const EditAvailableSecondaries = () => {
   const [newItem, setNewItem] = useState<Partial<AvailableSecondary>>({
     company: "",
     sector: "",
-    sharesAvailable: "",
+    jurisdiction: "",
+    securityType: "Common",
+    transactionType: "Secondary",
+    sellerType: "Investor",
     valuation: "",
-    askingPrice: "",
-    seller: "",
-    urgency: "Medium",
-    highlights: []
+    pricePerShare: "",
+    minimumInvestment: "",
+    totalOfferedSize: "",
   });
-  const [highlightsInput, setHighlightsInput] = useState("");
 
   const handleAddItem = () => {
-    if (!newItem.company || !newItem.sector || !newItem.askingPrice) {
+    if (!newItem.company || !newItem.sector || !newItem.valuation) {
       toast({
         title: "Missing Data",
         description: "Please fill in all required fields.",
@@ -40,26 +42,29 @@ const EditAvailableSecondaries = () => {
       id: Date.now().toString(),
       company: newItem.company || "",
       sector: newItem.sector || "",
-      sharesAvailable: newItem.sharesAvailable || "",
+      jurisdiction: newItem.jurisdiction || "",
+      securityType: newItem.securityType || "Common",
+      transactionType: newItem.transactionType || "Secondary",
+      sellerType: newItem.sellerType || "Investor",
       valuation: newItem.valuation || "",
-      askingPrice: newItem.askingPrice || "",
-      seller: newItem.seller || "",
-      urgency: newItem.urgency as "High" | "Medium" | "Low" || "Medium",
-      highlights: highlightsInput.split(",").map(h => h.trim()).filter(h => h)
+      pricePerShare: newItem.pricePerShare || "",
+      minimumInvestment: newItem.minimumInvestment || "",
+      totalOfferedSize: newItem.totalOfferedSize || "",
     };
 
     setItems([...items, item]);
     setNewItem({
       company: "",
       sector: "",
-      sharesAvailable: "",
+      jurisdiction: "",
+      securityType: "Common",
+      transactionType: "Secondary",
+      sellerType: "Investor",
       valuation: "",
-      askingPrice: "",
-      seller: "",
-      urgency: "Medium",
-      highlights: []
+      pricePerShare: "",
+      minimumInvestment: "",
+      totalOfferedSize: "",
     });
-    setHighlightsInput("");
   };
 
   const handleRemoveItem = (id: string) => {
@@ -73,15 +78,6 @@ const EditAvailableSecondaries = () => {
       description: "Available secondaries have been updated."
     });
     navigate("/secondaries");
-  };
-
-  const getUrgencyColor = (urgency: string) => {
-    switch (urgency) {
-      case "High": return "bg-red-500/20 text-red-600";
-      case "Medium": return "bg-accent/20 text-accent";
-      case "Low": return "bg-muted text-muted-foreground";
-      default: return "bg-muted text-muted-foreground";
-    }
   };
 
   return (
@@ -120,72 +116,101 @@ const EditAvailableSecondaries = () => {
             <CardTitle className="text-xl font-bold">Add New Offer</CardTitle>
             <CardDescription>Add a new secondary purchase offer</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Input
-                placeholder="Company *"
-                value={newItem.company}
-                onChange={(e) => setNewItem({ ...newItem, company: e.target.value })}
-                className="rounded-xl"
-              />
-              <Input
-                placeholder="Sector *"
-                value={newItem.sector}
-                onChange={(e) => setNewItem({ ...newItem, sector: e.target.value })}
-                className="rounded-xl"
-              />
-              <Input
-                placeholder="Shares (e.g. 8%)"
-                value={newItem.sharesAvailable}
-                onChange={(e) => setNewItem({ ...newItem, sharesAvailable: e.target.value })}
-                className="rounded-xl"
-              />
-              <Input
-                placeholder="Valuation (e.g. €45M)"
-                value={newItem.valuation}
-                onChange={(e) => setNewItem({ ...newItem, valuation: e.target.value })}
-                className="rounded-xl"
-              />
-              <Input
-                placeholder="Asking Price * (e.g. €3.6M)"
-                value={newItem.askingPrice}
-                onChange={(e) => setNewItem({ ...newItem, askingPrice: e.target.value })}
-                className="rounded-xl"
-              />
-              <Input
-                placeholder="Seller"
-                value={newItem.seller}
-                onChange={(e) => setNewItem({ ...newItem, seller: e.target.value })}
-                className="rounded-xl"
-              />
-              <Select
-                value={newItem.urgency}
-                onValueChange={(value) => setNewItem({ ...newItem, urgency: value as "High" | "Medium" | "Low" })}
-              >
-                <SelectTrigger className="rounded-xl">
-                  <SelectValue placeholder="Priority" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="High">High Priority</SelectItem>
-                  <SelectItem value="Medium">Medium Priority</SelectItem>
-                  <SelectItem value="Low">Low Priority</SelectItem>
-                </SelectContent>
-              </Select>
-              <Input
-                placeholder="Highlights (comma separated)"
-                value={highlightsInput}
-                onChange={(e) => setHighlightsInput(e.target.value)}
-                className="rounded-xl md:col-span-2"
-              />
+          <CardContent className="space-y-6">
+            {/* Asset Identifier */}
+            <div>
+              <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">1. Asset Identifier</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <Label className="mb-2 block">Company / Name *</Label>
+                  <Input placeholder='e.g. "Confidential – SaaS Scaleup, EU"' value={newItem.company} onChange={(e) => setNewItem({ ...newItem, company: e.target.value })} className="rounded-xl" />
+                </div>
+                <div>
+                  <Label className="mb-2 block">Sector / Industry *</Label>
+                  <Input placeholder="e.g. AI, Fintech, Energy" value={newItem.sector} onChange={(e) => setNewItem({ ...newItem, sector: e.target.value })} className="rounded-xl" />
+                </div>
+                <div>
+                  <Label className="mb-2 block">Jurisdiction</Label>
+                  <Input placeholder="Country / Region" value={newItem.jurisdiction} onChange={(e) => setNewItem({ ...newItem, jurisdiction: e.target.value })} className="rounded-xl" />
+                </div>
+              </div>
             </div>
+
+            {/* Transaction Snapshot */}
+            <div>
+              <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">2. Transaction Snapshot</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <Label className="mb-2 block">Security Type</Label>
+                  <Select value={newItem.securityType} onValueChange={(v) => setNewItem({ ...newItem, securityType: v as any })}>
+                    <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Common">Common</SelectItem>
+                      <SelectItem value="Preferred">Preferred</SelectItem>
+                      <SelectItem value="Convertible">Convertible</SelectItem>
+                      <SelectItem value="LP Interest">LP Interest</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label className="mb-2 block">Transaction Type</Label>
+                  <Select value={newItem.transactionType} onValueChange={(v) => setNewItem({ ...newItem, transactionType: v as any })}>
+                    <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Secondary">Secondary</SelectItem>
+                      <SelectItem value="Tender">Tender</SelectItem>
+                      <SelectItem value="Structured">Structured</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label className="mb-2 block">Seller Type</Label>
+                  <Select value={newItem.sellerType} onValueChange={(v) => setNewItem({ ...newItem, sellerType: v as any })}>
+                    <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Founder">Founder</SelectItem>
+                      <SelectItem value="Employee">Employee</SelectItem>
+                      <SelectItem value="Investor">Investor</SelectItem>
+                      <SelectItem value="Fund">Fund</SelectItem>
+                      <SelectItem value="SPV">SPV</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+
+            {/* Price Signal */}
+            <div>
+              <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">3. Price Signal</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label className="mb-2 block">Valuation *</Label>
+                  <Input placeholder="e.g. €45M" value={newItem.valuation} onChange={(e) => setNewItem({ ...newItem, valuation: e.target.value })} className="rounded-xl" />
+                </div>
+                <div>
+                  <Label className="mb-2 block">Price per Share</Label>
+                  <Input placeholder="e.g. €120" value={newItem.pricePerShare} onChange={(e) => setNewItem({ ...newItem, pricePerShare: e.target.value })} className="rounded-xl" />
+                </div>
+              </div>
+            </div>
+
+            {/* Ticket Size */}
+            <div>
+              <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">4. Ticket Size</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label className="mb-2 block">Minimum Investment</Label>
+                  <Input placeholder="e.g. €100k" value={newItem.minimumInvestment} onChange={(e) => setNewItem({ ...newItem, minimumInvestment: e.target.value })} className="rounded-xl" />
+                </div>
+                <div>
+                  <Label className="mb-2 block">Total Offered Size</Label>
+                  <Input placeholder="e.g. €3.5M available" value={newItem.totalOfferedSize} onChange={(e) => setNewItem({ ...newItem, totalOfferedSize: e.target.value })} className="rounded-xl" />
+                </div>
+              </div>
+            </div>
+
             <div className="flex gap-3 justify-end">
-              <Button 
-                variant="outline" 
-                onClick={() => navigate("/secondaries")}
-                className="rounded-xl"
-              >
-                Cancel
-              </Button>
+              <Button variant="outline" onClick={() => navigate("/secondaries")} className="rounded-xl">Cancel</Button>
               <Button onClick={handleAddItem} className="bg-primary hover:bg-primary/90 rounded-xl">
                 <Plus className="w-4 h-4 mr-2" />
                 Add
@@ -197,7 +222,7 @@ const EditAvailableSecondaries = () => {
         {/* Existing Items */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="text-xl font-bold">Aktuelle Angebote ({items.length})</CardTitle>
+            <CardTitle className="text-xl font-bold">Current Offers ({items.length})</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {items.map((item) => (
@@ -205,24 +230,26 @@ const EditAvailableSecondaries = () => {
                 <div className="flex-1 space-y-2">
                   <div className="flex items-center gap-3">
                     <h3 className="font-semibold text-foreground">{item.company}</h3>
-                    <Badge className={getUrgencyColor(item.urgency)}>{item.urgency}</Badge>
+                    <Badge variant="outline">{item.sellerType}</Badge>
                   </div>
                   <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
                     <span>{item.sector}</span>
                     <span>•</span>
-                    <span>{item.sharesAvailable} Anteile</span>
+                    <span>{item.jurisdiction}</span>
                     <span>•</span>
-                    <span>{item.askingPrice}</span>
+                    <span>{item.securityType}</span>
                     <span>•</span>
-                    <span>Bewertung: {item.valuation}</span>
+                    <span>{item.transactionType}</span>
                   </div>
-                  {item.highlights.length > 0 && (
-                    <div className="flex flex-wrap gap-1">
-                      {item.highlights.map((h) => (
-                        <Badge key={h} className="bg-primary/10 text-primary text-xs">{h}</Badge>
-                      ))}
-                    </div>
-                  )}
+                  <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
+                    <span>Valuation: {item.valuation}</span>
+                    <span>•</span>
+                    <span>Price/Share: {item.pricePerShare}</span>
+                    <span>•</span>
+                    <span>Min: {item.minimumInvestment}</span>
+                    <span>•</span>
+                    <span>Total: {item.totalOfferedSize}</span>
+                  </div>
                 </div>
                 <Button
                   variant="ghost"
@@ -235,7 +262,7 @@ const EditAvailableSecondaries = () => {
               </div>
             ))}
             {items.length === 0 && (
-              <p className="text-center text-muted-foreground py-8">Keine Angebote vorhanden</p>
+              <p className="text-center text-muted-foreground py-8">No offers available</p>
             )}
           </CardContent>
         </Card>
