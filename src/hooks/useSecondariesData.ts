@@ -5,21 +5,28 @@ export interface AvailableSecondary {
   id: string;
   company: string;
   sector: string;
-  sharesAvailable: string;
+  jurisdiction: string;
+  securityType: "Common" | "Preferred" | "Convertible" | "LP Interest";
+  transactionType: "Secondary" | "Tender" | "Structured";
+  sellerType: "Founder" | "Employee" | "Investor" | "Fund" | "SPV";
   valuation: string;
-  askingPrice: string;
-  seller: string;
-  urgency: "High" | "Medium" | "Low";
-  highlights: string[];
+  pricePerShare: string;
+  minimumInvestment: string;
+  totalOfferedSize: string;
 }
 
 export interface MyOffer {
   id: string;
   company: string;
   sector: string;
-  sharesOffered: string;
+  jurisdiction: string;
+  securityType: "Common" | "Preferred" | "Convertible" | "LP Interest";
+  transactionType: "Secondary" | "Tender" | "Structured";
+  sellerType: "Founder" | "Employee" | "Investor" | "Fund" | "SPV";
   valuation: string;
-  askingPrice: string;
+  pricePerShare: string;
+  minimumInvestment: string;
+  totalOfferedSize: string;
   status: "Active" | "Pending Review" | "Sold";
   inquiries: number;
   createdAt: string;
@@ -47,34 +54,40 @@ const DEFAULT_AVAILABLE_SECONDARIES: AvailableSecondary[] = [
     id: "1",
     company: "SolarFlow GmbH",
     sector: "CleanTech",
-    sharesAvailable: "8%",
+    jurisdiction: "Germany",
+    securityType: "Preferred",
+    transactionType: "Secondary",
+    sellerType: "Investor",
     valuation: "€45M",
-    askingPrice: "€3.6M",
-    seller: "Early Investor",
-    urgency: "High",
-    highlights: ["Profitable", "Strong Growth", "Strategic Buyer Interest"]
+    pricePerShare: "€120",
+    minimumInvestment: "€250k",
+    totalOfferedSize: "€3.6M",
   },
   {
     id: "2",
     company: "GridOptimize",
     sector: "Smart Grid",
-    sharesAvailable: "5%",
+    jurisdiction: "Netherlands",
+    securityType: "Common",
+    transactionType: "Secondary",
+    sellerType: "Founder",
     valuation: "€28M",
-    askingPrice: "€1.4M",
-    seller: "Founder",
-    urgency: "Medium",
-    highlights: ["Series B Upcoming", "Key Partnerships"]
+    pricePerShare: "€85",
+    minimumInvestment: "€100k",
+    totalOfferedSize: "€1.4M",
   },
   {
     id: "3",
-    company: "BatteryNext",
+    company: "Confidential – Energy Storage, EU",
     sector: "Energy Storage",
-    sharesAvailable: "12%",
+    jurisdiction: "EU",
+    securityType: "LP Interest",
+    transactionType: "Structured",
+    sellerType: "Fund",
     valuation: "€62M",
-    askingPrice: "€7.4M",
-    seller: "VC Fund",
-    urgency: "Low",
-    highlights: ["Market Leader", "Patent Portfolio"]
+    pricePerShare: "€210",
+    minimumInvestment: "€500k",
+    totalOfferedSize: "€7.4M",
   }
 ];
 
@@ -83,9 +96,14 @@ const DEFAULT_MY_OFFERS: MyOffer[] = [
     id: "1",
     company: "WindTech Solutions",
     sector: "Wind Energy",
-    sharesOffered: "10%",
+    jurisdiction: "Denmark",
+    securityType: "Common",
+    transactionType: "Secondary",
+    sellerType: "Investor",
     valuation: "€32M",
-    askingPrice: "€3.2M",
+    pricePerShare: "€95",
+    minimumInvestment: "€150k",
+    totalOfferedSize: "€3.2M",
     status: "Active",
     inquiries: 4,
     createdAt: "Jan 5, 2026"
@@ -94,9 +112,14 @@ const DEFAULT_MY_OFFERS: MyOffer[] = [
     id: "2",
     company: "SmartCharge Inc",
     sector: "EV Charging",
-    sharesOffered: "6%",
+    jurisdiction: "France",
+    securityType: "Preferred",
+    transactionType: "Tender",
+    sellerType: "Fund",
     valuation: "€18M",
-    askingPrice: "€1.1M",
+    pricePerShare: "€60",
+    minimumInvestment: "€100k",
+    totalOfferedSize: "€1.1M",
     status: "Pending Review",
     inquiries: 0,
     createdAt: "Jan 8, 2026"
