@@ -256,7 +256,7 @@ const ExitPreparation = () => {
                       </div>
 
                       <div className="flex gap-2">
-                        <Link to="/edit-available-secondaries" className="flex-1">
+                        <Link to={`/edit-available-secondaries/${secondary.id}`} className="flex-1">
                           <Button variant="outline" className="w-full border-accent/30 text-accent hover:bg-accent/10 rounded-xl">
                             Place Offer
                           </Button>

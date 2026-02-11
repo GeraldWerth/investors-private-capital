@@ -47,6 +47,7 @@ const App = () => (
           <Route path="/edit-investments" element={<EditInvestments />} />
           <Route path="/founder-access" element={<FounderAccess />} />
           <Route path="/secondaries" element={<Secondaries />} />
+          <Route path="/edit-available-secondaries/:id" element={<EditAvailableSecondaries />} />
           <Route path="/edit-available-secondaries" element={<EditAvailableSecondaries />} />
           <Route path="/find-investments" element={<FindInvestments />} />
           <Route path="/partners" element={<Partners />} />
