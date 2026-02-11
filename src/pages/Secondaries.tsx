@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -361,39 +362,107 @@ const ExitPreparation = () => {
               <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm border-l-4 border-l-primary">
                 <CardHeader>
                   <CardTitle className="text-xl font-bold text-foreground">Create Secondary Offer</CardTitle>
-                  <CardDescription>List your shares for sale on the secondary market</CardDescription>
+                  <CardDescription>List your secondary deal on the marketplace</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm font-medium text-foreground mb-2 block">Company Name</label>
-                      <Input placeholder="Enter company name" className="rounded-xl" />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-foreground mb-2 block">Sector</label>
-                      <Input placeholder="e.g., CleanTech, Smart Grid" className="rounded-xl" />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-foreground mb-2 block">Shares Offered (%)</label>
-                      <Input placeholder="e.g., 5%" className="rounded-xl" />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-foreground mb-2 block">Current Valuation</label>
-                      <Input placeholder="e.g., €20M" className="rounded-xl" />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-foreground mb-2 block">Asking Price</label>
-                      <Input placeholder="e.g., €1M" className="rounded-xl" />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-foreground mb-2 block">Priority Level</label>
-                      <Input placeholder="High, Medium, Low" className="rounded-xl" />
-                    </div>
-                  </div>
+                <CardContent className="space-y-6">
+                  {/* Section 1: Asset Identifier */}
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-2 block">Highlights (comma separated)</label>
-                    <Input placeholder="e.g., Profitable, Strong Growth, Key Partnerships" className="rounded-xl" />
+                    <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">1. Asset Identifier</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <Label className="text-sm font-medium text-foreground mb-2 block">Company / Name *</Label>
+                        <Input placeholder='e.g. "Confidential – SaaS Scaleup, EU"' className="rounded-xl" />
+                      </div>
+                      <div>
+                        <Label className="text-sm font-medium text-foreground mb-2 block">Sector / Industry *</Label>
+                        <Input placeholder="e.g. AI, Fintech, Energy, Defense" className="rounded-xl" />
+                      </div>
+                      <div>
+                        <Label className="text-sm font-medium text-foreground mb-2 block">Jurisdiction *</Label>
+                        <Input placeholder="Country / Region" className="rounded-xl" />
+                      </div>
+                    </div>
                   </div>
+
+                  {/* Section 2: Transaction Snapshot */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">2. Transaction Snapshot</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <Label className="text-sm font-medium text-foreground mb-2 block">Security Type *</Label>
+                        <Select>
+                          <SelectTrigger className="rounded-xl">
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="common">Common</SelectItem>
+                            <SelectItem value="preferred">Preferred</SelectItem>
+                            <SelectItem value="convertible">Convertible</SelectItem>
+                            <SelectItem value="lp-interest">LP Interest</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label className="text-sm font-medium text-foreground mb-2 block">Transaction Type *</Label>
+                        <Select>
+                          <SelectTrigger className="rounded-xl">
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="secondary">Secondary</SelectItem>
+                            <SelectItem value="tender">Tender</SelectItem>
+                            <SelectItem value="structured">Structured</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label className="text-sm font-medium text-foreground mb-2 block">Seller Type *</Label>
+                        <Select>
+                          <SelectTrigger className="rounded-xl">
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="founder">Founder</SelectItem>
+                            <SelectItem value="employee">Employee</SelectItem>
+                            <SelectItem value="investor">Investor</SelectItem>
+                            <SelectItem value="fund">Fund</SelectItem>
+                            <SelectItem value="spv">SPV</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Section 3: Price Signal */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">3. Price Signal</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label className="text-sm font-medium text-foreground mb-2 block">Valuation *</Label>
+                        <Input placeholder="e.g. €45M" className="rounded-xl" />
+                      </div>
+                      <div>
+                        <Label className="text-sm font-medium text-foreground mb-2 block">Price per Share *</Label>
+                        <Input placeholder="e.g. €120" className="rounded-xl" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Section 4: Ticket Size */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">4. Ticket Size</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label className="text-sm font-medium text-foreground mb-2 block">Minimum Investment *</Label>
+                        <Input placeholder="e.g. €100k" className="rounded-xl" />
+                      </div>
+                      <div>
+                        <Label className="text-sm font-medium text-foreground mb-2 block">Total Offered Size *</Label>
+                        <Input placeholder="e.g. €3.5M available" className="rounded-xl" />
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="flex gap-3 pt-2">
                     <Button 
                       variant="outline" 
