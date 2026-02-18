@@ -13,7 +13,7 @@ const FindStartups = () => {
       title: "Invest in Startups",
       description: "Discover promising startups for direct investments",
       details: ["Early-Stage Investments", "Growth-Stage Deals", "Co-Investment Opportunities"],
-      link: "/pitching-sessions",
+      link: "/founder-access",
       color: "bg-primary/10 text-primary"
     },
     {
