@@ -149,7 +149,7 @@ const ExitPreparation = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">12</p>
-                <p className="text-xs text-muted-foreground">Available</p>
+                <p className="text-xs text-muted-foreground">Available Secondaries</p>
               </div>
             </div>
           </div>
