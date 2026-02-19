@@ -596,7 +596,7 @@ const ExitPreparation = () => {
               Express Purchase Interest
             </DialogTitle>
             <DialogDescription className="text-muted-foreground pt-2">
-              With this request, you express your purchase interest for the following offer. Your contact details will be shared with the seller.
+              With this request, you express your purchase interest for the following offer. Your contact details will be shared with the our special department for secondaries and the seller.
             </DialogDescription>
           </DialogHeader>
           
