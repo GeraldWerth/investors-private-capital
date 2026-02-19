@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, Search, Building2, TrendingUp, Filter, Bookmark, Send, Target, Clock, CheckCircle2, AlertCircle } from "lucide-react";
+import { ArrowLeft, Search, Building2, TrendingUp, Filter, Bookmark, Send, Target } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -207,113 +207,6 @@ const DataRoom = () => {
           </CardContent>
         </Card>
 
-        {/* My Search Requests */}
-        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              <Clock className="w-5 h-5 text-primary" />
-              My Search Requests
-            </CardTitle>
-            <CardDescription>Overview of your commissioned searches</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {[
-              {
-                id: 1,
-                type: ["Primary Investment"],
-                sectors: "CleanTech, Renewables",
-                ticketSize: "€1M - €3M",
-                stage: "Series A",
-                region: "DACH",
-                status: "in_progress",
-                createdAt: "January 5, 2026",
-                matches: 3
-              },
-              {
-                id: 2,
-                type: ["Secondary"],
-                sectors: "Energy Storage",
-                ticketSize: "€500K - €1.5M",
-                stage: "Series B",
-                region: "EU",
-                status: "completed",
-                createdAt: "December 20, 2025",
-                matches: 5
-              },
-              {
-                id: 3,
-                type: ["Primary Investment", "Secondary"],
-                sectors: "Smart Grid, CleanTech",
-                ticketSize: "€2M - €5M",
-                stage: "Growth",
-                region: "Global",
-                status: "pending",
-                createdAt: "December 15, 2025",
-                matches: 0
-              }
-            ].map((request) => (
-              <div 
-                key={request.id}
-                className="p-5 rounded-2xl bg-secondary border border-border hover:shadow-lg transition-all"
-              >
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-start justify-between">
-                    <div className="flex flex-wrap gap-2">
-                      {request.type.map((t) => (
-                        <Badge key={t} className="bg-primary/20 text-primary">{t}</Badge>
-                      ))}
-                      <Badge 
-                        className={
-                          request.status === 'completed' 
-                            ? 'bg-green-500/20 text-green-600' 
-                            : request.status === 'in_progress'
-                            ? 'bg-amber-500/20 text-amber-600'
-                            : 'bg-muted text-muted-foreground'
-                        }
-                      >
-                        {request.status === 'completed' && <CheckCircle2 className="w-3 h-3 mr-1" />}
-                        {request.status === 'in_progress' && <Clock className="w-3 h-3 mr-1" />}
-                        {request.status === 'pending' && <AlertCircle className="w-3 h-3 mr-1" />}
-                        {request.status === 'completed' ? 'Completed' : request.status === 'in_progress' ? 'In Progress' : 'Pending'}
-                      </Badge>
-                    </div>
-                    <span className="text-sm text-muted-foreground">{request.createdAt}</span>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-3 bg-background/50 rounded-xl">
-                    <div>
-                      <p className="text-xs text-muted-foreground">Sectors</p>
-                      <p className="font-medium text-foreground text-sm">{request.sectors}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-muted-foreground">Ticket Size</p>
-                      <p className="font-medium text-foreground text-sm">{request.ticketSize}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-muted-foreground">Stage</p>
-                      <p className="font-medium text-foreground text-sm">{request.stage}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-muted-foreground">Region</p>
-                      <p className="font-medium text-foreground text-sm">{request.region}</p>
-                    </div>
-                  </div>
-
-                  {request.matches > 0 && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">
-                        {request.matches} matching results found
-                      </span>
-                      <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-                        View Results
-                      </Button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
 
       </main>
     </div>
