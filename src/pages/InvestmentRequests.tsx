@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { ArrowLeft, Search, Building2, TrendingUp, Filter, Bookmark, Send, Target } from "lucide-react";
+import { ArrowLeft, Search, Building2, TrendingUp, Bookmark, Send, Target } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -12,7 +11,6 @@ import { toast } from "sonner";
 
 const DataRoom = () => {
   const [showRequestForm, setShowRequestForm] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
 
 
   return (
@@ -98,44 +96,6 @@ const DataRoom = () => {
             </div>
           </div>
         </div>
-
-        {/* Search Bar */}
-        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-          <CardContent className="pt-6">
-            <div className="flex gap-3">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input 
-                  placeholder="Search startups by name, sector, or keywords..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 rounded-xl"
-                />
-              </div>
-              <Button variant="outline" className="rounded-xl border-primary text-primary">
-                <Filter className="w-4 h-4 mr-2" />
-                Filters
-              </Button>
-              <Button 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
-                onClick={() => setShowRequestForm(true)}
-              >
-                <Send className="w-4 h-4 mr-2" />
-                Submit Request
-              </Button>
-            </div>
-
-            {/* Quick Filters */}
-            <div className="flex gap-2 mt-4 flex-wrap">
-              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">CleanTech</Badge>
-              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Energy Storage</Badge>
-              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Smart Grid</Badge>
-              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Seed</Badge>
-              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Series A</Badge>
-              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">€1M-5M</Badge>
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Investment Search Request Form */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm border-primary/20">
