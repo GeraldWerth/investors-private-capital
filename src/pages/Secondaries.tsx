@@ -274,76 +274,37 @@ const ExitPreparation = () => {
               </CardContent>
             </Card>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Active Negotiations */}
-              <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-                <CardHeader className="flex flex-row items-center justify-between">
-                  <div>
-                    <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                      <Clock className="w-5 h-5 text-accent" />
-                      Active Negotiations
-                    </CardTitle>
-                    <CardDescription>Your ongoing secondary deals</CardDescription>
-                  </div>
-                  <Link to="/edit-negotiations">
-                    <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
-                      <Settings className="w-4 h-4" />
-                    </Button>
-                  </Link>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {negotiations.map((deal) => (
-                    <div 
-                      key={deal.id}
-                      className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border"
-                    >
-                      <div>
-                        <p className="font-medium text-foreground">{deal.company}</p>
-                        <p className="text-sm text-muted-foreground">{deal.shares} · {deal.lastUpdate}</p>
-                      </div>
-                      <Badge className="bg-accent/20 text-accent">{deal.stage}</Badge>
+            {/* Active Negotiations */}
+            <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-accent" />
+                    Active Negotiations
+                  </CardTitle>
+                  <CardDescription>Your ongoing secondary deals</CardDescription>
+                </div>
+                <Link to="/edit-negotiations">
+                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                    <Settings className="w-4 h-4" />
+                  </Button>
+                </Link>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {negotiations.map((deal) => (
+                  <div 
+                    key={deal.id}
+                    className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border"
+                  >
+                    <div>
+                      <p className="font-medium text-foreground">{deal.company}</p>
+                      <p className="text-sm text-muted-foreground">{deal.shares} · {deal.lastUpdate}</p>
                     </div>
-                  ))}
-                </CardContent>
-              </Card>
-
-              {/* Portfolio Exits */}
-              <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-                <CardHeader className="flex flex-row items-center justify-between">
-                  <div>
-                    <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-                      <TrendingUp className="w-5 h-5 text-primary" />
-                      Recent Exits
-                    </CardTitle>
-                    <CardDescription>Your successful portfolio exits</CardDescription>
+                    <Badge className="bg-accent/20 text-accent">{deal.stage}</Badge>
                   </div>
-                  <Link to="/edit-exits">
-                    <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
-                      <Settings className="w-4 h-4" />
-                    </Button>
-                  </Link>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {exits.map((exit) => (
-                    <div 
-                      key={exit.id}
-                      className="flex items-center justify-between p-4 rounded-xl bg-secondary border border-border"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                          <Building2 className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-medium text-foreground">{exit.company}</p>
-                          <p className="text-sm text-muted-foreground">{exit.exitType} · {exit.date}</p>
-                        </div>
-                      </div>
-                      <span className="font-bold text-primary">{exit.multiple}</span>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </div>
+                ))}
+              </CardContent>
+            </Card>
           </TabsContent>
 
           {/* Offers Tab - Sell Your Secondaries */}
