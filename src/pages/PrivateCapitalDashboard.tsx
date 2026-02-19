@@ -41,6 +41,14 @@ const StartupDashboard = () => {
       stats: "8 matches",
       items: ["Browse Opportunities", "Submit Request", "Saved Searches"],
       link: "/investment-requests"
+    },
+    {
+      icon: Briefcase,
+      title: "Fund Entry for Limited Partners",
+      description: "Identify and request LP fund entry opportunities curated by EIN Energy",
+      stats: "24 active funds",
+      items: ["VC & PE Funds", "Infrastructure Funds", "Fund of Funds"],
+      link: "/lp-fund-entry"
     }
   ];
 
@@ -48,7 +56,8 @@ const StartupDashboard = () => {
     { icon: Building2, label: "Find Investments", link: "/find-investments" },
     { icon: FileText, label: "Review Deal Flow", link: "/founder-access" },
     { icon: Briefcase, label: "Offer Secondaries", link: "/secondaries" },
-    { icon: Calendar, label: "Find Partners", link: "/partners" }
+    { icon: Calendar, label: "Find Partners", link: "/partners" },
+    { icon: Briefcase, label: "LP Fund Entry", link: "/lp-fund-entry" }
   ];
 
   return (
@@ -104,7 +113,7 @@ const StartupDashboard = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
           {quickActions.map((action, index) => {
             const ButtonContent = (
               <Button

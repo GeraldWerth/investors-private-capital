@@ -1,4 +1,4 @@
-import { ArrowLeft, Search, TrendingUp, Send, Briefcase, Users, Globe, PieChart, Target, Layers } from "lucide-react";
+import { ArrowLeft, ArrowRight, Search, TrendingUp, Send, Briefcase, Globe, PieChart, Target, Layers, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -133,100 +133,39 @@ const InvestmentRequests = () => {
             </CardContent>
           </Card>
 
-          {/* Right Column: LP Fund Entry */}
-          <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm border-t-4 border-t-accent">
-            <CardHeader className="pb-4">
-              <div className="flex items-center gap-3 mb-1">
-                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
-                  <Briefcase className="w-5 h-5 text-accent" />
+          {/* Right Column: LP Fund Entry – Link Card */}
+          <Link to="/lp-fund-entry" className="block">
+            <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm border-t-4 border-t-accent h-full hover:shadow-2xl transition-all duration-300 group cursor-pointer">
+              <CardHeader className="pb-4">
+                <div className="flex items-center gap-3 mb-1">
+                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                    <Briefcase className="w-5 h-5 text-accent" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg font-bold text-foreground group-hover:text-accent transition-colors">Fund Entry for Limited Partners</CardTitle>
+                    <CardDescription>Identify suitable fund entry opportunities as an LP</CardDescription>
+                  </div>
                 </div>
-                <div>
-                  <CardTitle className="text-lg font-bold text-foreground">Fund Entry for Limited Partners</CardTitle>
-                  <CardDescription>Identify suitable fund entry opportunities as an LP</CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <form
-                className="space-y-5"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  toast.success("Your LP fund entry request has been submitted. We will get back to you shortly.");
-                }}
-              >
-                {/* Fund Type */}
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  Commission EIN Energy to search for LP fund entry opportunities tailored to your profile — from Venture Capital and Private Equity to Infrastructure and Fund of Funds.
+                </p>
                 <div className="space-y-2">
-                  <Label className="font-semibold">Fund Type</Label>
-                  <div className="grid grid-cols-1 gap-3">
-                    <div className="flex items-start space-x-3 p-3 rounded-xl border border-border bg-secondary hover:border-accent/50 transition-colors">
-                      <Checkbox id="vc-fund" className="mt-0.5" />
-                      <div>
-                        <Label htmlFor="vc-fund" className="font-medium cursor-pointer">Venture Capital Fund</Label>
-                        <p className="text-xs text-muted-foreground">Early- to growth-stage equity funds</p>
-                      </div>
+                  {["VC & PE Funds", "Infrastructure / Real Assets", "Fund of Funds", "LP Commitment Matching"].map((item) => (
+                    <div key={item} className="flex items-center justify-between p-3 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors">
+                      <span className="text-sm text-foreground">{item}</span>
+                      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
                     </div>
-                    <div className="flex items-start space-x-3 p-3 rounded-xl border border-border bg-secondary hover:border-accent/50 transition-colors">
-                      <Checkbox id="pe-fund" className="mt-0.5" />
-                      <div>
-                        <Label htmlFor="pe-fund" className="font-medium cursor-pointer">Private Equity Fund</Label>
-                        <p className="text-xs text-muted-foreground">Buyout, growth equity or special situations</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-3 p-3 rounded-xl border border-border bg-secondary hover:border-accent/50 transition-colors">
-                      <Checkbox id="infra-fund" className="mt-0.5" />
-                      <div>
-                        <Label htmlFor="infra-fund" className="font-medium cursor-pointer">Infrastructure / Real Assets</Label>
-                        <p className="text-xs text-muted-foreground">Energy, infrastructure, real estate</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-3 p-3 rounded-xl border border-border bg-secondary hover:border-accent/50 transition-colors">
-                      <Checkbox id="fof" className="mt-0.5" />
-                      <div>
-                        <Label htmlFor="fof" className="font-medium cursor-pointer">Fund of Funds</Label>
-                        <p className="text-xs text-muted-foreground">Diversified exposure across multiple managers</p>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-
-                {/* Fields */}
-                <div className="space-y-3">
-                  <div className="space-y-1.5">
-                    <Label className="flex items-center gap-1.5"><PieChart className="w-3.5 h-3.5 text-muted-foreground" />Target Sectors / Themes</Label>
-                    <Input placeholder="e.g. CleanTech, Energy Transition, Deep Tech" className="rounded-xl" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label className="flex items-center gap-1.5"><Globe className="w-3.5 h-3.5 text-muted-foreground" />Geographic Focus</Label>
-                    <Input placeholder="e.g. DACH, Europe, Global" className="rounded-xl" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label className="flex items-center gap-1.5"><Briefcase className="w-3.5 h-3.5 text-muted-foreground" />LP Commitment Size</Label>
-                    <Input placeholder="e.g. €500K – €5M" className="rounded-xl" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-muted-foreground" />Preferred Fund Size</Label>
-                    <Input placeholder="e.g. €50M – €300M" className="rounded-xl" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label>Target Return / IRR Expectation</Label>
-                    <Input placeholder="e.g. 15%+ net IRR, 2.5x+ MOIC" className="rounded-xl" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label>Special Requirements & Notes</Label>
-                    <Textarea
-                      placeholder="ESG requirements, co-investment rights, reporting preferences, GP track record..."
-                      className="rounded-xl min-h-[90px]"
-                    />
-                  </div>
-                </div>
-
-                <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl">
-                  <Send className="w-4 h-4 mr-2" />
-                  Submit LP Fund Request
+                <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl">
+                  Open LP Fund Entry
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
-              </form>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </Link>
 
         </div>
       </main>

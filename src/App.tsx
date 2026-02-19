@@ -23,6 +23,7 @@ import Partners from "./pages/Partners";
 import PartnerProfile from "./pages/PartnerProfile";
 import EditNegotiations from "./pages/EditNegotiations";
 import EditExits from "./pages/EditExits";
+import LPFundEntry from "./pages/LPFundEntry";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -55,6 +56,7 @@ const App = () => (
           <Route path="/edit-negotiations" element={<EditNegotiations />} />
           <Route path="/edit-exits" element={<EditExits />} />
           <Route path="/investment-requests" element={<InvestmentRequests />} />
+          <Route path="/lp-fund-entry" element={<LPFundEntry />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
