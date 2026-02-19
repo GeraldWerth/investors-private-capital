@@ -7,7 +7,7 @@ export interface AvailableSecondary {
   sector: string;
   jurisdiction: string;
   securityType: "Common" | "Preferred" | "Convertible" | "LP Interest";
-  transactionType: "Secondary" | "Tender" | "Structured";
+  transactionType: string;
   sellerType: "Founder" | "Employee" | "Investor" | "Fund" | "SPV";
   valuation: string;
   pricePerShare: string;
@@ -21,7 +21,7 @@ export interface MyOffer {
   sector: string;
   jurisdiction: string;
   securityType: "Common" | "Preferred" | "Convertible" | "LP Interest";
-  transactionType: "Secondary" | "Tender" | "Structured";
+  transactionType: string;
   sellerType: "Founder" | "Employee" | "Investor" | "Fund" | "SPV";
   valuation: string;
   pricePerShare: string;
@@ -56,7 +56,7 @@ const DEFAULT_AVAILABLE_SECONDARIES: AvailableSecondary[] = [
     sector: "CleanTech",
     jurisdiction: "Germany",
     securityType: "Preferred",
-    transactionType: "Secondary",
+    transactionType: "Direct Secondary",
     sellerType: "Investor",
     valuation: "€45M",
     pricePerShare: "€120",
@@ -69,7 +69,7 @@ const DEFAULT_AVAILABLE_SECONDARIES: AvailableSecondary[] = [
     sector: "Smart Grid",
     jurisdiction: "Netherlands",
     securityType: "Common",
-    transactionType: "Secondary",
+    transactionType: "Founder Sale",
     sellerType: "Founder",
     valuation: "€28M",
     pricePerShare: "€85",
@@ -82,7 +82,7 @@ const DEFAULT_AVAILABLE_SECONDARIES: AvailableSecondary[] = [
     sector: "Energy Storage",
     jurisdiction: "EU",
     securityType: "LP Interest",
-    transactionType: "Structured",
+    transactionType: "LP Interest Sale",
     sellerType: "Fund",
     valuation: "€62M",
     pricePerShare: "€210",
@@ -98,7 +98,7 @@ const DEFAULT_MY_OFFERS: MyOffer[] = [
     sector: "Wind Energy",
     jurisdiction: "Denmark",
     securityType: "Common",
-    transactionType: "Secondary",
+    transactionType: "Brokered Secondary",
     sellerType: "Investor",
     valuation: "€32M",
     pricePerShare: "€95",
@@ -114,7 +114,7 @@ const DEFAULT_MY_OFFERS: MyOffer[] = [
     sector: "EV Charging",
     jurisdiction: "France",
     securityType: "Preferred",
-    transactionType: "Tender",
+    transactionType: "Tender Offer",
     sellerType: "Fund",
     valuation: "€18M",
     pricePerShare: "€60",
