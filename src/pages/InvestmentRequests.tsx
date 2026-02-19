@@ -53,8 +53,8 @@ const InvestmentRequests = () => {
           </p>
         </div>
 
-        {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+        {/* Form */}
+        <div className="max-w-2xl mx-auto">
 
           {/* Left Column: Direct Investment / Secondary */}
           <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm border-t-4 border-t-primary">
@@ -132,40 +132,6 @@ const InvestmentRequests = () => {
               </form>
             </CardContent>
           </Card>
-
-          {/* Right Column: LP Fund Entry – Link Card */}
-          <Link to="/lp-fund-entry" className="block">
-            <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm border-t-4 border-t-accent h-full hover:shadow-2xl transition-all duration-300 group cursor-pointer">
-              <CardHeader className="pb-4">
-                <div className="flex items-center gap-3 mb-1">
-                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
-                    <Briefcase className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg font-bold text-foreground group-hover:text-accent transition-colors">Fund Entry for Limited Partners</CardTitle>
-                    <CardDescription>Identify suitable fund entry opportunities as an LP</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-sm text-muted-foreground">
-                  Commission EIN Energy to search for LP fund entry opportunities tailored to your profile — from Venture Capital and Private Equity to Infrastructure and Fund of Funds.
-                </p>
-                <div className="space-y-2">
-                  {["VC & PE Funds", "Infrastructure / Real Assets", "Fund of Funds", "LP Commitment Matching"].map((item) => (
-                    <div key={item} className="flex items-center justify-between p-3 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors">
-                      <span className="text-sm text-foreground">{item}</span>
-                      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
-                    </div>
-                  ))}
-                </div>
-                <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl">
-                  Open LP Fund Entry
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </CardContent>
-            </Card>
-          </Link>
 
         </div>
       </main>
