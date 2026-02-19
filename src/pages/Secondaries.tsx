@@ -30,7 +30,7 @@ const ExitPreparation = () => {
     sector: "",
     jurisdiction: "",
     securityType: "" as "Common" | "Preferred" | "Convertible" | "LP Interest",
-    transactionType: "" as "Secondary" | "Tender" | "Structured",
+    transactionType: "" as string,
     sellerType: "" as "Founder" | "Employee" | "Investor" | "Fund" | "SPV",
     valuation: "",
     pricePerShare: "",
