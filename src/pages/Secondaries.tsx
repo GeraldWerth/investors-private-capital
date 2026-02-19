@@ -41,6 +41,21 @@ const ExitPreparation = () => {
   const { availableSecondaries, myOffers, negotiations, exits } = useSecondariesData();
   const { userProfile, companyProfile } = useUserProfile();
 
+  const parseMValue = (val: string): number => {
+    const match = val.replace(/[€,\s]/g, "").match(/([\d.]+)(M|K|k)?/);
+    if (!match) return 0;
+    const num = parseFloat(match[1]);
+    const unit = match[2]?.toUpperCase();
+    return unit === "M" ? num : unit === "K" ? num / 1000 : num;
+  };
+
+  const totalValue = [
+    ...availableSecondaries.map((s) => parseMValue(s.totalOfferedSize)),
+    ...myOffers.map((o) => parseMValue(o.totalOfferedSize)),
+  ].reduce((sum, v) => sum + v, 0);
+
+  const formatTotal = (val: number): string => `€${val % 1 === 0 ? val : val.toFixed(1)}M`;
+
   const handleExpressInterest = (secondary: AvailableSecondary) => {
     setSelectedSecondary(secondary);
     setShowInterestDialog(true);
@@ -144,7 +159,7 @@ const ExitPreparation = () => {
                 <Euro className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">€18M</p>
+                <p className="text-2xl font-bold text-foreground">{formatTotal(totalValue)}</p>
                 <p className="text-xs text-muted-foreground">Total Value</p>
               </div>
             </div>
