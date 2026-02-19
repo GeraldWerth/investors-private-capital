@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -404,16 +404,57 @@ const ExitPreparation = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div>
+                       <div>
                         <Label className="text-sm font-medium text-foreground mb-2 block">Transaction Type *</Label>
                         <Select>
                           <SelectTrigger className="rounded-xl">
                             <SelectValue placeholder="Select type" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="secondary">Secondary</SelectItem>
-                            <SelectItem value="tender">Tender</SelectItem>
-                            <SelectItem value="structured">Structured</SelectItem>
+                            <SelectGroup>
+                              <SelectLabel>Share-level</SelectLabel>
+                              <SelectItem value="direct-secondary">Direct Secondary</SelectItem>
+                              <SelectItem value="brokered-secondary">Brokered Secondary</SelectItem>
+                              <SelectItem value="structured-block-trade">Structured / Block Trade</SelectItem>
+                              <SelectItem value="cross-trade">Cross Trade</SelectItem>
+                              <SelectItem value="employee-sale">Employee Sale</SelectItem>
+                              <SelectItem value="founder-sale">Founder Sale</SelectItem>
+                              <SelectItem value="angel-early-investor-sale">Angel / Early Investor Sale</SelectItem>
+                              <SelectItem value="vc-pe-stake-sale">VC/PE Stake Sale</SelectItem>
+                            </SelectGroup>
+                            <SelectGroup>
+                              <SelectLabel>Company-facilitated</SelectLabel>
+                              <SelectItem value="tender-offer">Tender Offer</SelectItem>
+                              <SelectItem value="company-buyback">Company Buyback</SelectItem>
+                              <SelectItem value="liquidity-program">Liquidity Program / Trading Window</SelectItem>
+                              <SelectItem value="pre-ipo-secondary-placement">Pre-IPO Secondary Placement</SelectItem>
+                            </SelectGroup>
+                            <SelectGroup>
+                              <SelectLabel>Hybrid Rounds</SelectLabel>
+                              <SelectItem value="primary-secondary-round">Primary + Secondary Round</SelectItem>
+                              <SelectItem value="recapitalization-round">Recapitalization Round</SelectItem>
+                              <SelectItem value="growth-round-secondary-allocation">Growth Round Secondary Allocation</SelectItem>
+                            </SelectGroup>
+                            <SelectGroup>
+                              <SelectLabel>Synthetic / Derivative</SelectLabel>
+                              <SelectItem value="forward-contract">Forward Contract</SelectItem>
+                              <SelectItem value="cfd">CFD</SelectItem>
+                              <SelectItem value="total-return-swap">Total Return Swap</SelectItem>
+                              <SelectItem value="beneficial-interest-transfer">Beneficial Interest Transfer</SelectItem>
+                            </SelectGroup>
+                            <SelectGroup>
+                              <SelectLabel>Fund-level</SelectLabel>
+                              <SelectItem value="lp-interest-sale">LP Interest Sale</SelectItem>
+                              <SelectItem value="gp-led-continuation-vehicle">GP-led Continuation Vehicle</SelectItem>
+                              <SelectItem value="stapled-secondary">Stapled Secondary</SelectItem>
+                              <SelectItem value="portfolio-strip-sale">Portfolio Strip Sale</SelectItem>
+                              <SelectItem value="single-asset-secondary-vehicle">Single-Asset Secondary Vehicle</SelectItem>
+                            </SelectGroup>
+                            <SelectGroup>
+                              <SelectLabel>Structured Liquidity</SelectLabel>
+                              <SelectItem value="share-backed-loan">Share-backed Loan / Margin Financing</SelectItem>
+                              <SelectItem value="option-exercise-sell-program">Option Exercise & Sell Program</SelectItem>
+                            </SelectGroup>
                           </SelectContent>
                         </Select>
                       </div>
