@@ -646,7 +646,7 @@ const ExitPreparation = () => {
               <div className="p-4 rounded-xl bg-secondary border border-border space-y-3">
                 <h4 className="font-medium text-foreground text-sm flex items-center gap-2">
                   <Building2 className="w-4 h-4 text-muted-foreground" />
-                  Company Details
+                  Your Company Details
                 </h4>
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div className="col-span-2">
