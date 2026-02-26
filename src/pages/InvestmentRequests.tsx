@@ -107,111 +107,82 @@ const InvestmentRequests = () => {
           </Card>
         </div>
 
-        {/* Form Card */}
+        {/* Request History */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader className="border-b border-border pb-5">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Send className="w-4 h-4 text-primary" />
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Clock className="w-4 h-4 text-primary" />
+                </div>
+                <div>
+                  <CardTitle className="text-base font-bold text-foreground">My Search Requests</CardTitle>
+                  <CardDescription>Overview of all submitted investment search requests</CardDescription>
+                </div>
               </div>
-              <div>
-                <CardTitle className="text-base font-bold text-foreground">Search Request to EIN Energy</CardTitle>
-                <CardDescription>Commission EIN Energy to search for investments or secondaries on your behalf</CardDescription>
-              </div>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl" onClick={() => toast.info("New request form coming soon.")}>
+                <Send className="w-4 h-4 mr-2" />
+                New Request
+              </Button>
             </div>
           </CardHeader>
-          <CardContent className="pt-6">
-            <form
-              className="space-y-6"
-              onSubmit={(e) => {
-                e.preventDefault();
-                toast.success("Your search request has been submitted. We will get back to you shortly.");
-              }}
-            >
-              {/* Type of Request */}
-              <div className="space-y-3">
-                <Label className="text-sm font-semibold text-primary uppercase tracking-wider">Type of Request</Label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="flex items-start space-x-3 p-4 rounded-xl border border-border bg-secondary hover:border-primary/40 transition-colors cursor-pointer">
-                    <Checkbox id="primary-inv" className="mt-0.5" />
-                    <div>
-                      <Label htmlFor="primary-inv" className="font-medium cursor-pointer">Primary Investment</Label>
-                      <p className="text-xs text-muted-foreground mt-0.5">Direct investment in startups or funds</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3 p-4 rounded-xl border border-border bg-secondary hover:border-primary/40 transition-colors cursor-pointer">
-                    <Checkbox id="secondary-inv" className="mt-0.5" />
-                    <div>
-                      <Label htmlFor="secondary-inv" className="font-medium cursor-pointer">Secondary</Label>
-                      <p className="text-xs text-muted-foreground mt-0.5">Purchase of existing shares</p>
-                    </div>
-                  </div>
+          <CardContent className="pt-4 space-y-3">
+            {/* Request 1 */}
+            <div className="flex items-start gap-4 p-4 rounded-xl border border-border bg-secondary/50 hover:border-primary/30 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <CheckCircle className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="text-sm font-semibold text-foreground truncate">CleanTech Series A – DACH Region</h3>
+                  <span className="text-xs font-medium text-primary bg-primary/10 px-2.5 py-0.5 rounded-full shrink-0">Completed</span>
+                </div>
+                <p className="text-xs text-muted-foreground mb-2">Primary Investment · €500K–€2M · Seed/Series A</p>
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <span>Submitted: 12 Jan 2025</span>
+                  <span>·</span>
+                  <span>3 Matches</span>
                 </div>
               </div>
+            </div>
 
-              {/* Investment Criteria */}
-              <div className="space-y-3">
-                <Label className="text-sm font-semibold text-primary uppercase tracking-wider">Investment Criteria</Label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <Label className="flex items-center gap-1.5 text-sm">
-                      <Layers className="w-3.5 h-3.5 text-muted-foreground" />
-                      Target Sectors
-                    </Label>
-                    <Input placeholder="e.g. CleanTech, Renewables, Energy Storage" className="rounded-xl" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label className="flex items-center gap-1.5 text-sm">
-                      <TrendingUp className="w-3.5 h-3.5 text-muted-foreground" />
-                      Investment Stage
-                    </Label>
-                    <Input placeholder="e.g. Seed, Series A, Series B, Growth" className="rounded-xl" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label className="flex items-center gap-1.5 text-sm">
-                      <Briefcase className="w-3.5 h-3.5 text-muted-foreground" />
-                      Ticket Size
-                    </Label>
-                    <Input placeholder="e.g. €500K – €2M" className="rounded-xl" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label className="flex items-center gap-1.5 text-sm">
-                      <Globe className="w-3.5 h-3.5 text-muted-foreground" />
-                      Geographic Focus
-                    </Label>
-                    <Input placeholder="e.g. DACH, EU, Global" className="rounded-xl" />
-                  </div>
+            {/* Request 2 */}
+            <div className="flex items-start gap-4 p-4 rounded-xl border border-border bg-secondary/50 hover:border-primary/30 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-accent/50 flex items-center justify-center shrink-0 mt-0.5">
+                <Clock className="w-5 h-5 text-accent-foreground" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="text-sm font-semibold text-foreground truncate">Energy Storage Secondary – EU</h3>
+                  <span className="text-xs font-medium text-accent-foreground bg-accent/30 px-2.5 py-0.5 rounded-full shrink-0">In Progress</span>
+                </div>
+                <p className="text-xs text-muted-foreground mb-2">Secondary · €1M–€5M · Growth</p>
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <span>Submitted: 28 Jan 2025</span>
+                  <span>·</span>
+                  <span>2 Matches</span>
                 </div>
               </div>
+            </div>
 
-              {/* Special Requirements */}
-              <div className="space-y-3">
-                <Label className="text-sm font-semibold text-primary uppercase tracking-wider">Special Requirements</Label>
-                <Textarea
-                  placeholder="Describe specific criteria: minimum traction, team background, technology requirements, desired returns..."
-                  className="rounded-xl min-h-[100px]"
-                />
+            {/* Request 3 */}
+            <div className="flex items-start gap-4 p-4 rounded-xl border border-border bg-secondary/50 hover:border-primary/30 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-accent/50 flex items-center justify-center shrink-0 mt-0.5">
+                <Clock className="w-5 h-5 text-accent-foreground" />
               </div>
-
-              {/* Actions */}
-              <div className="flex justify-end gap-3 pt-1 border-t border-border">
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="rounded-xl"
-                  onClick={() => {
-                    const form = document.querySelector("form") as HTMLFormElement;
-                    form?.reset();
-                  }}
-                >
-                  Cancel
-                </Button>
-                <Button type="submit" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
-                  <Send className="w-4 h-4 mr-2" />
-                  Submit Search Request
-                </Button>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="text-sm font-semibold text-foreground truncate">Renewables Co-Investment – Global</h3>
+                  <span className="text-xs font-medium text-accent-foreground bg-accent/30 px-2.5 py-0.5 rounded-full shrink-0">In Progress</span>
+                </div>
+                <p className="text-xs text-muted-foreground mb-2">Primary Investment · €2M–€10M · Series B</p>
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <span>Submitted: 15 Feb 2025</span>
+                  <span>·</span>
+                  <span>2 Matches</span>
+                </div>
               </div>
-            </form>
+            </div>
           </CardContent>
         </Card>
 
