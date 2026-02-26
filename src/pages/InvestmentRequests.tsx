@@ -107,85 +107,6 @@ const InvestmentRequests = () => {
           </Card>
         </div>
 
-        {/* Request History */}
-        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
-          <CardHeader className="border-b border-border pb-5">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Clock className="w-4 h-4 text-primary" />
-                </div>
-                <div>
-                  <CardTitle className="text-base font-bold text-foreground">My Search Requests</CardTitle>
-                  <CardDescription>Overview of all submitted investment search requests</CardDescription>
-                </div>
-              </div>
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl" onClick={() => toast.info("New request form coming soon.")}>
-                <Send className="w-4 h-4 mr-2" />
-                New Request
-              </Button>
-            </div>
-          </CardHeader>
-          <CardContent className="pt-4 space-y-3">
-            {/* Request 1 */}
-            <div className="flex items-start gap-4 p-4 rounded-xl border border-border bg-secondary/50 hover:border-primary/30 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                <CheckCircle className="w-5 h-5 text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <h3 className="text-sm font-semibold text-foreground truncate">CleanTech Series A – DACH Region</h3>
-                  <span className="text-xs font-medium text-primary bg-primary/10 px-2.5 py-0.5 rounded-full shrink-0">Completed</span>
-                </div>
-                <p className="text-xs text-muted-foreground mb-2">Primary Investment · €500K–€2M · Seed/Series A</p>
-                <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                  <span>Submitted: 12 Jan 2025</span>
-                  <span>·</span>
-                  <span>3 Matches</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Request 2 */}
-            <div className="flex items-start gap-4 p-4 rounded-xl border border-border bg-secondary/50 hover:border-primary/30 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-accent/50 flex items-center justify-center shrink-0 mt-0.5">
-                <Clock className="w-5 h-5 text-accent-foreground" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <h3 className="text-sm font-semibold text-foreground truncate">Energy Storage Secondary – EU</h3>
-                  <span className="text-xs font-medium text-accent-foreground bg-accent/30 px-2.5 py-0.5 rounded-full shrink-0">In Progress</span>
-                </div>
-                <p className="text-xs text-muted-foreground mb-2">Secondary · €1M–€5M · Growth</p>
-                <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                  <span>Submitted: 28 Jan 2025</span>
-                  <span>·</span>
-                  <span>2 Matches</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Request 3 */}
-            <div className="flex items-start gap-4 p-4 rounded-xl border border-border bg-secondary/50 hover:border-primary/30 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-accent/50 flex items-center justify-center shrink-0 mt-0.5">
-                <Clock className="w-5 h-5 text-accent-foreground" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <h3 className="text-sm font-semibold text-foreground truncate">Renewables Co-Investment – Global</h3>
-                  <span className="text-xs font-medium text-accent-foreground bg-accent/30 px-2.5 py-0.5 rounded-full shrink-0">In Progress</span>
-                </div>
-                <p className="text-xs text-muted-foreground mb-2">Primary Investment · €2M–€10M · Series B</p>
-                <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                  <span>Submitted: 15 Feb 2025</span>
-                  <span>·</span>
-                  <span>2 Matches</span>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* New Request Form */}
         <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader className="border-b border-border pb-5">
@@ -200,7 +121,6 @@ const InvestmentRequests = () => {
             </div>
           </CardHeader>
           <CardContent className="pt-6 space-y-6">
-            {/* Type of Request */}
             <div className="space-y-3">
               <Label className="text-sm font-semibold text-foreground">Type of Request</Label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -221,7 +141,6 @@ const InvestmentRequests = () => {
               </div>
             </div>
 
-            {/* Investment Criteria */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="sectors" className="text-sm font-semibold text-foreground flex items-center gap-2">
@@ -249,13 +168,11 @@ const InvestmentRequests = () => {
               </div>
             </div>
 
-            {/* Special Requirements */}
             <div className="space-y-2">
               <Label htmlFor="requirements" className="text-sm font-semibold text-foreground">Special Requirements</Label>
               <Textarea id="requirements" placeholder="Describe any additional criteria or preferences..." className="rounded-xl min-h-[100px]" />
             </div>
 
-            {/* Submit */}
             <div className="flex justify-end">
               <Button
                 className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl px-6"
@@ -264,6 +181,76 @@ const InvestmentRequests = () => {
                 <Send className="w-4 h-4 mr-2" />
                 Submit Request
               </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Request History */}
+        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
+          <CardHeader className="border-b border-border pb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Clock className="w-4 h-4 text-primary" />
+              </div>
+              <div>
+                <CardTitle className="text-base font-bold text-foreground">My Search Requests</CardTitle>
+                <CardDescription>Overview of all submitted investment search requests</CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-4 space-y-3">
+            <div className="flex items-start gap-4 p-4 rounded-xl border border-border bg-secondary/50 hover:border-primary/30 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <CheckCircle className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="text-sm font-semibold text-foreground truncate">CleanTech Series A – DACH Region</h3>
+                  <span className="text-xs font-medium text-primary bg-primary/10 px-2.5 py-0.5 rounded-full shrink-0">Completed</span>
+                </div>
+                <p className="text-xs text-muted-foreground mb-2">Primary Investment · €500K–€2M · Seed/Series A</p>
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <span>Submitted: 12 Jan 2025</span>
+                  <span>·</span>
+                  <span>3 Matches</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 rounded-xl border border-border bg-secondary/50 hover:border-primary/30 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-accent/50 flex items-center justify-center shrink-0 mt-0.5">
+                <Clock className="w-5 h-5 text-accent-foreground" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="text-sm font-semibold text-foreground truncate">Energy Storage Secondary – EU</h3>
+                  <span className="text-xs font-medium text-accent-foreground bg-accent/30 px-2.5 py-0.5 rounded-full shrink-0">In Progress</span>
+                </div>
+                <p className="text-xs text-muted-foreground mb-2">Secondary · €1M–€5M · Growth</p>
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <span>Submitted: 28 Jan 2025</span>
+                  <span>·</span>
+                  <span>2 Matches</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 rounded-xl border border-border bg-secondary/50 hover:border-primary/30 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-accent/50 flex items-center justify-center shrink-0 mt-0.5">
+                <Clock className="w-5 h-5 text-accent-foreground" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="text-sm font-semibold text-foreground truncate">Renewables Co-Investment – Global</h3>
+                  <span className="text-xs font-medium text-accent-foreground bg-accent/30 px-2.5 py-0.5 rounded-full shrink-0">In Progress</span>
+                </div>
+                <p className="text-xs text-muted-foreground mb-2">Primary Investment · €2M–€10M · Series B</p>
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <span>Submitted: 15 Feb 2025</span>
+                  <span>·</span>
+                  <span>2 Matches</span>
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
