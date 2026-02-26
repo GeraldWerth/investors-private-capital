@@ -186,6 +186,88 @@ const InvestmentRequests = () => {
           </CardContent>
         </Card>
 
+        {/* New Request Form */}
+        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
+          <CardHeader className="border-b border-border pb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Send className="w-4 h-4 text-primary" />
+              </div>
+              <div>
+                <CardTitle className="text-base font-bold text-foreground">New Search Request</CardTitle>
+                <CardDescription>Commission EIN Energy to find investment opportunities</CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-6 space-y-6">
+            {/* Type of Request */}
+            <div className="space-y-3">
+              <Label className="text-sm font-semibold text-foreground">Type of Request</Label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <label className="flex items-center gap-3 p-4 rounded-xl border border-border bg-secondary/50 hover:border-primary/30 transition-colors cursor-pointer">
+                  <Checkbox />
+                  <div className="flex items-center gap-2">
+                    <Briefcase className="w-4 h-4 text-primary" />
+                    <span className="text-sm font-medium text-foreground">Primary Investment</span>
+                  </div>
+                </label>
+                <label className="flex items-center gap-3 p-4 rounded-xl border border-border bg-secondary/50 hover:border-primary/30 transition-colors cursor-pointer">
+                  <Checkbox />
+                  <div className="flex items-center gap-2">
+                    <Layers className="w-4 h-4 text-primary" />
+                    <span className="text-sm font-medium text-foreground">Secondary</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            {/* Investment Criteria */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="sectors" className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  <Target className="w-3.5 h-3.5 text-primary" /> Target Sectors
+                </Label>
+                <Input id="sectors" placeholder="e.g. CleanTech, Energy Storage" className="rounded-xl" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="stage" className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  <Layers className="w-3.5 h-3.5 text-primary" /> Stage
+                </Label>
+                <Input id="stage" placeholder="e.g. Seed, Series A, Growth" className="rounded-xl" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="ticket" className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  <Briefcase className="w-3.5 h-3.5 text-primary" /> Ticket Size
+                </Label>
+                <Input id="ticket" placeholder="e.g. €500K – €2M" className="rounded-xl" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="geography" className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  <Globe className="w-3.5 h-3.5 text-primary" /> Geography
+                </Label>
+                <Input id="geography" placeholder="e.g. DACH, EU, Global" className="rounded-xl" />
+              </div>
+            </div>
+
+            {/* Special Requirements */}
+            <div className="space-y-2">
+              <Label htmlFor="requirements" className="text-sm font-semibold text-foreground">Special Requirements</Label>
+              <Textarea id="requirements" placeholder="Describe any additional criteria or preferences..." className="rounded-xl min-h-[100px]" />
+            </div>
+
+            {/* Submit */}
+            <div className="flex justify-end">
+              <Button
+                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl px-6"
+                onClick={() => toast.success("Search request submitted successfully!")}
+              >
+                <Send className="w-4 h-4 mr-2" />
+                Submit Request
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
       </main>
     </div>
   );
