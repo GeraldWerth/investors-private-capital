@@ -1,4 +1,4 @@
-import { ArrowLeft, Search, TrendingUp, Send, Briefcase, Globe, Target, Layers } from "lucide-react";
+import { ArrowLeft, Search, TrendingUp, Send, Briefcase, Globe, Target, Layers, FileSearch, CheckCircle, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -57,6 +57,54 @@ const InvestmentRequests = () => {
               Let EIN Energy search for direct investment opportunities on your behalf — primary deals, secondaries, and co-investments tailored to your criteria.
             </p>
           </div>
+        </div>
+
+        {/* Summary Stats */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <Card className="border border-border bg-card/80 backdrop-blur-sm">
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <Send className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">3</p>
+                <p className="text-xs text-muted-foreground">Requests Sent</p>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="border border-border bg-card/80 backdrop-blur-sm">
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-accent/50 flex items-center justify-center shrink-0">
+                <Clock className="w-5 h-5 text-accent-foreground" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">2</p>
+                <p className="text-xs text-muted-foreground">In Progress</p>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="border border-border bg-card/80 backdrop-blur-sm">
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <FileSearch className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">7</p>
+                <p className="text-xs text-muted-foreground">Matches Found</p>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="border border-border bg-card/80 backdrop-blur-sm">
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <CheckCircle className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">1</p>
+                <p className="text-xs text-muted-foreground">Completed</p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Form Card */}
